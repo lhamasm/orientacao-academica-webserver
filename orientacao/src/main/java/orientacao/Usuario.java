@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import java.util.Random;
+
 public class Usuario {
 	private String nome;
 	private String sobrenome;
@@ -65,21 +67,66 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
-	public void recuperarSenha(String cpf) throws SQLException {
+	private String gerarNovaSenha() {
+		String novaSenha = "";
+
+		for(int i = 0; i<9; i++){
+			Random rand = new Random();
+			int numero = rand.nextInt(123);
+			if( (numero >= 48 && numero <= 57) || (numero >= 65 && numero <= 90) || (numero >= 97 && numero <= 122) ) {
+				novaSenha += numero;
+			} else {
+				i--;
+			}
+		}
+
+		return novaSenha;
+	}
+	
+	public boolean recuperarSenha(String cpf) throws SQLException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT email FROM USUARIO WHERE cpf = '" + cpf + "'";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		//stmt.execute();
 		ResultSet rs = stmt.executeQuery();
-
-	    while (rs.next()) {
-	    }
+		String emailDest;
+		if (rs.next()) {
+			emailDest = rs.getString("email");
+		} else {
+			return false;
+		}
+		
+		String novaSenha = gerarNovaSenha();
+		sql = "UPDATE USUARIO SET senha = '" + novaSenha + "' WHERE cpf = '" + cpf + "'";
+		stmt = (PreparedStatement) connection.prepareStatement(sql);
+		stmt.execute();
+		
+		Email emailer = new Email();
+		if (!emailer.recuperarSenhaEmail(emailDest, novaSenha)) {
+			return false;
+		}
+	    
 		stmt.close();
 		connection.close();
+		return true;
 	}
 	
-	public void alterarSenha(String senhaAntiga, String novaSenha) {
-		
+	public boolean alterarSenha(String senhaAntiga, String novaSenha) throws SQLException {
+		Connection connection = new DataGetter().getConnection();
+		String sql = "SELECT senha FROM USUARIO WHERE matricula = '" + this.matricula + "'";
+		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next() && rs.getString("senha") == senhaAntiga) {
+			sql = "UPDATE USUARIO SET senha = '" + novaSenha + "' WHERE matricula = '" + this.matricula + "'";
+			stmt = (PreparedStatement) connection.prepareStatement(sql);
+			stmt.execute();
+			stmt.close();
+			connection.close();
+			return true;
+		}
+		stmt.close();
+		connection.close();
+		return false;
 	}
 	
 	public void logOut() {
