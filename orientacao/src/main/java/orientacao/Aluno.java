@@ -95,8 +95,8 @@ public class Aluno extends Usuario{
 		            rs = stmt.executeQuery();
 		            
 		            while(rs.next()) {
-		            	//Email email = new Email();
-		    			//email.notificarOrientacao(rs.getString("email"), rs.getString("nome"), this.getNome());
+		            	Email email = new Email();
+		    		email.notificarOrientacao(rs.getString("email"), rs.getString("nome"), this.getNome());
 		            }
 		            
 		            rs.close();
