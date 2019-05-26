@@ -25,5 +25,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="commons-email-1.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
