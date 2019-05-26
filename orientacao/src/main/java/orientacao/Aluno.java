@@ -9,9 +9,12 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class Aluno extends Usuario {
 	private Curso curso;
-	public Aluno(String nome, String sobrenome, String senha, String email, String matricula, String cpf, Curso curso) {
+	private int semestre;
+	
+	public Aluno(String nome, String sobrenome, String senha, String email, String matricula, String cpf, int semestre, Curso curso) {
 		super(nome, sobrenome, senha, email, matricula, cpf);
 		this.curso = curso;
+		this.semestre = semestre;
 	}
 	
 	public ArrayList<Professor> recuperarProfessores() throws SQLException{
@@ -25,6 +28,27 @@ public class Aluno extends Usuario {
 		}
 		
 		return professores;
+	}
+	
+	public Usuario efetuarCadastro(String nome, String sobrenome, String senha, String email, String matricula, String cpf, int semestre, Curso curso) throws SQLException {
+		Aluno user = null;
+		Connection connection = new DataGetter().getConnection();
+		String sql = "INSERT INTO USUARIO VALUES ('" + matricula + "', '" + nome + "', '" + sobrenome + "', '" + email + "', '" + senha + "', '" + cpf + "')";
+		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+		if (stmt.execute()) {
+			sql = "INSERT INTO ALUNO VALUES ('" + matricula + "', " + curso.getCodigo() + ", " + semestre + ")";
+			stmt = (PreparedStatement) connection.prepareStatement(sql);
+			if (stmt.execute()) {
+				user = new Aluno(nome, sobrenome, senha, email,  matricula, cpf, semestre, curso);
+			} else {
+				sql = "DELETE FROM USUARIO WHERE matricula = '" + matricula + "'";
+				stmt = (PreparedStatement) connection.prepareStatement(sql);
+				stmt.execute();
+			}
+		}
+		stmt.close();
+		connection.close();
+		return user;
 	}
 	
 }

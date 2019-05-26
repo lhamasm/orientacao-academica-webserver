@@ -93,16 +93,24 @@ public class Usuario {
 		if (rs.next()) {
 			emailDest = rs.getString("email");
 		} else {
+			stmt.close();
+			connection.close();
 			return false;
 		}
 		
 		String novaSenha = gerarNovaSenha();
 		sql = "UPDATE USUARIO SET senha = '" + novaSenha + "' WHERE cpf = '" + cpf + "'";
 		stmt = (PreparedStatement) connection.prepareStatement(sql);
-		stmt.execute();
+		if (!stmt.execute()) {
+			stmt.close();
+			connection.close();
+			return false;
+		}
 		
 		Email emailer = new Email();
 		if (!emailer.recuperarSenhaEmail(emailDest, novaSenha)) {
+			stmt.close();
+			connection.close();
 			return false;
 		}
 	    
@@ -116,7 +124,7 @@ public class Usuario {
 		String sql = "SELECT senha FROM USUARIO WHERE matricula = '" + this.matricula + "'";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
-		if (rs.next() && rs.getString("senha") == senhaAntiga) {
+		if (rs.next() && rs.getString("senha").equals(senhaAntiga)) {
 			sql = "UPDATE USUARIO SET senha = '" + novaSenha + "' WHERE matricula = '" + this.matricula + "'";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.execute();
@@ -131,5 +139,36 @@ public class Usuario {
 	
 	public void logOut() {
 		
+	}
+	
+	public Curso recuperaCurso(int codigo) {
+		return null;
+	}
+	
+	public Departamento recuperaDepartamento(int codigo) {
+		return null;
+	}
+	
+	public Usuario login(String matricula, String senha) throws SQLException {
+		Usuario user = null;
+		Connection connection = new DataGetter().getConnection();
+		String sql = "SELECT USUARIO.*, ALUNO.semestre, Aluno.curso FROM USUARIO, ALUNO WHERE USUARIO.matricula='" + matricula + "' AND USUARIO.matricula = ALUNO.matricula";
+		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next()) {
+			if (rs.getString("senha").equals(senha)) {
+				user = new Aluno(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), rs.getInt("semestre"), recuperaCurso(rs.getInt("curso")));
+			}
+		} else {
+			sql = "SELECT USUARIO.*, PROFESSOR.departamento FROM USUARIO, PROFESSOR WHERE USUARIO.matricula='" + matricula + "' AND USUARIO.matricula = PROFESSOR.matricula";
+			stmt = (PreparedStatement) connection.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			if (rs.next() && rs.getString("senha").equals(senha)) {
+				user = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperaDepartamento(rs.getInt("departamento")));
+			}
+		}
+		stmt.close();
+		connection.close();
+		return user;
 	}
 }

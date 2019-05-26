@@ -8,4 +8,8 @@ public class Departamento {
 		this.codigo = codigo;
 		this.nome = nome;
 	}
+	
+	public int getCodigo() {
+		return codigo;
+	}
 }
