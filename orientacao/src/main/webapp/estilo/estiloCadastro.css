@@ -1,0 +1,28 @@
+body{
+	background-color: rgb(250, 250, 250);
+}
+#titulo{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+#aluno-semestre {
+	display: none;
+} 
+#aluno-curso {
+	display: none;
+} 
+#prof-departamento {
+	display: none;
+} 
+#icone-cadastro{
+	font-size: 5em;
+	cursor: pointer;
+}
+#container-cadastro{
+	background-color: white;
+	border-style: solid;
+	border-radius: 5px;
+	border-width: 0.5px;
+	border-color: #C0C0C0;
+	margin-bottom: 50px;
+	max-width: 730px;
+}

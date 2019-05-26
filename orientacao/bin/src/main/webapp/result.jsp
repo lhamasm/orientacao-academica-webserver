@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-<center>
 <h1>
     Available Brands
 </h1>

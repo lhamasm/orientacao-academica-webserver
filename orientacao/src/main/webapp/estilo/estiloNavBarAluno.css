@@ -1,0 +1,38 @@
+#icone-user{
+	font-size: 3.8em;
+	color: rgb(230, 230, 230);
+	position: relative;
+	bottom: -5px;
+}
+#curso, #sem{
+	display: block;
+	font-size: 0.9em;
+}
+#nome{
+	font-size: 1.1em;
+	display: block;
+	font-weight: bold;
+}
+#navbar{
+	background-color: #5498C1;
+}
+.btn-alterar{
+	background-color: #6ECA99;
+	color: white;
+}
+.btn-alterar:hover{
+	background-color: #6CE2A3;
+	color: white;
+}
+#notif{
+	font-size: 1.6em;
+	cursor: pointer;
+}
+#notif:hover{
+	color: #818181;
+}
+#notif-num{
+	position: relative;
+	top: -12px;
+	left: -15px;
+}

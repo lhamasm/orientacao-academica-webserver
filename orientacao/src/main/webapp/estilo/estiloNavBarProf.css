@@ -1,0 +1,60 @@
+li.nav-item {
+	margin: 0.25em;
+}
+
+.navbar {
+	background-color: #5498C1;
+	padding: 0em;
+}
+
+.navbar-brand {
+	font-size: 3.5em;
+	margin-right: 0em;
+	display: inline-block;
+}
+
+#iconeProfessor{
+	color: rgb(230, 230, 230);	
+}
+
+.btn-alterar{
+	background-color: #6ECA99;
+	color: white;
+}
+.btn-alterar:hover{
+	background-color: #6CE2A3;
+}
+
+.itensinfo {
+	display: inline-block;
+	position: relative;
+	top: -9px;
+	left: 3px;
+}
+
+#nome, #departamento {
+	display: block;
+	color: black;
+}
+
+#nome {
+	font-size: 1.05em;
+	font-weight: bold;
+}
+
+#departamento{
+	font-size: 0.9em;
+}
+
+#notif{
+	font-size: 1.6em;
+	cursor: pointer;
+}
+#notif:hover{
+	color: #818181;
+}
+#notif-num{
+	position: relative;
+	top: -12px;
+	left: -15px;
+}

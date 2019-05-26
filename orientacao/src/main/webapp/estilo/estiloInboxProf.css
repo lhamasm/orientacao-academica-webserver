@@ -1,0 +1,17 @@
+body{
+	background-color: rgb(250, 250, 250);
+}
+
+thead tr{
+	background-color: #7CB5D6;
+	color: white;
+}
+
+tbody tr:hover {
+	background-color: #D5E2EA;
+	cursor: pointer;
+}
+
+#title {
+	font-family: 'Open Sans Condensed', sans-serif;
+}

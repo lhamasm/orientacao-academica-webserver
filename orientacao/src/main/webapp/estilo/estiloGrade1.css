@@ -1,0 +1,47 @@
+body{
+	background-color: rgb(250, 250, 250);
+}
+#botoes{
+	justify-content: center;
+}
+
+#obrigatorias{
+	border-radius: 0px;
+	background-color: #1F618D;
+	color: white;
+}
+
+#optativas{
+	border-radius: 0px;
+	background-color: white;
+	color: black;
+}
+
+.btn-materias{
+	font-size: 0.8em;
+	align-content: center;
+	height: 8em;
+	width: 12em;
+	background-color: #B7B7B7;
+}
+
+.btn-materias:hover{
+	/* quando for materia desbloqueada background-color: #6BDA96; */
+	background-color: #68BBF1;  
+	/* quando for pre-requisito  background-color: #F38B8B; */ 
+}
+
+#container-optativas{
+	display: none;
+}
+
+.link-optativas{
+	font-size: 1em;
+	display: block;
+	background-color: #D0D5FA;
+	margin-bottom: 5px;
+}
+
+#disciplinasTotal, #nomeDisciplinas{
+	display: none;
+}

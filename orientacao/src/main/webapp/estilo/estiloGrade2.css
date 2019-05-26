@@ -1,0 +1,140 @@
+h6 {
+	margin-bottom: 1.4em;
+}
+
+ul {
+	list-style-type: none;
+}
+
+form h6 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.2em;
+}
+
+textarea {
+	position: relative;
+	left: -1em;
+}
+
+.container {
+	margin-left: 4em;
+	margin-right: 4em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.modal-dialog {
+	max-width: 48em;
+}
+
+.modal-body {
+	margin-right: 2.3em;
+	margin-left: 0em;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 20em;
+}
+
+.botao-materia-expandida{
+	display: none;
+}
+
+.botao-materia-expandida span {
+	font-size: 0.8em;
+	color: #f0f5f5;
+}
+
+.materias {
+	border-radius: 0.3em;
+	margin-bottom: 0.1em;
+	width: 100%;
+	background-color: #B7B7B7;
+	font-family: "Futura Bk BT", "Geneva", "Tahoma";
+	white-space: normal;
+	text-align: left;
+}
+
+.materias:hover {
+	background-color: #68BBF1;
+}
+
+.materias-selecionadas {
+	height: 8em;
+	width: 12em;
+	background-color: #61c6be;
+	text-align: center;
+	color: white;
+	margin-right: 0.5em;
+	border-radius: 0.3em;
+}
+
+.materias-selecionadas:hover {
+	background-color: #3da9a0;
+}
+
+.materias-selecionadas:hover button{
+	color: white;
+}
+
+.materias-selecionadas button {
+	padding: 0em;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: transparent;
+	font-size: 1.1em;
+	font-weight: bold;
+	cursor: pointer; 
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+#adicionar-materias {
+	height: 8em;
+	width: 12em;
+	background-color: #e8eaed;
+	color: white;
+}
+
+#adicionar-materias i {
+	font-size: 3em;
+}
+
+#adicionar-materias:hover {
+	background-color: #B7B7B7;
+}
+
+#subirForm {
+	text-align: center;
+}
+
+#voltar{
+	position: relative;
+	left: -1.7em;
+	margin-bottom: 2em;
+	border: none;
+	background-image: linear-gradient(to right, #5bc0de, white);
+	color: white;
+}

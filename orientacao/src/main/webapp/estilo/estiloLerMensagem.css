@@ -1,0 +1,26 @@
+body{
+	background-color: rgb(250, 250, 250);
+}
+
+.conteudos{
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: white;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.conteudos p{
+	overflow-wrap: break-word;
+}
+
+.sub-title {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	font-size: 150%;
+	color: #313239;
+}
+
+#mensagem{
+	border: 1px solid black;
+}
