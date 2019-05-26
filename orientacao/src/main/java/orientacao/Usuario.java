@@ -1,12 +1,18 @@
 package orientacao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
-import java.util.Random;
+import orientacao.Curso;
+import orientacao.Aluno;
+import orientacao.Departamento;
+import orientacao.DataGetter;
+import orientacao.Email;
 
 public class Usuario {
 	private String nome;
@@ -66,7 +72,7 @@ public class Usuario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	
 	private String gerarNovaSenha() {
 		String novaSenha = "";
 
@@ -82,7 +88,7 @@ public class Usuario {
 
 		return novaSenha;
 	}
-	
+
 	public boolean recuperarSenha(String cpf) throws SQLException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT email FROM USUARIO WHERE cpf = '" + cpf + "'";
@@ -141,11 +147,65 @@ public class Usuario {
 		
 	}
 	
-	public Curso recuperaCurso(int codigo) {
+	public Departamento recuperarDepartamento(String nomeDepartamento) throws SQLException {
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.nome=" + nomeDepartamento;
+        	
+			con = new DataGetter().getConnection();
+
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			Departamento departamento = null;
+			while(rs.next()) {
+            	departamento = new Departamento(rs.getInt("codigo"), rs.getString("nome"));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return departamento;
+			
+		} catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
 		return null;
 	}
 	
-	public Departamento recuperaDepartamento(int codigo) {
+	public Curso recuperarCurso (int codigo) throws SQLException {
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM CURSO WHERE CURSO.codigo=" + codigo;
+        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			Curso curso = null;
+            while(rs.next()) {
+            	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
+            	Departamento departamento = recuperarDepartamento(rs.getString("departamento"));
+            	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
+            	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
+    			
+    			curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, /*obrigatorias*/ null, optativas);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return curso;
+            
+        } catch(SQLException e) {
+            System.out.println(e);            
+        } finally {        
+			con.close();
+		}
+		
 		return null;
 	}
 	
@@ -157,14 +217,14 @@ public class Usuario {
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			if (rs.getString("senha").equals(senha)) {
-				user = new Aluno(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), rs.getInt("semestre"), recuperaCurso(rs.getInt("curso")));
+				user = new Aluno(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperarCurso(rs.getInt("curso")),  rs.getInt("semestre"));
 			}
 		} else {
 			sql = "SELECT USUARIO.*, PROFESSOR.departamento FROM USUARIO, PROFESSOR WHERE USUARIO.matricula='" + matricula + "' AND USUARIO.matricula = PROFESSOR.matricula";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.next() && rs.getString("senha").equals(senha)) {
-				user = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperaDepartamento(rs.getInt("departamento")));
+				user = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperarDepartamento(rs.getString("departamento")));
 			}
 		}
 		stmt.close();

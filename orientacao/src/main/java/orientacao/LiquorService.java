@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LiquorService {
-	@SuppressWarnings("rawtypes")
 	public List getAvailableBrands(LiquorType type){
 
-		List <String> brands = new ArrayList<String>();
+		List brands = new ArrayList();
 
 		if(type.equals(LiquorType.WINE)){
 			brands.add("Adrianna Vineyard");
