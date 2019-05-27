@@ -176,16 +176,14 @@ public class Aluno extends Usuario{
 	}
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
-		System.out.println("chamou");
 		Aluno user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "INSERT INTO USUARIO VALUES ('" + aluno.getMatricula() + "', '" + aluno.getNome() + "', '" + aluno.getSobrenome() + "', '" + aluno.getEmail() + "', '" + aluno.getSenha() + "', '" + aluno.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
-		if (stmt.execute()) {
-			System.out.println("usuario");
-			sql = "INSERT INTO ALUNO VALUES ('" + aluno.getMatricula() + "', " + aluno.getCurso().getCodigo() + ", " + semestre + ")";
+		if (!stmt.execute()) {
+			sql = "INSERT INTO ALUNO VALUES ('" + aluno.getMatricula() + "', " + aluno.getSemestre() + ", " + aluno.getCurso().getCodigo() + ")";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
-			if (stmt.execute()) {
+			if (!stmt.execute()) {
 				user = aluno;
 			} else {
 				sql = "DELETE FROM USUARIO WHERE matricula = '" + aluno.getMatricula() + "'";

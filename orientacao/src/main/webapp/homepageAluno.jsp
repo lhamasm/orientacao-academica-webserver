@@ -1,4 +1,4 @@
-<%@ page import ="java.util.*" %>
+<%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
 
 <!doctype html>
@@ -21,7 +21,7 @@
 </head>
 
 <% 
-	Aluno aluno = (Aluno) request.getAttribute("aluno");
+	Aluno aluno = (Aluno) session.getAttribute("aluno");
 %>
 <body>
     <nav class="navbar navbar-expand-lg navbar-fixed-top px-5" id = "navbar">
@@ -31,7 +31,7 @@
                     <span class = "mr-2"> <i class="fas fa-user-graduate" id = "icone-user"></i> </span>
                 </li>
                 <li class = "nav-item">
-                    <span id = "nome"> <% out.println(aluno.getNome() + aluno.getSobrenome()); %> </span>
+                    <span id = "nome"> <% out.println(aluno.getNome() + " " + aluno.getSobrenome()); %> </span>
                     <span id = "curso"> <% out.println(aluno.getCurso().getNome()); %> </span> 
                     <span id = "sem"> <% out.println(aluno.getSemestre() + "º Semestre"); %> </span>
                 </li>
@@ -56,7 +56,7 @@
         <br>
         <br>
         <h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
-        <button type = "button" onclick = "redirect();" class = "col-3 btn" id = "botaoGrade"> Monte sua Grade! </button>
+        <button type = "button" onclick = "redirect();" class = "col-3 btn" id = "botaoGrade"> Monte sua Grade </button>
     </div>
 </body>
 

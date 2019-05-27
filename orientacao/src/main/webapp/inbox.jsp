@@ -1,3 +1,6 @@
+<%@ page import ="javax.servlet.*" %>
+<%@ page import ="orientacao.*" %>
+
 <!doctype html>
 
 <html>
@@ -20,6 +23,10 @@
     <script type = "text/javascript" src="./script/scriptInbox.js"> </script>
 </head>
 
+<% 
+	Aluno aluno = (Aluno) session.getAttribute("aluno");
+%>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-fixed-top px-5" id = "navbar">
         <div class="container-fluid">
@@ -28,9 +35,9 @@
                     <span class = "mr-2"> <i class="fas fa-user-graduate" id = "icone-user"></i> </span>
                 </li>
                 <li class = "nav-item">
-                    <span id = "nome"> Bruno Dias da Silva Ferreira </span>
-                    <span id = "curso"> Ciência da Computação </span> 
-                    <span id = "sem"> 7º Semestre </span>
+                    <span id = "nome"> <% out.println(aluno.getNome() + " " + aluno.getSobrenome()); %> </span>
+                    <span id = "curso"> <% out.println(aluno.getCurso().getNome()); %> </span> 
+                    <span id = "sem"> <% out.println(aluno.getSemestre() + "� Semestre"); %> </span>
                 </li>
             </ul>
             <ul class = "navbar-nav">

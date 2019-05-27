@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -27,6 +29,7 @@ public class CadastroUserServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha");
 		String matricula = req.getParameter("matricula");
+		HttpSession session = req.getSession();						
 		Usuario user = new Usuario(nome, sobrenome, senha, email, cpf, matricula);		
 		if(req.getParameter("tipo").equals("Estudante")) {
 			int codcurso = Integer.parseInt(req.getParameter("curso"));
@@ -56,7 +59,7 @@ public class CadastroUserServlet extends HttpServlet {
 			}
 
 			if(aluno != null) {
-				req.setAttribute("aluno", aluno);
+				session.setAttribute("aluno", aluno);
 		        RequestDispatcher view = req.getRequestDispatcher("homepageAluno.jsp");
 		        view.forward(req, resp);
 			}
@@ -93,7 +96,7 @@ public class CadastroUserServlet extends HttpServlet {
 			}
 
 			if(professor != null) {
-				req.setAttribute("professor", professor);
+				session.setAttribute("professor", professor);
 		        RequestDispatcher view = req.getRequestDispatcher("homepageProfessor.jsp");
 		        view.forward(req, resp);				
 			}

@@ -1,3 +1,6 @@
+<%@ page import ="javax.servlet.*" %>
+<%@ page import ="orientacao.*" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,6 +25,11 @@
 	<script type="text/javascript" src="./script/scriptGrade2.js"></script>
 
 </head>
+
+<% 
+	Aluno aluno = (Aluno) session.getAttribute("aluno");
+%>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-fixed-top px-5" id = "navbar">
         <div class="container-fluid">
@@ -30,9 +38,9 @@
                     <span class = "mr-2"> <i class="fas fa-user-graduate" id = "icone-user"></i> </span>
                 </li>
                 <li class = "nav-item">
-                    <span id = "nome"> Bruno Dias da Silva Ferreira </span>
-                    <span id = "curso"> Ciência da Computação </span> 
-                    <span id = "sem"> 7º Semestre </span>
+                    <span id = "nome"> <% out.println(aluno.getNome() + " " + aluno.getSobrenome()); %> </span>
+                    <span id = "curso"> <% out.println(aluno.getCurso().getNome()); %> </span> 
+                    <span id = "sem"> <% out.println(aluno.getSemestre() + "� Semestre"); %> </span>
                 </li>
             </ul>
             <ul class = "navbar-nav">
@@ -53,26 +61,26 @@
     </nav>
     
     <div class="container">
-    	<button type="button" class="btn" id="voltar" data-toggle="tooltip" title="Voltar a página anterior" onclick="redirectBack();"><</button>
+    	<button type="button" class="btn" id="voltar" title="Voltar � p�gina anterior" onclick="redirectBack();"><</button>
     	<form autocomplete="off">
-	    	<h6>MATÉRIAS QUE ESTOU CURSANDO ESTE SEMESTRE</h6>
+	    	<h6>Mat�rias que estou cursando esse semestre</h6>
 	    	<div class="row form-group">
 	    		<div id="inserir-materias" class="row">
 	    		</div>
-	    		<button type="button" class="btn mt-2 ml-3" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keybord="false"><i class="fas fa-plus"></i></button>
+	    		<button type="button" class="btn mt-2" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keybord="false"><i class="fas fa-plus"></i></button>
 	    	</div>
 
-	    	<h6 class="mt-4">ESCOLHA O ORIENTADOR</h6>
+	    	<h6 class="mt-4">Escolha o orientador</h6>
 	    	<div class="row form-group autocomplete">
 	    		<input type="text" name="orientador" id="input-orientador" class="form-control col-11">
 	    		<button type="button" class="btn btn-secondary"><i class="fas fa-plus"></i></button>
 	    	</div>
 
-	    	<h6 class="mt-4">ALGO A ACRESCENTAR?</h6>
+	    	<h6 class="mt-4">Algo a acrescentar?</h6>
 	    	<TEXTAREA class="form-control" cols="10"></TEXTAREA>
 	    	
 	    	<div id="subirForm">
-	    		<button class="btn mt-4 btn-outline-primary" type="submit">ENVIAR</button>
+	    		<button class="btn mt-4 btn-info" type="submit">Enviar</button>
 	    	</div>
 	    </form>
     </div>
@@ -87,9 +95,9 @@
 		    	<div class="modal-body container-fluid">
 		    		<ul>
 		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATA61', this);">
+		    				<div class="btn materias" id = "MATA61Div" onclick="expandir_botao('MATA61', this);">
 		    					<h6>MATA61 - Compiladores</h6>
-			    				<div class="botao-materia-expandida" id="MATA61">
+			    				<div class="botao-materia-expandida" id="MATA61Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -98,9 +106,9 @@
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATA60',this);">
+		    				<div class="btn materias" id="MATA60Div" onclick="expandir_botao('MATA60',this);">
 		    					<h6>MATA60 - Banco de Dados</h6>
-		    					<div class="botao-materia-expandida" id="MATA60">
+		    					<div class="botao-materia-expandida" id="MATA60Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -109,9 +117,9 @@
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATA63',this);">
+		    				<div class="btn materias" id="MATA63Div" onclick="expandir_botao('MATA63',this);">
 		    					<h6>MATA63 - Engenharia de Software II</h6>
-		    					<div class="botao-materia-expandida" id="MATA63">
+		    					<div class="botao-materia-expandida" id="MATA63Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -122,7 +130,7 @@
 		    			<li>
 		    				<div class="btn materias" onclick="expandir_botao('MATC84',this);">
 		    					<h6>MATC84 - Laboratório Web</h6>
-		    					<div class="botao-materia-expandida" id="MATC84">
+		    					<div class="botao-materia-expandida" id="MATC84Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -133,7 +141,7 @@
 		    			<li>
 		    				<div class="btn materias" onclick="expandir_botao('MATE48',this);">
 		    					<h6>MATE48 - LIBRAS I- LÍNGUA BRASILEIRA DE SINAIS NIVEL I</h6>
-		    					<div class="botao-materia-expandida" id="MATE48">
+		    					<div class="botao-materia-expandida" id="MATE48Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -144,7 +152,7 @@
 		    			<li>
 		    				<div class="btn materias" onclick="expandir_botao('MATF34',this);">
 		    					<h6>MATF34 - ACCS:PROGRAMAÇÃO COMPETITIVA-COMPUTAÇÃO PARA ALUNOS</h6> 
-		    					<div class="botao-materia-expandida" id="MATF34">
+		    					<div class="botao-materia-expandida" id="MATF34Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -155,7 +163,7 @@
 		    			<li>
 		    				<div class="btn materias" onclick="expandir_botao('MATA39',this);">
 		    					<h6>MATA39 - SEMINÁRIOS DE INTRODUÇÃO AO CURSO</h6>
-		    					<div class="botao-materia-expandida" id="MATA39">
+		    					<div class="botao-materia-expandida" id="MATA39Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -166,7 +174,7 @@
 		    			<li>
 		    				<div class="btn materias"  onclick="expandir_botao('MAT236',this);">
 		    					<h6>MAT236 - MÉTODOS ESTATÍSTICOS</h6>
-		    					<div class="botao-materia-expandida" id="MAT236">
+		    					<div class="botao-materia-expandida" id="MAT236Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
@@ -177,7 +185,7 @@
 		    			<li>
 		    				<div class="btn materias" onclick="expandir_botao('FCHC45', this);">
 		    					<h6>FCHC45 - METODOLOGIA E EXPRESSÃO TÉCNICO-CIENTÍFICA</h6> 
-		    					<div class="botao-materia-expandida" id="FCHC45">
+		    					<div class="botao-materia-expandida" id="FCHC45Exp">
 			    					<hr>
 			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						

@@ -177,10 +177,8 @@ public class Usuario {
 	
 	public Curso recuperarCurso (int codigo) throws SQLException, ClassNotFoundException {
 
-        	String sql = "SELECT * FROM CURSO WHERE CURSO.codigo=" + codigo;
-        	
 			Connection con = new DataGetter().getConnection();
-			
+        	String sql = "SELECT * FROM CURSO WHERE CURSO.codigo=" + codigo;			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
             

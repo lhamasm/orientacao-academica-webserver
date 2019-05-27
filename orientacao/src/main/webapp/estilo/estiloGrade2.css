@@ -6,11 +6,6 @@ ul {
 	list-style-type: none;
 }
 
-form h6 {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.2em;
-}
-
 textarea {
 	position: relative;
 	left: -1em;
@@ -116,6 +111,7 @@ textarea {
 	width: 12em;
 	background-color: #e8eaed;
 	color: white;
+	margin-left: 2em;
 }
 
 #adicionar-materias i {
@@ -132,9 +128,10 @@ textarea {
 
 #voltar{
 	position: relative;
-	left: -1.7em;
+	left: -3.5em;
 	margin-bottom: 2em;
 	border: none;
-	background-image: linear-gradient(to right, #5bc0de, white);
 	color: white;
+	font-weight: bold;
+	background-color: #42ACCB;
 }

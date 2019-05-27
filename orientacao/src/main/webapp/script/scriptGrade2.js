@@ -1,13 +1,15 @@
 var codigosmateriasselecionadas = [];
 var materiasinseridas = [];
+var nomesmateriasselecionadas = [];
 var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 
 //autocomplete(document.getElementById("input-orientador"), countries);
 
 
 function expandir_botao(id, obj){
-	botao = document.getElementById(id);
+	botao = document.getElementById(id + 'Exp');
 	nomemateria = obj.querySelector("h6").innerHTML;
+	var titulo = nomemateria.split(" - ");
 	
 	if(botao.style.display == "block"){
 		botao.style.display = "none";
@@ -20,9 +22,10 @@ function expandir_botao(id, obj){
 			$(this).css("background-color", "#B7B7B7");
 		});
 
-		var index = codigosmateriasselecionadas.indexOf(nomemateria);
+		var index = codigosmateriasselecionadas.indexOf(titulo[0]);
 		if (index > -1) {
 		  codigosmateriasselecionadas.splice(index, 1);
+		  nomesmateriasselecionadas.splice(index, 1);
 		}
 	}
 	else{
@@ -36,7 +39,9 @@ function expandir_botao(id, obj){
 			$(this).css("background-color", "#68BBF1");
 		});
 
-		codigosmateriasselecionadas.push(nomemateria);
+		codigosmateriasselecionadas.push(titulo[0]);
+		nomesmateriasselecionadas.push(titulo[1]);
+		
 	}
 }
 
@@ -54,14 +59,13 @@ function redirectBack(){
 
 function confirmaMaterias(item){
 	if (materiasinseridas.indexOf(item) < 0) { // não encontrou o item no array de materias inseridas
-		titulo = item.split("-");
-
+		var indice = codigosmateriasselecionadas.indexOf(item);
 		var str = "removeelement('";
-		str+= titulo[0];
+		str+= item;
 		str+= "');";
 
 		x = document.getElementById("inserir-materias");
-		x.innerHTML += '<div class="materias-selecionadas mt-2 container-fluid" id="' + titulo[0] + '"><div class="row"><button class="offset-11" type="button" onclick="' + str + '">&times;</button></div><p class="codigo">' + titulo[0] + '</p> <p class="titulomateria">' + titulo[1] + '</p> </div>';
+		x.innerHTML += '<div class="materias-selecionadas mt-2 ml-3 container-fluid" id="' + item + '"><div class="row"><button class="offset-11" type="button" onclick="' + str + '">&times;</button></div><p class="codigo">' + item + '</p> <p class="titulomateria">' + nomesmateriasselecionadas[indice] + '</p> </div>';
 		materiasinseridas.push(item);
 	}
 }
@@ -69,6 +73,29 @@ function confirmaMaterias(item){
 function removeelement(id){
 	x = document.getElementById(id);
 	x.remove();
+	console.log(id);
+	var botao = document.getElementById(id + 'Exp');
+	botao.style.display = "none";
+	botao.style.backgroundColor = "#B7B7B7";
+	botao.style.color = "black";
+	document.getElementById(id + 'Div').style.backgroundColor = "#B7B7B7";
+	document.getElementById(id + 'Div').style.color = "black";
+	
+	$(document.getElementById(id + 'Div')).hover(function(){
+		$(this).css("background-color", "#68BBF1");
+	}, function(){
+		$(this).css("background-color", "#68BBF1");
+	});	
+	
+	var index = materiasinseridas.indexOf(id);
+	if(index >= 0){
+		materiasinseridas.splice(index, 1);
+	}
+	index = codigosmateriasselecionadas.indexOf(id);
+	if (index > -1) {
+	  codigosmateriasselecionadas.splice(index, 1);
+	  nomesmateriasselecionadas.splice(index, 1);
+	}	
 }
 
 // function autocomplete(inp, arr) {

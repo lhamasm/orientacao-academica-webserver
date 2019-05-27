@@ -74,7 +74,7 @@
 	                <div class = "col-6 form-group" id="aluno-curso">
 	                    <label for = "curso"> Curso </label> <br>
                     	<select name = "curso" class = "form-control" id="curso">
-                    		<option value="112140" id="c1">Bacharelado em Ciência da ComputaÃ§Ã£o</option>
+                    		<option value="112" id="c1">Bacharelado em Ciência da Computação</option>
 						</select>
 	                </div>	                               
 	            	<div class = "col-2 form-group" id="aluno-semestre">
