@@ -1,3 +1,5 @@
+
+
 package orientacao;
 
 import java.sql.PreparedStatement;
@@ -200,6 +202,36 @@ public class Usuario {
             return curso;
 	}
 	
+	public ArrayList<Curso> recuperarTodosOsCursos () throws SQLException, ClassNotFoundException {
+
+    	String sql = "SELECT * FROM CURSO";
+    	
+		Connection con = new DataGetter().getConnection();
+		
+		PreparedStatement stmt = con.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+        
+		ArrayList<Curso> cursos = null;
+		
+		while(rs.next()) {
+        	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
+        	Departamento departamento = recuperarDepartamento(rs.getString("departamento"));
+        	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
+        	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
+        	Curso curso;
+			curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, /*obrigatorias*/ null, optativas);
+			cursos.add(curso);
+        }
+
+        rs.close();
+        stmt.close();
+		con.close();
+		
+        
+        return cursos;
+}
+	
+	
 	public Usuario login(String matricula, String senha) throws SQLException, ClassNotFoundException {
 		Usuario user = null;
 		Connection connection = new DataGetter().getConnection();
@@ -223,3 +255,27 @@ public class Usuario {
 		return user;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
