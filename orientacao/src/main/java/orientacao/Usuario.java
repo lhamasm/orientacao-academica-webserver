@@ -89,7 +89,7 @@ public class Usuario {
 		return novaSenha;
 	}
 
-	public boolean recuperarSenha(String cpf) throws SQLException {
+	public boolean recuperarSenha(String cpf) throws SQLException, ClassNotFoundException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT email FROM USUARIO WHERE cpf = '" + cpf + "'";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class Usuario {
 		return true;
 	}
 	
-	public boolean alterarSenha(String senhaAntiga, String novaSenha) throws SQLException {
+	public boolean alterarSenha(String senhaAntiga, String novaSenha) throws SQLException, ClassNotFoundException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT senha FROM USUARIO WHERE matricula = '" + this.matricula + "'";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
@@ -147,7 +147,7 @@ public class Usuario {
 		
 	}
 	
-	public Departamento recuperarDepartamento(String nomeDepartamento) throws SQLException {
+	public Departamento recuperarDepartamento(String nomeDepartamento) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		try {
         	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.nome=" + nomeDepartamento;
@@ -175,12 +175,11 @@ public class Usuario {
 		return null;
 	}
 	
-	public Curso recuperarCurso (int codigo) throws SQLException {
-		Connection con = null;
-		try {
+	public Curso recuperarCurso (int codigo) throws SQLException, ClassNotFoundException {
+
         	String sql = "SELECT * FROM CURSO WHERE CURSO.codigo=" + codigo;
         	
-			con = new DataGetter().getConnection();
+			Connection con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -194,22 +193,16 @@ public class Usuario {
     			
     			curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, /*obrigatorias*/ null, optativas);
             }
-            
+
             rs.close();
             stmt.close();
+			con.close();
+			
             
             return curso;
-            
-        } catch(SQLException e) {
-            System.out.println(e);            
-        } finally {        
-			con.close();
-		}
-		
-		return null;
 	}
 	
-	public Usuario login(String matricula, String senha) throws SQLException {
+	public Usuario login(String matricula, String senha) throws SQLException, ClassNotFoundException {
 		Usuario user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT USUARIO.*, ALUNO.semestre, Aluno.curso FROM USUARIO, ALUNO WHERE USUARIO.matricula='" + matricula + "' AND USUARIO.matricula = ALUNO.matricula";

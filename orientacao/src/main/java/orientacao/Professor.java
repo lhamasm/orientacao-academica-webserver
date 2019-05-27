@@ -30,7 +30,7 @@ public class Professor extends Usuario {
 		this.departamento = departamento;
 	}
 	
-	public void recuperarNotificacoes(Professor professor) {
+	public void recuperarNotificacoes(Professor professor) throws ClassNotFoundException {
 		
 		Connection con = null;
 		try {
@@ -55,7 +55,7 @@ public class Professor extends Usuario {
 		}
 	}
 	
-	public Usuario efetuarCadastro(Professor professor) throws SQLException {
+	public Usuario efetuarCadastro(Professor professor) throws SQLException, ClassNotFoundException {
 		Professor user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "INSERT INTO USUARIO VALUES ('" + professor.getMatricula()+ "', '" + professor.getNome() + "', '" + professor.getSobrenome() + "', '" + professor.getEmail() + "', '" + professor.getSenha() + "', '" + professor.getCpf() + "')";

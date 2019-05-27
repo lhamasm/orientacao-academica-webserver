@@ -19,7 +19,8 @@ import java.sql.SQLException;
 
 public class CadastroUserServlet extends HttpServlet {
 	@Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+ {
 		String nome = req.getParameter("nome");
 		String sobrenome = req.getParameter("sobrenome");
 		String cpf = req.getParameter("cpf");
@@ -30,18 +31,30 @@ public class CadastroUserServlet extends HttpServlet {
 		if(req.getParameter("tipo").equals("Estudante")) {
 			int codcurso = Integer.parseInt(req.getParameter("curso"));
 			Curso curso = null;
+
 			try {
 				curso = user.recuperarCurso(codcurso);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			int semestre = Integer.parseInt(req.getParameter("semestre"));
 			Aluno aluno = new Aluno(nome, sobrenome, senha, email, matricula, cpf, curso, semestre);
+
 			try {
 				aluno = (Aluno) aluno.efetuarCadastro(aluno);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			if(aluno != null) {
 				req.setAttribute("aluno", aluno);
 		        RequestDispatcher view = req.getRequestDispatcher("homepageAluno.jsp");
@@ -56,17 +69,29 @@ public class CadastroUserServlet extends HttpServlet {
 		else if(req.getParameter("tipo").equals("Docente")) {
 			String departamento = req.getParameter("dep");
 			Departamento dep = null;
+
 			try {
 				dep = user.recuperarDepartamento(departamento);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			Professor professor = new Professor(nome, sobrenome, senha, email, matricula, cpf, dep);
+
 			try {
 				professor = (Professor) professor.efetuarCadastro(professor);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			if(professor != null) {
 				req.setAttribute("professor", professor);
 		        RequestDispatcher view = req.getRequestDispatcher("homepageProfessor.jsp");
