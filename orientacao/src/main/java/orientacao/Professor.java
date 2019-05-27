@@ -42,7 +42,7 @@ public class Professor extends Usuario {
             
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
-            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getDate("data"), rs.getTime("horario"), rs.getString("observacao"), rs.getString("destinatario"), rs.getString("remetente")));
+            	//orientacoes.add(new Orientacao(rs.getInt("id"), rs.getDate("data"), rs.getTime("horario"), rs.getString("observacao"), rs.getString("destinatario"), rs.getString("remetente")));
             }
             
             rs.close();
@@ -51,22 +51,22 @@ public class Professor extends Usuario {
         } catch(SQLException e) {
             System.out.println(e);
         } finally {        
-			con.close();
+			//con.close();
 		}
 	}
 	
-	public Usuario efetuarCadastro(String nome, String sobrenome, String senha, String email, String matricula, String cpf, Departamento departamento) throws SQLException {
+	public Usuario efetuarCadastro(Professor professor) throws SQLException {
 		Professor user = null;
 		Connection connection = new DataGetter().getConnection();
-		String sql = "INSERT INTO USUARIO VALUES ('" + matricula + "', '" + nome + "', '" + sobrenome + "', '" + email + "', '" + senha + "', '" + cpf + "')";
+		String sql = "INSERT INTO USUARIO VALUES ('" + professor.getMatricula()+ "', '" + professor.getNome() + "', '" + professor.getSobrenome() + "', '" + professor.getEmail() + "', '" + professor.getSenha() + "', '" + professor.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		if (stmt.execute()) {
-			sql = "INSERT INTO PROFESSOR VALUES ('" + matricula + "', " + departamento.getCodigo() + ")";
+			sql = "INSERT INTO PROFESSOR VALUES ('" + professor.getMatricula() + "', " + professor.getDepartamento().getCodigo() + ")";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			if (stmt.execute()) {
-				user = new Professor(nome, sobrenome, senha, email,  matricula, cpf, departamento);
+				user = professor;
 			} else {
-				sql = "DELETE FROM USUARIO WHERE matricula = '" + matricula + "'";
+				sql = "DELETE FROM USUARIO WHERE matricula = '" + professor.getMatricula() + "'";
 				stmt = (PreparedStatement) connection.prepareStatement(sql);
 				stmt.execute();
 			}

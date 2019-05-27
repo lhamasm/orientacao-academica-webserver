@@ -39,7 +39,7 @@ public class Aluno extends Usuario{
 		this.semestre = semestre;
 	}
 	
-	public void enviarNotificacao(Orientacao orientacao) {
+/*	public void enviarNotificacao(Orientacao orientacao) {
 		
 		Connection con = null;
 		try {
@@ -115,7 +115,7 @@ public class Aluno extends Usuario{
 		}finally {        
 			con.close();
 		}
-	}
+	} */
 	
 	public ArrayList<Professor> recuperarProfessores() throws SQLException{
 		ArrayList<Professor> professores = new ArrayList<Professor>();
@@ -130,7 +130,7 @@ public class Aluno extends Usuario{
 		return professores;
 	}
 	
-	public ArrayList<Disciplina> recuperarOptativas() {
+	public ArrayList<Disciplina> recuperarOptativas() throws SQLException {
 		
 		Connection con = null;
 		try {
@@ -143,7 +143,7 @@ public class Aluno extends Usuario{
             
 			ArrayList<Disciplina> optativas = new ArrayList<Disciplina>();
             while(rs.next()) {
-            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), null, null));
+            	optativas.add(new Disciplina());
             }
             
             rs.close();
@@ -156,9 +156,10 @@ public class Aluno extends Usuario{
         } finally {        
 			con.close();
 		}
+		return null;
 	}
 	
-	public ArrayList<Orientacao> recuperarNotificacoes(Aluno aluno) {
+	public ArrayList<Orientacao> recuperarNotificacoes(Aluno aluno) throws SQLException {
 		
 		Connection con = null;
 		try {
@@ -170,7 +171,7 @@ public class Aluno extends Usuario{
             
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
-            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getDate("data"), rs.getTime("horario"), rs.getString("observacao"), rs.getString("destinatario"), rs.getString("remetente")));
+            	orientacoes.add(new Orientacao());
             }
             
             rs.close();
@@ -183,20 +184,21 @@ public class Aluno extends Usuario{
         } finally {        
 			con.close();
 		}
+		return null;
 	}
 	
-	public Usuario efetuarCadastro(String nome, String sobrenome, String senha, String email, String matricula, String cpf, int semestre, Curso curso) throws SQLException {
+	public Usuario efetuarCadastro(Aluno aluno) throws SQLException {
 		Aluno user = null;
 		Connection connection = new DataGetter().getConnection();
-		String sql = "INSERT INTO USUARIO VALUES ('" + matricula + "', '" + nome + "', '" + sobrenome + "', '" + email + "', '" + senha + "', '" + cpf + "')";
+		String sql = "INSERT INTO USUARIO VALUES ('" + aluno.getMatricula() + "', '" + aluno.getNome() + "', '" + aluno.getSobrenome() + "', '" + aluno.getEmail() + "', '" + aluno.getSenha() + "', '" + aluno.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		if (stmt.execute()) {
-			sql = "INSERT INTO ALUNO VALUES ('" + matricula + "', " + curso.getCodigo() + ", " + semestre + ")";
+			sql = "INSERT INTO ALUNO VALUES ('" + aluno.getMatricula() + "', " + aluno.getCurso().getCodigo() + ", " + semestre + ")";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			if (stmt.execute()) {
-				user = new Aluno(nome, sobrenome, senha, email,  matricula, cpf, curso, semestre);
+				user = aluno;
 			} else {
-				sql = "DELETE FROM USUARIO WHERE matricula = '" + matricula + "'";
+				sql = "DELETE FROM USUARIO WHERE matricula = '" + aluno.getMatricula() + "'";
 				stmt = (PreparedStatement) connection.prepareStatement(sql);
 				stmt.execute();
 			}
