@@ -41,15 +41,15 @@ function expandir_botao(id, obj){
 }
 
 function redirectMsg(){
-	location.href="./inbox.html" 
+	location.href="./inbox.jsp" 
 }
 
 function redirectHome(){
-	location.href="./homepageAluno.html" 
+	location.href="./homepageAluno.jsp" 
 }
 
 function redirectBack(){
-	location.href="./montarGrade.html" 
+	location.href="./montarGrade.jsp" 
 }
 
 function confirmaMaterias(item){

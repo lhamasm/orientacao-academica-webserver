@@ -1,7 +1,7 @@
 function redirectMsg(){
-	 location.href="./inbox.html" 
+	 location.href="./inbox.jsp" 
 }
 
 function redirectHome(){
-	 location.href="./homepageAluno.html" 
+	 location.href="./homepageAluno.jsp" 
 }

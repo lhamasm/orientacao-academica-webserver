@@ -1,3 +1,6 @@
+<%@ page import ="java.util.*" %>
+<%@ page import ="orientacao.*" %>
+
 <!doctype html>
 
 <html>
@@ -5,7 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="view-port" content="width=width-device, initial-scale=1.0, shrink-to-fit=no">
-	<title>OrientaÃ§Ã£o Academica</title>
+	<title>Orientação Acadêmica</title>
     <link rel="icon" href="./imagens/BrasaoUFBA.png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -17,6 +20,9 @@
     <script type = "text/javascript" src="./script/scriptHomepageAluno.js"> </script> 
 </head>
 
+<% 
+	Aluno aluno = (Aluno) request.getAttribute("aluno");
+%>
 <body>
     <nav class="navbar navbar-expand-lg navbar-fixed-top px-5" id = "navbar">
         <div class="container-fluid">
@@ -25,9 +31,9 @@
                     <span class = "mr-2"> <i class="fas fa-user-graduate" id = "icone-user"></i> </span>
                 </li>
                 <li class = "nav-item">
-                    <span id = "nome"> Bruno Dias da Silva Ferreira </span>
-                    <span id = "curso"> CiÃªncia da ComputaÃ§Ã£o </span> 
-                    <span id = "sem"> 7Âº Semestre </span>
+                    <span id = "nome"> <% out.println(aluno.getNome() + aluno.getSobrenome()); %> </span>
+                    <span id = "curso"> <% out.println(aluno.getCurso().getNome()); %> </span> 
+                    <span id = "sem"> <% out.println(aluno.getSemestre() + "º Semestre"); %> </span>
                 </li>
             </ul>
             <ul class = "navbar-nav">
@@ -49,7 +55,7 @@
     <div class = "px-5 container">
         <br>
         <br>
-        <h1 class = "mt-5"> Sistema de <br> OrientaÃ§Ã£o AcadÃªmica </h1> <br>
+        <h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
         <button type = "button" onclick = "redirect();" class = "col-3 btn" id = "botaoGrade"> Monte sua Grade! </button>
     </div>
 </body>

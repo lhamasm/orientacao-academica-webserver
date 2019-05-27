@@ -1,7 +1,7 @@
 $("#cpf").mask("00000000000");
 
 function redirectIndex(){
-   location.href="./index.html" 
+   location.href="./index.jsp" 
 }
 
 function alteraConteudo() {

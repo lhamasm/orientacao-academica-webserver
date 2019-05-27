@@ -5,15 +5,15 @@ document.getElementById("optativas").style.color = "black";
 var selecionado = "obg";
 
 function redirectMsg(){
-	 location.href="./inbox.html";
+	 location.href="./inbox.jsp";
 }
 
 function redirectHome(){
-	 location.href="./homepageAluno.html";
+	 location.href="./homepageAluno.jsp";
 }
 
 function redirectCadastro(){
-	location.href="./alterarCadastroAluno.html";
+	location.href="./alterarCadastroAluno.jsp";
 }
 
 function trocaCor(tipo){
@@ -149,5 +149,5 @@ function preencheGrade(){
 }
 
 function redirect(){
-	location.href="./montarGrade2.html";
+	location.href="./montarGrade2.jsp";
 }

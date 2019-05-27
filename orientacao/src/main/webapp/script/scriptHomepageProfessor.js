@@ -1,14 +1,14 @@
 function redirect(){
-	location.href="./inboxProfessor.html";
+	location.href="./inboxProfessor.jsp";
 }
 function redirectMsg(){
-	 location.href="./inboxProfessor.html"; 
+	 location.href="./inboxProfessor.jsp"; 
 }
 
 function redirectHome(){
-	 location.href="./homepageProfessor.html"; 
+	 location.href="./homepageProfessor.jsp"; 
 }
 
 function redirectCadastro(){
-	 location.href="./alterarCadastroProfessor.html"; 
+	 location.href="./alterarCadastroProfessor.jsp"; 
 }
