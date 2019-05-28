@@ -45,11 +45,11 @@ public class Orientacao {
 		this.data = data;
 	}
 
-	public Date getHorario() {
+	public Time getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Date horario) {
+	public void setHorario(Time horario) {
 		this.horario = horario;
 	}
 

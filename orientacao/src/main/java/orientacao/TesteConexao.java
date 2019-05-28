@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TesteConexao {
-	public static void main(String args[]) throws SQLException {
+	public static void main(String args[]) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		Curso curso = null;
 		try {
