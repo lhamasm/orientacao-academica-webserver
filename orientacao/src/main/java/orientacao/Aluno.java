@@ -130,6 +130,65 @@ public class Aluno extends Usuario{
 		return professores;
 	}
 	
+	public Disciplina recuperarDisciplina(String codigo) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DISCIPLINA WHERE codigo=" + codigo;        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			Disciplina disciplina = null;
+            while(rs.next()) {
+            	disciplina = new Disciplina(codigo, rs.getString("nome"), rs.getInt("carga_horaria"), null, null);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return disciplina;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
+	public Orientacao recuperarOrientacaoDisciplina(int orientacao) throws ClassNotFoundException, SQLException{
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM ORIENTACAO_DISCIPLINA WHERE orientacao=" + orientacao;        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			Orientacao o = null;
+            while(rs.next()) {
+            	ArrayList<Boolean> aprovado = new ArrayList<Boolean>();
+            	ArrayList<Boolean> cursando = new ArrayList<Boolean>();
+            	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+            	aprovado.add(rs.getBoolean("aprovado"));
+            	cursando.add(rs.getBoolean("cursando"));
+            	disciplinas.add(recuperarDisciplina(rs.getString("codigo")));
+            	o = new Orientacao(-1, null, null, null, null, null, disciplinas, aprovado, cursando);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return o;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
 	public ArrayList<Orientacao> recuperarNotificacoes(Aluno aluno) throws ClassNotFoundException, SQLException {
 		
 		Connection con = null;
@@ -214,6 +273,90 @@ public class Aluno extends Usuario{
 		return null;
 	}
 
+	public ArrayList<Disciplina> recuperarOptativas() throws SQLException, ClassNotFoundException {
+		
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DISCIPLINA WHERE DISCIPLINA.codigo NOT IN (SELECT disciplina FROM OBRIGATORIA)";
+        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			ArrayList<Disciplina> optativas = new ArrayList<Disciplina>();
+            while(rs.next()) {
+            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), recuperarPreRequisitos(rs.getString("codigo")), recuperarDesbloqueia(rs.getString("codigo"))));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return optativas;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
+	public ArrayList<Obrigatoria> recuperarObrigatorias() throws SQLException, ClassNotFoundException {
+		
+		Connection con = null;
+		try {
+        	String sql = "SELECT DISCIPLINA.codigo as codigo, DISCIPLINA.nome as nome, DISCIPLINA.carga_horaria as carga_horaria, OBRIGATORIA.semestre_sugerido as semestre_sugerido FROM DISCIPLINA, OBRIGATORIA WHERE OBRIGATORIA.disciplina = DISCIPLINA.codigo";
+        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			ArrayList<Obrigatoria> obrigatorias = new ArrayList<Obrigatoria>();
+            while(rs.next()) {
+            	obrigatorias.add(new Obrigatoria(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), recuperarPreRequisitos(rs.getString("codigo")), recuperarDesbloqueia(rs.getString("codigo")), rs.getInt("semestre_sugerido")));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return obrigatorias;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+
+	public Usuario recuperarUsuario(String matricula) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		try {
+			String sql = "SELECT * FROM USUARIO WHERE matriucla=" + matricula;
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			Usuario usuario = null;
+			while(rs.next()) {
+				usuario = new Usuario(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), matricula, rs.getString("cpf"));
+			}
+			
+			rs.close();
+            stmt.close();
+            
+            return usuario;
+		} catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
 		Aluno user = null;

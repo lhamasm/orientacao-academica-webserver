@@ -24,6 +24,7 @@
 
 <% 
 	Aluno aluno = (Aluno) session.getAttribute("user");
+
 %>
 
 <body>
@@ -62,6 +63,7 @@
     <div class = "mt-4 container" id = "container-obrigatorias">
         <h6> 1º Semestre </h6>
         <div class = "row" id = "materias">
+        
             <button id = "obg1" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(1);"> <b id = "codigoobg1">MATA42</b> <br> <span id = "nomeobg1"> Matemática Discreta I </span> </button>
             <button id = "obg2" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(2);"> <b id = "codigoobg2">MATA39</b> <br> <span id = "nomeobg2"> Seminários de Introdução ao Curso </span> </button> 
             <button id = "obg3" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(3);"> <b id = "codigoobg3">MATA38</b> <br> <span id = "nomeobg3"> Projeto de Circuitos Lógicos </span> </button> 
@@ -72,7 +74,14 @@
         </div>
     </div>
     <div class = "mt-5 container" id = "container-optativas">
-        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(1)" id = "op1"> <b id = "codigoop1">MATB15</b> - <span id = "nomeop1"> Validação de Software </span> </button> 
+    	  <% 
+    	  		var op;
+    	  		for (var i=0; i< aluno.getCurso().recuperarOptativas().size(); i++) {
+    		  		op++;
+        			document.getElementById("container-optativas").innerHTML = "<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc' onclick = 'identificaDiscOp(" +op + ")' id = 'op" +op1+ "'> <b id = 'codigoop" +op+"'>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() +"</b> - <span id = 'nomeop" +op+"'>" + Validação de Software + "</span> </button>"
+        		}     		
+        	%>
+       
         <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(2)" id = "op2"> <b id = "codigoop2">MATA83</b> - <span id = "nomeop2"> Tópicos em Sistemas Operacionais </span> </button> 
         <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(3)" id = "op3"> <b id = "codigoop3">MATB26</b> - <span id = "nomeop3"> Tópicos em Sistemas Multimídia </span> </button>
         <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(4)" id = "op4"> <b id = "codigoop4">MATB06</b> - <span id = "nomeop4"> Tópicos em Sistemas Distribuídos </span> </button>

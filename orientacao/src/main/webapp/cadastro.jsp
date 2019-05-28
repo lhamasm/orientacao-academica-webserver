@@ -1,5 +1,7 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "java.sql.SQLException" %>
 
 <!doctype html>
 
@@ -21,6 +23,27 @@
 <% 
 	String erro = (String) session.getAttribute("erro"); 
 	session.removeAttribute("erro"); 
+	Usuario user = new Usuario("", "", "", "", "", "");
+	ArrayList <Departamento> departamentos = null;
+	ArrayList <Curso> cursos = null;
+	try {
+		departamentos = user.recuperarDepartamentos();
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try {
+		cursos = user.recuperarTodosOsCursos();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 %>
 
 <body> 
@@ -76,13 +99,21 @@
 	                <div class = "col-6 form-group" id="prof-departamento">
 	                    <label for = "dep"> Departamento </label> <br>
                     	<select name = "dep" class = "form-control" id="dep">
-                    		<option value="1" id="d1">Departamento de Computação</option>
-						</select>
+						<% 
+                     		for(int i=0; i<departamentos.size(); i++){
+                     			out.println("<option value = \"" + departamentos.get(i).getCodigo() + "\">" + departamentos.get(i).getNome() + "</option>");
+                     		}
+                  		%>
+                  		</select>
 	                </div>
 	                <div class = "col-6 form-group" id="aluno-curso">
-	                    <label for = "curso"> Curso </label> <br>
+	                    <label for = "curso"> Curso </label> <br>                    
                     	<select name = "curso" class = "form-control" id="curso">
-                    		<option value="112" id="c1">Bacharelado em Ciência da Computação</option>
+						<% 
+                     		for(int i=0; i<cursos.size(); i++){
+                     			out.println("<option value = \"" + cursos.get(i).getCodigo() + "\">" + cursos.get(i).getNome() + "</option>");
+                     		}
+                  		%>	
 						</select>
 	                </div>	                               
 	            	<div class = "col-2 form-group" id="aluno-semestre">
