@@ -59,18 +59,16 @@ public class CadastroUserServlet extends HttpServlet {
 			}
 
 			if(aluno != null) {
-				session.setAttribute("aluno", aluno);
-		        RequestDispatcher view = req.getRequestDispatcher("homepageAluno.jsp");
-		        view.forward(req, resp);
+				session.setAttribute("user", aluno);
+				resp.sendRedirect("homepageAluno.jsp");
 			}
 			else {
 				req.setAttribute("erro", "erro");
-				RequestDispatcher view = req.getRequestDispatcher("cadastro.jsp");
-				view.forward(req, resp);
+				resp.sendRedirect("cadsatro.jsp");
 			}
 		}
 		else if(req.getParameter("tipo").equals("Docente")) {
-			String departamento = req.getParameter("dep");
+			int departamento = Integer.parseInt(req.getParameter("dep"));
 			Departamento dep = null;
 
 			try {
@@ -96,14 +94,12 @@ public class CadastroUserServlet extends HttpServlet {
 			}
 
 			if(professor != null) {
-				session.setAttribute("professor", professor);
-		        RequestDispatcher view = req.getRequestDispatcher("homepageProfessor.jsp");
-		        view.forward(req, resp);				
+				session.setAttribute("user", professor);
+		        resp.sendRedirect("homepageProfessor.jsp");
 			}
 			else {
-				req.setAttribute("erro", "erro");
-				RequestDispatcher view = req.getRequestDispatcher("cadastro.jsp");
-				view.forward(req, resp);				
+				session.setAttribute("erro", "errou");
+				resp.sendRedirect("cadastro.jsp");		
 			}
 		}
 	}

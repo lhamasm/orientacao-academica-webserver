@@ -60,10 +60,10 @@ public class Professor extends Usuario {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "INSERT INTO USUARIO VALUES ('" + professor.getMatricula()+ "', '" + professor.getNome() + "', '" + professor.getSobrenome() + "', '" + professor.getEmail() + "', '" + professor.getSenha() + "', '" + professor.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
-		if (stmt.execute()) {
+		if (!stmt.execute()) {
 			sql = "INSERT INTO PROFESSOR VALUES ('" + professor.getMatricula() + "', " + professor.getDepartamento().getCodigo() + ")";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
-			if (stmt.execute()) {
+			if (!stmt.execute()) {
 				user = professor;
 			} else {
 				sql = "DELETE FROM USUARIO WHERE matricula = '" + professor.getMatricula() + "'";

@@ -149,10 +149,10 @@ public class Usuario {
 		
 	}
 	
-	public Departamento recuperarDepartamento(String nomeDepartamento) throws SQLException, ClassNotFoundException {
+	public Departamento recuperarDepartamento(int codDepartamento) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.nome=" + nomeDepartamento;
+        	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.codigo='" + codDepartamento + "'";
         	
 			con = new DataGetter().getConnection();
 
@@ -187,7 +187,7 @@ public class Usuario {
 			Curso curso = null;
             while(rs.next()) {
             	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
-            	Departamento departamento = recuperarDepartamento(rs.getString("departamento"));
+            	Departamento departamento = recuperarDepartamento(rs.getInt("departamento"));
             	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
             	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
     			
@@ -215,7 +215,7 @@ public class Usuario {
 		
 		while(rs.next()) {
         	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
-        	Departamento departamento = recuperarDepartamento(rs.getString("departamento"));
+        	Departamento departamento = recuperarDepartamento(rs.getInt("departamento"));
         	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
         	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
         	Curso curso;
@@ -247,13 +247,42 @@ public class Usuario {
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.next() && rs.getString("senha").equals(senha)) {
-				user = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperarDepartamento(rs.getString("departamento")));
+				user = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), rs.getString("matricula"), rs.getString("cpf"), recuperarDepartamento(rs.getInt("departamento")));
 			}
 		}
 		stmt.close();
 		connection.close();
 		return user;
 	}
+	public Usuario alterarCadastro(String nome, String sobrenome, String email, int semestre) throws ClassNotFoundException, SQLException{
+		String sql_semestre = "UPDATE ALUNO SET semestre = '" + semestre + "' WHERE matricula = '" + this.matricula + "'";
+		String sql_nome = "UPDATE USUARIO SET nome = '" + nome + "' WHERE matricula = '" + this.matricula + "'";
+		String sql_sobrenome = "UPDATE USUARIO SET sobrenome = '" + sobrenome + "' WHERE matricula = '" + this.matricula + "'";
+		String sql_email = "UPDATE USUARIO SET email = '" + email + "' WHERE matricula = '"  + this.matricula + "'";
+		Connection connection = new DataGetter().getConnection();
+		PreparedStatement stmt_nome = (PreparedStatement) connection.prepareStatement(sql_nome);
+		PreparedStatement stmt_sobrenome = (PreparedStatement) connection.prepareStatement(sql_sobrenome);
+		PreparedStatement stmt_email = (PreparedStatement) connection.prepareStatement(sql_email);
+		PreparedStatement stmt_semestre = (PreparedStatement) connection.prepareStatement(sql_semestre);
+		stmt_nome.executeUpdate();
+		stmt_sobrenome.executeUpdate();
+		stmt_email.executeUpdate();
+		if(semestre != -1) {
+			stmt_semestre.executeUpdate();		
+			Aluno aluno = (Aluno) this;
+			aluno.setNome(nome);
+			aluno.setSebrenome(sobrenome);
+			aluno.setEmail(email);
+			aluno.setSemestre(semestre);
+			return aluno;
+		}else {
+			Professor professor = (Professor) this;
+			professor.setNome(nome);
+			professor.setSebrenome(sobrenome);
+			professor.setEmail(email);
+			return professor;
+		}
+	}	
 }
 
 
