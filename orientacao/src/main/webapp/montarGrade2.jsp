@@ -74,8 +74,13 @@
 
 	    	<h6 class="mt-4">Escolha os orientadores</h6>
                 <div class="list-group" style = "max-height: 200px; overflow-y: scroll;">
-                	<button id = "orientador1" onclick = "selecionaOrientador('1');" class="list-group-item list-group-item-action">Tiago Janu�rio</button>
-					<button id = "orientador2" onclick = "selecionaOrientador('2');" class="list-group-item list-group-item-action">Roberto Parente</button>					
+                	<% 	
+                		for(int k=0; k<aluno.recuperarProfessores().size(); k++){
+                			out.println("<button id = \"orientador" + k + "\" onclick = \"selecionaOrientador('" + k + "');\" class=\"list-group-item list-group-item-action\">" + aluno.recuperarProfessores().get(k).getNome() + "</button>");
+                		}
+                	// <button id = "orientador1" onclick = "selecionaOrientador('1');" class="list-group-item list-group-item-action">Tiago Janu�rio</button>
+                	%>
+                					
 				</div>
 	    	<h6 class="mt-4">Algo a acrescentar?</h6>
 	    	<TEXTAREA class="form-control" cols="10"></TEXTAREA>
@@ -95,105 +100,52 @@
 		    	</div>
 		    	<div class="modal-body container-fluid">
 		    		<ul>
-		    			<li>
-		    				<div class="btn materias" id = "MATA61Div" onclick="expandir_botao('MATA61', this);">
-		    					<h6>MATA61 - Compiladores</h6>
-			    				<div class="botao-materia-expandida" id="MATA61Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Hor�ria:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" id="MATA60Div" onclick="expandir_botao('MATA60',this);">
-		    					<h6>MATA60 - Banco de Dados</h6>
-		    					<div class="botao-materia-expandida" id="MATA60Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div> 
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" id="MATA63Div" onclick="expandir_botao('MATA63',this);">
-		    					<h6>MATA63 - Engenharia de Software II</h6>
-		    					<div class="botao-materia-expandida" id="MATA63Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div> 
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATC84',this);">
-		    					<h6>MATC84 - Laboratório Web</h6>
-		    					<div class="botao-materia-expandida" id="MATC84Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATE48',this);">
-		    					<h6>MATE48 - LIBRAS I- LÍNGUA BRASILEIRA DE SINAIS NIVEL I</h6>
-		    					<div class="botao-materia-expandida" id="MATE48Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div> 
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATF34',this);">
-		    					<h6>MATF34 - ACCS:PROGRAMAÇÃO COMPETITIVA-COMPUTAÇÃO PARA ALUNOS</h6> 
-		    					<div class="botao-materia-expandida" id="MATF34Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('MATA39',this);">
-		    					<h6>MATA39 - SEMINÁRIOS DE INTRODUÇÃO AO CURSO</h6>
-		    					<div class="botao-materia-expandida" id="MATA39Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias"  onclick="expandir_botao('MAT236',this);">
-		    					<h6>MAT236 - MÉTODOS ESTATÍSTICOS</h6>
-		    					<div class="botao-materia-expandida" id="MAT236Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
-		    			<li>
-		    				<div class="btn materias" onclick="expandir_botao('FCHC45', this);">
-		    					<h6>FCHC45 - METODOLOGIA E EXPRESSÃO TÉCNICO-CIENTÍFICA</h6> 
-		    					<div class="botao-materia-expandida" id="FCHC45Exp">
-			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-		    						
-		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-			    				</div>
-		    				</div>
-		    			</li>
+		    		<%
+		    			for(int i=0; i<aluno.getCurso().getObrigatorias().size(); i++){
+		    				out.println("<li>");
+		    				out.println("<div class=\"btn materias\" id = \"" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Div\" onclick=\"expandir_botao('" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "', this);\">");
+	    					out.println("<h6>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + " - " + aluno.getCurso().getObrigatorias().get(i).getNome() + "</h6>");
+		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Exp\">");
+		    				out.println("<hr>");
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Hor�ria:</b>" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "h</span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b>Desbloqueia:</b>"); 
+		    				for(int j=0; j<aluno.getCurso().getObrigatorias().get(i).getDesbloqueia().size(); j++){ 
+		    					out.println(aluno.getCurso().getObrigatorias().get(i).getDesbloqueia().get(j).getNome() + " ");
+		    				}
+		    				out.println("</span>");
+		    				out.println("</div>");
+	    					out.println("</div>");
+	    					out.println("</li>");	
+		    			}
+	    				for(int i=0; i<aluno.getCurso().getOptativas().size(); i++){
+		    				out.println("<li>");
+		    				out.println("<div class=\"btn materias\" id = \"" + aluno.getCurso().getOptativas().get(i).getCodigo() + "Div\" onclick=\"expandir_botao('" + aluno.getCurso().getOptativas().get(i).getCodigo() + "', this);\">");
+	    					out.println("<h6>" + aluno.getCurso().getOptativas().get(i).getCodigo() + " - " + aluno.getCurso().getOptativas().get(i).getNome() + "</h6>");
+		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getOptativas().get(i).getCodigo() + "Exp\">");
+		    				out.println("<hr>");
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Hor�ria:</b>" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "h</span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b>Desbloqueia:</b>"); 
+		    				for(int j=0; j<aluno.getCurso().getOptativas().get(i).getDesbloqueia().size(); j++){ 
+		    					out.println(aluno.getCurso().getOptativas().get(i).getDesbloqueia().get(j).getNome() + " ");
+		    				}
+		    				out.println("</span>");
+		    				out.println("</div>");
+	    					out.println("</div>");
+	    					out.println("</li>");	
+		    			}
+	    				
+	    				//<li>
+	    					//<div class="btn materias" id = "MATA61Div" onclick="expandir_botao('MATA61', this);">
+	    					//<h6>MATA61 - Compiladores</h6>
+		    				//<div class="botao-materia-expandida" id="MATA61Exp">
+		    					//<hr>
+		    					//<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Hor�ria:</b> 00h</span> <br>
+	    						
+	    						//	<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
+		    				//	</div>
+	    					//</div>
+	    				//</li>
+		    		%>
 		    		</ul>
 		    	</div>
     	        <div class="modal-footer">

@@ -61,50 +61,44 @@
         <button type = "button" class = "btn" id = "optativas" onmouseover = "trocaCor('op');" onmouseleave = "voltaCor('op');" onclick = "alterarConteudo('op');"> Matérias Optativas </button>
     </div>
     <div class = "mt-4 container" id = "container-obrigatorias">
-        <h6> 1º Semestre </h6>
-        <div class = "row" id = "materias">
-        
-            <button id = "obg1" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(1);"> <b id = "codigoobg1">MATA42</b> <br> <span id = "nomeobg1"> Matemática Discreta I </span> </button>
-            <button id = "obg2" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(2);"> <b id = "codigoobg2">MATA39</b> <br> <span id = "nomeobg2"> Seminários de Introdução ao Curso </span> </button> 
-            <button id = "obg3" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(3);"> <b id = "codigoobg3">MATA38</b> <br> <span id = "nomeobg3"> Projeto de Circuitos Lógicos </span> </button> 
-            <button id = "obg4" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(4);"> <b id = "codigoobg4">MATA37</b> <br> <span id = "nomeobg4"> Introdução à  Lógica de Programação </span> </button> 
-            <button id = "obg5" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(5);"> <b id = "codigoobg5">MATA02</b> <br> <span id = "nomeobg5"> Cálculo A </span> </button> 
-            <button id = "obg6" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(6);"> <b id = "codigoobg6">MATA01</b> <br> <span id = "nomeobg6"> Geometria Analítica </span> </button>
-
-        </div>
+     	  	<% 
+     	  		for(int j=1; j<=aluno.getCurso().getDuracao(); j++){
+     	  			out.println("<h6>" + j + "º Semestre </h6>");
+     	  			out.println("<div class = \"row\">");
+  	  				for (int i=0; i< aluno.getCurso().recuperarObrigatorias().size(); i++) {
+  	  					if(aluno.getCurso().recuperarObrigatorias().get(i).getSemestreSugerido() == j){
+      						out.println("<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc' onclick = 'identificaDiscObg(" + aluno.getCurso().recuperarObrigatorias().get(i).getCodigo() + ")' id =" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+ "'> <b id = 'codigo" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+"'>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() +"</b> - <span id = 'nome" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+"'>" + aluno.getCurso().recuperarObrigatorias().get(i).getNome() + "</span> </button>");
+  	  					}
+ 	  				}
+  	  				out.println("</div>");
+  	  			}     		
+     		%>
     </div>
-    <div class = "mt-5 container" id = "container-optativas">
-    	  <% 
-    	  		var op;
-    	  		for (var i=0; i< aluno.getCurso().recuperarOptativas().size(); i++) {
-    		  		op++;
-        			document.getElementById("container-optativas").innerHTML = "<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc' onclick = 'identificaDiscOp(" +op + ")' id = 'op" +op1+ "'> <b id = 'codigoop" +op+"'>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() +"</b> - <span id = 'nomeop" +op+"'>" + Validação de Software + "</span> </button>"
-        		}     		
-        	%>
-       
-        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(2)" id = "op2"> <b id = "codigoop2">MATA83</b> - <span id = "nomeop2"> Tópicos em Sistemas Operacionais </span> </button> 
-        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(3)" id = "op3"> <b id = "codigoop3">MATB26</b> - <span id = "nomeop3"> Tópicos em Sistemas Multimídia </span> </button>
-        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(4)" id = "op4"> <b id = "codigoop4">MATB06</b> - <span id = "nomeop4"> Tópicos em Sistemas Distribuídos </span> </button>
-        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(5)" id = "op5"> <b id = "codigoop5">MATA86</b> - <span id = "nomeop5"> Tópicos em Redes de Computadores </span> </button>
-    </div>
-    <div class="modal fade" role="dialog" id="infoDisc">
-        <label id = "discEscolhida"> </label>
-        <label id = "operacaoDisc"> </label>
-        <label id = "tipoDisc"> </label>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id = "discNome"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" id = "discInfo">
-                    <span></span>
-                </div>
-                <div class="modal-footer">
-                    <button id = "botaoModal" type = "button" class = "btn" data-dismiss = "modal" onclick = "alterarMateria();"> Adicionar à  grade </button>
-              </div>
-            </div>
-        </div>
+    <div class = "mt-5 co<ntainer" id = "container-optativas">
+    	  	<% 
+    	  		for (int i=0; i< aluno.getCurso().recuperarOptativas().size(); i++) {
+        			out.println("<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc' onclick = 'identificaDiscOp(" + aluno.getCurso().recuperarObrigatorias().get(i).getCodigo() + ")' id =" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+ "'> <b id = 'codigo" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+"'>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() +"</b> - <span id = 'nome" +aluno.getCurso().recuperarObrigatorias().get(i).getCodigo()+"'>" + aluno.getCurso().recuperarObrigatorias().get(i).getNome() + "</span> </button>");
+        		    out.println("<div class=\"modal fade\" role=\"dialog\" id=\"infoDisc\">");
+        		    out.println("<label style =\"display: none;\" id = \"discEscolhida\""+ aluno.getCurso().recuperarOptativas().get(i).getCodigo() + "> </label>");
+        		    out.println("<label style =\"display: none;\" id = \"operacaoDisc\""+ aluno.getCurso().recuperarOptativas().get(i).getCodigo() + "></label>");
+        		    out.println("<label style =\"display: none;\" id = \"tipoDisc\"" + aluno.getCurso().recuperarOptativas().get(i).getCodigo() + "> </label>");
+        		    out.println("<div class=\"modal-dialog modal-dialog-centered\">");
+        		    out.println("<div class=\"modal-content\">");
+        		    out.println("<div class=\"modal-header\">");
+        		    out.println("<h4 class=\"modal-title\" id = \"discNome\"></h4>");
+        		    out.println("<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>");
+        		    out.println("</div>");
+        		    out.println("<div class=\"modal-body\"");
+        		    out.println("<p> <b> Carga Horaria: </b>" + aluno.getCurso().recuperarOptativas().get(i).getCargaHoraria()+ "h </p>");
+        			out.println("</div>");
+        		    out.println("<div class=\"modal-footer\">");
+        		    out.println("<button id = \"botaoModal\"" + aluno.getCurso().recuperarOptativas().get(i).getCodigo() + "type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria(" + ");\"> Adicionar à  grade </button>");
+        			out.println("</div>");
+        			out.println("</div>");
+        			out.println("</div>");
+        			out.println("</div>");
+    	  		}     		
+       		%>
     </div>
     <form id = "disciplinasTotal">
     </form>
