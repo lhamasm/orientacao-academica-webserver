@@ -170,32 +170,32 @@ function alterarConteudo(tipo){
 }
 
 function identificaDiscObg(id){
-	document.getElementById("discEscolhida").innerHTML = "obg" + id;
-	document.getElementById("tipoDisc").innerHTML = "obg";
-	document.getElementById("discNome").innerHTML = document.getElementById("codigoobg" + id).innerHTML.bold() + ' - ' + document.getElementById("nomeobg" + id).innerHTML;
-	if(document.getElementById("obg" + id).style.backgroundColor != "rgb(65, 186, 158)"){
-		document.getElementById("botaoModal").classList.add('btn-success');
-		document.getElementById("botaoModal").classList.remove('btn-danger');
-		document.getElementById("botaoModal").innerHTML = "Adicionar à grade";
+	document.getElementById("discEscolhida" + id).innerHTML = id;
+	document.getElementById("tipoDisc" + id).innerHTML = "obg";
+	document.getElementById("discNome" + id).innerHTML = document.getElementById(id).innerHTML;	
+	if(document.getElementById(id).style.backgroundColor != "rgb(65, 186, 158)"){
+		document.getElementById("botaoModal" + id).classList.add('btn-success');
+		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
+		document.getElementById("botaoModal" + id).innerHTML = "Adicionar à grade";
 	}else{
-		document.getElementById("botaoModal").classList.remove('btn-success');
-		document.getElementById("botaoModal").classList.add('btn-danger');
-		document.getElementById("botaoModal").innerHTML = "Remover da grade";
+		document.getElementById("botaoModal" + id).classList.remove('btn-success');
+		document.getElementById("botaoModal" + id).classList.add('btn-danger');
+		document.getElementById("botaoModal" + id).innerHTML = "Remover da grade";
 	}
 }
 
 function identificaDiscOp(id){
-	document.getElementById("discEscolhida").innerHTML = "op" + id;
-	document.getElementById("tipoDisc").innerHTML = "op";
-	document.getElementById("discNome").innerHTML = document.getElementById("op" + id).innerHTML;
-	if(document.getElementById("op" + id).style.backgroundColor != "rgb(192, 229, 220)"){
-		document.getElementById("botaoModal").classList.add('btn-success');
-		document.getElementById("botaoModal").classList.remove('btn-danger');
-		document.getElementById("botaoModal").innerHTML = "Adicionar à grade";
+	document.getElementById("discEscolhida" + id).innerHTML = id;
+	document.getElementById("tipoDisc" + id).innerHTML = "op";
+	document.getElementById("discNome" + id).innerHTML = document.getElementById(id).innerHTML;
+	if(document.getElementById(id).style.backgroundColor != "rgb(192, 229, 220)"){
+		document.getElementById("botaoModal" + id).classList.add('btn-success');
+		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
+		document.getElementById("botaoModal"+ id).innerHTML = "Adicionar à grade";
 	}else{
-		document.getElementById("botaoModal").classList.remove('btn-success');
-		document.getElementById("botaoModal").classList.add('btn-danger');
-		document.getElementById("botaoModal").innerHTML = "Remover da grade";
+		document.getElementById("botaoModal" + id).classList.remove('btn-success');
+		document.getElementById("botaoModal" + id).classList.add('btn-danger');
+		document.getElementById("botaoModal" + id).innerHTML = "Remover da grade";
 	}
 }
 
