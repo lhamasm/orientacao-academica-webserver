@@ -140,8 +140,8 @@ public class Aluno extends Usuario{
 			ResultSet rs = stmt.executeQuery();
             
 			ArrayList<Disciplina> optativas = new ArrayList<Disciplina>();
-            while(rs.next()) {
-            	optativas.add(new Disciplina());
+            while(rs.next()) { // CONSERTAR 
+            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), null, null)); 
             }
             
             rs.close();
@@ -163,7 +163,7 @@ public class Aluno extends Usuario{
             
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
-            	orientacoes.add(new Orientacao());
+            	orientacoes.add(new Orientacao(semestre, null, null, sql, aluno, aluno, null, null, null));
             }
             
             rs.close();
