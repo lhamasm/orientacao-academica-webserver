@@ -22,12 +22,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="./script/scriptGrade2.js"></script>
+	<script type="text/javascript" src="./script/scriptGrade.js"></script>
 
 </head>
 
 <% 
-	Aluno aluno = (Aluno) session.getAttribute("aluno");
+	Aluno aluno = (Aluno) session.getAttribute("user");
 %>
 
 <body>
@@ -48,7 +48,7 @@
                     <button type = "button" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
                 </li>
                 <li class = "nav-item" id = "sair">
-                    <button type = "button" class = "btn btn-danger"> Sair </button>
+                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
                 </li>
                 <li class = "nav-item">
                     <span class = "ml-5" id = "notif" onclick = "redirectMsg();"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
@@ -62,20 +62,21 @@
     
     <div class="container">
     	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"><</button>
-    	<form autocomplete="off">
+    	<form method = "post" onsubmit = "return juntaMaterias();" action = "montaOrientacao">
+    		<input type = "hidden" name = "codigosGrade" id = "codigosGrade">
+    		<input type = "hidden" name = "codigosAtual" id = "codigosAtual">
 	    	<h6>Matérias que estou cursando esse semestre</h6>
 	    	<div class="row form-group">
 	    		<div id="inserir-materias" class="row">
+	    		<button type="button" class="btn mt-2" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keybord="false"><i class="fas fa-plus"></i></button>	    		
 	    		</div>
-	    		<button type="button" class="btn mt-2" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keybord="false"><i class="fas fa-plus"></i></button>
 	    	</div>
 
-	    	<h6 class="mt-4">Escolha o orientador</h6>
-	    	<div class="row form-group autocomplete">
-	    		<input type="text" name="orientador" id="input-orientador" class="form-control col-11">
-	    		<button type="button" class="btn btn-secondary"><i class="fas fa-plus"></i></button>
-	    	</div>
-
+	    	<h6 class="mt-4">Escolha os orientadores</h6>
+                <div class="list-group" style = "max-height: 200px; overflow-y: scroll;">
+                	<button id = "orientador1" onclick = "selecionaOrientador('1');" class="list-group-item list-group-item-action">Tiago Januário</button>
+					<button id = "orientador2" onclick = "selecionaOrientador('2');" class="list-group-item list-group-item-action">Roberto Parente</button>					
+				</div>
 	    	<h6 class="mt-4">Algo a acrescentar?</h6>
 	    	<TEXTAREA class="form-control" cols="10"></TEXTAREA>
 	    	
@@ -89,7 +90,7 @@
     	<div class="modal-dialog modal-dialog-centered">
     		<div class="modal-content">
 		    	<div class="modal-header">
-		    		<h6 class="modal-title offset-1 col-10 text-center">Selecione as matÃ©rias que vocÃª estÃ¡ cursando</h6>
+		    		<h6 class="modal-title offset-1 col-10 text-center">Selecione as matérias que você está cursando</h6>
 		    		<button type="button" class="close col-1" data-dismiss="modal">&times;</button>
 		    	</div>
 		    	<div class="modal-body container-fluid">
@@ -99,7 +100,7 @@
 		    					<h6>MATA61 - Compiladores</h6>
 			    				<div class="botao-materia-expandida" id="MATA61Exp">
 			    					<hr>
-			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga HorÃ¡ria:</b> 00h</span> <br>
+			    					<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
 		    						
 		    						<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
 			    				</div>
@@ -201,5 +202,8 @@
 		    </div>
 		</div>
     </div> 
+   <form method = "post" action = "sair" id = "formSair">
+   		<input type = "hidden" id = "sair" name = "sair">
+   </form>     
 </body>
 </html>

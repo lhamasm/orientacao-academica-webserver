@@ -21,7 +21,7 @@
 </head>
 
 <% 
-	Aluno aluno = (Aluno) session.getAttribute("aluno");
+	Aluno aluno = (Aluno) session.getAttribute("user");
 %>
 <body>
     <nav class="navbar navbar-expand-lg navbar-fixed-top px-5" id = "navbar">
@@ -41,7 +41,7 @@
                     <button onclick = "redirectCadastro();" type = "button" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
                 </li>
                 <li class = "nav-item" id = "sair">
-                    <button type = "button" class = "btn btn-danger"> Sair </button>
+                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
                 </li>
                 <li class = "nav-item">
                     <span class = "ml-5" id = "notif" onclick = "redirectMsg();"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
@@ -58,6 +58,9 @@
         <h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
         <button type = "button" onclick = "redirect();" class = "col-3 btn" id = "botaoGrade"> Monte sua Grade </button>
     </div>
+   <form method = "post" action = "sair" id = "formSair">
+   		<input type = "hidden" id = "sair" name = "sair">
+   </form>     
 </body>
 
 </html>

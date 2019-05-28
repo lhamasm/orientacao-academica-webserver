@@ -24,7 +24,7 @@
 </head>
 
 <% 
-	Aluno aluno = (Aluno) session.getAttribute("aluno");
+	Aluno aluno = (Aluno) session.getAttribute("user");
 %>
 
 <body>
@@ -45,7 +45,7 @@
                     <button type = "button" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
                 </li>
                 <li class = "nav-item" id = "sair">
-                    <button type = "button" class = "btn btn-danger"> Sair </button>
+                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
                 </li>
                 <li class = "nav-item">
                     <span class = "ml-5" id = "notif" onclick = "redirectMsg();"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
@@ -101,5 +101,8 @@
         </div>
       </div>
     </div>
+   <form method = "post" action = "sair" id = "formSair">
+   		<input type = "hidden" id = "sair" name = "sair">
+   </form>     
 </div>
 </html>

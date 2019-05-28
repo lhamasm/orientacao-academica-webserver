@@ -1,8 +1,8 @@
 function redirect(){
-	location.href="./inboxProfessor.jsp";
+	location.href="./inboxProf.jsp";
 }
 function redirectMsg(){
-	 location.href="./inboxProfessor.jsp"; 
+	 location.href="./inboxProf.jsp"; 
 }
 
 function redirectHome(){
@@ -10,5 +10,10 @@ function redirectHome(){
 }
 
 function redirectCadastro(){
-	 location.href="./alterarCadastroProfessor.jsp"; 
+	 location.href="./alterarCadastroProf.jsp"; 
+}
+
+function sair(){
+	document.getElementById('sair').value = "a";
+	document.getElementById('formSair').submit();
 }

@@ -23,7 +23,7 @@
 </head>
 
 <% 
-	Aluno aluno = (Aluno) session.getAttribute("aluno");
+	Aluno aluno = (Aluno) session.getAttribute("user");
 %>
 
 <body>
@@ -44,7 +44,7 @@
                     <button type = "button" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
                 </li>
                 <li class = "nav-item" id = "sair">
-                    <button type = "button" class = "btn btn-danger"> Sair </button>
+                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
                 </li>
                 <li class = "nav-item">
                     <span class = "ml-5" id = "notif" onclick = "redirectMsg();"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
@@ -62,21 +62,21 @@
     <div class = "mt-4 container" id = "container-obrigatorias">
         <h6> 1º Semestre </h6>
         <div class = "row" id = "materias">
-            <button id = "obg1" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(1);"> <b id = "codigoobg1"> MATA42 </b> <br> <span id = "nomeobg1"> Matemática Discreta I </span> </button>
-            <button id = "obg2" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(2);"> <b id = "codigoobg2"> MATA39 </b> <br> <span id = "nomeobg2"> Seminários de Introdução ao Curso </span> </button> 
-            <button id = "obg3" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(3);"> <b id = "codigoobg3"> MATA38 </b> <br> <span id = "nomeobg3"> Projeto de Circuitos Lógicos </span> </button> 
-            <button id = "obg4" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(4);"> <b id = "codigoobg4"> MATA37 </b> <br> <span id = "nomeobg4"> Introdução à  Lógica de Programação </span> </button> 
-            <button id = "obg5" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(5);"> <b id = "codigoobg5"> MATA02 </b> <br> <span id = "nomeobg5"> Cálculo A </span> </button> 
-            <button id = "obg6" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(6);"> <b id = "codigoobg6"> MATA01 </b> <br> <span id = "nomeobg6"> Geometria Analítica </span> </button>
+            <button id = "obg1" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(1);"> <b id = "codigoobg1">MATA42</b> <br> <span id = "nomeobg1"> Matemática Discreta I </span> </button>
+            <button id = "obg2" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(2);"> <b id = "codigoobg2">MATA39</b> <br> <span id = "nomeobg2"> Seminários de Introdução ao Curso </span> </button> 
+            <button id = "obg3" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(3);"> <b id = "codigoobg3">MATA38</b> <br> <span id = "nomeobg3"> Projeto de Circuitos Lógicos </span> </button> 
+            <button id = "obg4" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(4);"> <b id = "codigoobg4">MATA37</b> <br> <span id = "nomeobg4"> Introdução à  Lógica de Programação </span> </button> 
+            <button id = "obg5" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(5);"> <b id = "codigoobg5">MATA02</b> <br> <span id = "nomeobg5"> Cálculo A </span> </button> 
+            <button id = "obg6" type = "button" class = "ml-1 mt-1 btn btn-materias" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscObg(6);"> <b id = "codigoobg6">MATA01</b> <br> <span id = "nomeobg6"> Geometria Analítica </span> </button>
 
         </div>
     </div>
     <div class = "mt-5 container" id = "container-optativas">
-        <button class = "text-left col-12 btn btn-light link-optativas" href = "#infoDisc" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(1)" id = "op1"> <b id = "codigoop1"> MATB15 </b> - <span id = "nomeop1"> Validação de Software </span> </button> 
-        <button class = "text-left col-12 btn btn-light link-optativas" href = "#infoDisc" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(2)" id = "op2"> <b id = "codigoop2"> MATA83 </b> - <span id = "nomeop2"> Tópicos em Sistemas Operacionais </span> </button> 
-        <button class = "text-left col-12 btn btn-light link-optativas" href = "#infoDisc" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(3)" id = "op3"> <b id = "codigoop3"> MATB26 </b> - <span id = "nomeop3"> Tópicos em Sistemas Multimídia </span> </button>
-        <button class = "text-left col-12 btn btn-light link-optativas" href = "#infoDisc" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(4)" id = "op4"> <b id = "codigoop4"> MATB06 </b> - <span id = "nomeop4"> Tópicos em Sistemas Distribuídos </span> </button>
-        <button class = "text-left col-12 btn btn-light link-optativas" href = "#infoDisc" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(5)" id = "op5"> <b id = "codigoop5"> MATA86 </b> - <span id = "nomeop5"> Tópicos em Redes de Computadores </span> </button>
+        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(1)" id = "op1"> <b id = "codigoop1">MATB15</b> - <span id = "nomeop1"> Validação de Software </span> </button> 
+        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(2)" id = "op2"> <b id = "codigoop2">MATA83</b> - <span id = "nomeop2"> Tópicos em Sistemas Operacionais </span> </button> 
+        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(3)" id = "op3"> <b id = "codigoop3">MATB26</b> - <span id = "nomeop3"> Tópicos em Sistemas Multimídia </span> </button>
+        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(4)" id = "op4"> <b id = "codigoop4">MATB06</b> - <span id = "nomeop4"> Tópicos em Sistemas Distribuídos </span> </button>
+        <button class = "text-left col-12 btn btn-light link-optativas" data-toggle = "modal" data-target = "#infoDisc" onclick = "identificaDiscOp(5)" id = "op5"> <b id = "codigoop5">MATA86</b> - <span id = "nomeop5"> Tópicos em Redes de Computadores </span> </button>
     </div>
     <div class="modal fade" role="dialog" id="infoDisc">
         <label id = "discEscolhida"> </label>
@@ -104,7 +104,7 @@
 
     <div class = "mt-5 row">
         <button type = "button" class = "offset-2 col-2 btn btn-info" data-toggle = "modal" data-target = "#modalGrade" onclick = "preencheGrade();"> Ver grade </button>
-        <button type = "button" onclick = "redirect();" class = "offset-4 col-2 btn btn-success"> Continuar </button>    
+        <button type = "button" onclick = "redirectGrade1();" class = "offset-4 col-2 btn btn-success"> Continuar </button>    
     </div>
 
     <div class="modal fade" role="dialog" id="modalGrade">
@@ -122,9 +122,12 @@
             </div>
         </div>
     </div>
+   <form method = "post" action = "sair" id = "formSair">
+   		<input type = "hidden" id = "sair" name = "sair">
+   </form>     
 
 </body>
 
-<script type = "text/javascript" src="./script/scriptGrade1.js"> </script> 
+<script type = "text/javascript" src="./script/scriptGrade.js"> </script> 
 
 </html>

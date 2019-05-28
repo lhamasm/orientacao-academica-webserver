@@ -9,3 +9,8 @@ function redirectHome(){
 function redirectCadastro(){
 	location.href="./alterarCadastroAluno.jsp";
 }
+
+function sair(){
+	document.getElementById('sair').value = "a";
+	document.getElementById('formSair').submit();
+}

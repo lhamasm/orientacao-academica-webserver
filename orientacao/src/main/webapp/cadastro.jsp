@@ -1,3 +1,6 @@
+<%@ page import ="javax.servlet.*" %>
+<%@ page import ="orientacao.*" %>
+
 <!doctype html>
 
 <html>
@@ -14,6 +17,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script> 
 </head>
+
+<% 
+	String erro = (String) session.getAttribute("erro"); 
+	session.removeAttribute("erro"); 
+%>
 
 <body> 
     <div class = "container-fluid">
@@ -68,7 +76,7 @@
 	                <div class = "col-6 form-group" id="prof-departamento">
 	                    <label for = "dep"> Departamento </label> <br>
                     	<select name = "dep" class = "form-control" id="dep">
-                    		<option value="Departamento de Ciência da Computação" id="d1">Departamento de Ciência da Computação</option>
+                    		<option value="1" id="d1">Departamento de Computação</option>
 						</select>
 	                </div>
 	                <div class = "col-6 form-group" id="aluno-curso">
@@ -90,5 +98,10 @@
 
 <script type = "text/javascript" src="./script/scriptCadastro.js"> </script>  
 
+<script type = "text/javascript"> 
+	if(<% out.println("'" + erro + "'"); %> == "errou"){
+		alert("Não foi possível realizar o cadastro");		
+	}
+</script>
 
 </html>

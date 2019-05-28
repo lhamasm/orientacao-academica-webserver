@@ -6,11 +6,6 @@ ul {
 	list-style-type: none;
 }
 
-textarea {
-	position: relative;
-	left: -1em;
-}
-
 .container {
 	margin-left: 4em;
 	margin-right: 4em;
@@ -54,13 +49,19 @@ textarea {
 }
 
 .materias-selecionadas {
-	height: 8em;
-	width: 12em;
+	font-size: 1em;
+	align-content: center;
+	height: 7em;
+	width: 10em;
 	background-color: #61c6be;
 	text-align: center;
 	color: white;
 	margin-right: 0.5em;
 	border-radius: 0.3em;
+}
+
+.list-group-item{
+	cursor: pointer;
 }
 
 .materias-selecionadas:hover {
@@ -107,11 +108,13 @@ textarea {
 }
 
 #adicionar-materias {
-	height: 8em;
-	width: 12em;
+	font-size: 1em;
+	align-content: center;
+	height: 7em;
+	width: 10em;
 	background-color: #e8eaed;
 	color: white;
-	margin-left: 2em;
+	margin-left: 2.1em;
 }
 
 #adicionar-materias i {

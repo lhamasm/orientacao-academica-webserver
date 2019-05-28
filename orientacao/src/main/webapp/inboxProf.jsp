@@ -1,3 +1,6 @@
+<%@ page import ="javax.servlet.*" %>
+<%@ page import ="orientacao.*" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +19,9 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 	    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
 	    <script type="text/javascript" src="./script/scriptInboxProf.js"></script>
+<% 
+	Professor professor = (Professor) session.getAttribute("user");
+%>	
 
 	</head>
 	<body>
@@ -30,8 +36,8 @@
 						<li class="nav-item">
 							<span class="navbar-brand"><i id="iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
-								<span id="nome">Pandora Pimentel</span>
-								<span id="departamento">Departamento de Ciência da Computação</span>
+								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
+								<span id="departamento"><% out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -40,7 +46,7 @@
 		                    <button type = "button" onclick = "redirectCadastro();" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
 		                </li>
 		                <li class = "nav-item mr-4" id = "sair">
-		                    <button type = "button" class = "btn btn-danger"> Sair </button>
+		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
 		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
@@ -70,169 +76,11 @@
 	    				<td id = "msg1data"> 10/05/2019	</td>
 	    				<td id = "msg1hora"> 12:32 </td>
 	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Luis</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Sabrina</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Cardel</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Bruno</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
-	    			<tr>
-	    				<td id = "msg1remetente">Larissa</td>
-	    				<td id = "msg1curso">Bacharelado em Dança</td>
-	    				<td id = "msg1semestre"> 3º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
 	            </tbody>
 	    	</table>
 	     </div>
+   <form method = "post" action = "sair" id = "formSair">
+   		<input type = "hidden" id = "sair" name = "sair">
+   </form> 	     
 	</body>
 </html>

@@ -10,8 +10,28 @@
   	<description></description>
   	<servlet-class>orientacao.CadastroUserServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AlterarCadastroServlet</servlet-name>
+  	<display-name>AlterarCadastroServlet</display-name>
+  	<description></description>
+  	<servlet-class>orientacao.AlterarCadastroServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SairServlet</servlet-name>
+  	<display-name>SairServlet</display-name>
+  	<description></description>
+  	<servlet-class>orientacao.SairServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CadastroUserServlet</servlet-name>
   	<url-pattern>/CadastroUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AlterarCadastroServlet</servlet-name>
+  	<url-pattern>/AlterarCadastroServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SairServlet</servlet-name>
+  	<url-pattern>/SairServlet</url-pattern>
   </servlet-mapping>
 </web-app>
