@@ -1,13 +1,14 @@
 package orientacao;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class Orientacao {
 	
 	private int id;
 	private Date data;
-	private Date horario;
+	private Time horario;
 	private String observacao;
 	private Usuario destinatario;
 	private Usuario remetente;
@@ -15,7 +16,7 @@ public class Orientacao {
 	private ArrayList<Boolean> cursando;
 	private ArrayList<Boolean> aprovado;
 	
-	public Orientacao(int id, Date data, Date horario, String obs, Usuario destinatario, Usuario remetente, ArrayList<Disciplina> disc,
+	public Orientacao(int id, Date data, Time horario, String obs, Usuario destinatario, Usuario remetente, ArrayList<Disciplina> disc,
 			ArrayList<Boolean> curs, ArrayList<Boolean> apr){
 		this.setId(id);
 		this.setData(data);

@@ -75,6 +75,30 @@ public class Professor extends Usuario {
 		connection.close();
 		return user;
 	}
-	
-
+	public ArrayList<Departamento> recuperarDepartamentos() throws SQLException, ClassNotFoundException{
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DEPARTAMENTO";        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
+            while(rs.next()) {
+            	departamentos.add(new Departamento(rs.getInt("codigo"), rs.getString("nome")));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return departamentos;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}	
 }
