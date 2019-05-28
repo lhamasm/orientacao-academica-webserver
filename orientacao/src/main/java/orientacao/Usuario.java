@@ -88,7 +88,93 @@ public class Usuario {
 
 		return novaSenha;
 	}
-
+	public Disciplina recuperarDisciplina(String codigo) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DISCIPLINA WHERE codigo=" + codigo;        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			Disciplina disciplina = null;
+            while(rs.next()) {
+            	disciplina = new Disciplina(codigo, rs.getString("nome"), rs.getInt("carga_horaria"), null, null);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return disciplina;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
+	public Orientacao recuperarOrientacaoDisciplina(int orientacao) throws ClassNotFoundException, SQLException{
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM ORIENTACAO_DISCIPLINA WHERE orientacao=" + orientacao;        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			Orientacao o = null;
+            while(rs.next()) {
+            	ArrayList<Boolean> aprovado = new ArrayList<Boolean>();
+            	ArrayList<Boolean> cursando = new ArrayList<Boolean>();
+            	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+            	aprovado.add(rs.getBoolean("aprovado"));
+            	cursando.add(rs.getBoolean("cursando"));
+            	disciplinas.add(recuperarDisciplina(rs.getString("codigo")));
+            	o = new Orientacao(-1, null, null, null, null, null, disciplinas, aprovado, cursando);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return o;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
+	public Usuario recuperarUsuario(String matricula) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		try {
+			String sql = "SELECT * FROM USUARIO WHERE matriucla=" + matricula;
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			Usuario usuario = null;
+			while(rs.next()) {
+				usuario = new Usuario(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), matricula, rs.getString("cpf"));
+			}
+			
+			rs.close();
+            stmt.close();
+            
+            return usuario;
+		} catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+	
+	
 	public boolean recuperarSenha(String cpf) throws SQLException, ClassNotFoundException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT email FROM USUARIO WHERE cpf = '" + cpf + "'";
@@ -184,13 +270,11 @@ public class Usuario {
             
 			Curso curso = null;
             while(rs.next()) {
-            	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
             	Departamento departamento = recuperarDepartamento(rs.getInt("departamento"));
-            	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
-            	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
-    			
-    			curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, /*obrigatorias*/ null, optativas);
-            }
+            	curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, null, null);
+            	curso.setObrigatorias(curso.recuperarObrigatorias());
+            	curso.setOptativas(curso.recuperarOptativas());            
+        	}
 
             rs.close();
             stmt.close();
@@ -209,15 +293,13 @@ public class Usuario {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
         
-		ArrayList<Curso> cursos = null;
+		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
-        	Aluno aluno = new Aluno(this.nome, this.sobrenome, this.senha, this.email, this.matricula, this.cpf, null, 0);
         	Departamento departamento = recuperarDepartamento(rs.getInt("departamento"));
-        	ArrayList<Disciplina> optativas = aluno.recuperarOptativas();
-        	//ArrayList<Disciplina> obrigatorias = aluno.recuperarObrigatorias();
-        	Curso curso;
-			curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, /*obrigatorias*/ null, optativas);
+        	Curso curso = new Curso(rs.getInt("codigo"), rs.getString("nome"), rs.getInt("duracao"), departamento, null, null);
+        	curso.setObrigatorias(curso.recuperarObrigatorias());
+        	curso.setOptativas(curso.recuperarOptativas());
 			cursos.add(curso);
         }
 
@@ -281,6 +363,32 @@ public class Usuario {
 			return professor;
 		}
 	}	
+	public ArrayList<Departamento> recuperarDepartamentos() throws SQLException, ClassNotFoundException{
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DEPARTAMENTO";        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
+            while(rs.next()) {
+            	departamentos.add(new Departamento(rs.getInt("codigo"), rs.getString("nome")));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return departamentos;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}		
 }
 
 

@@ -1,5 +1,9 @@
 package orientacao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Curso {
@@ -60,4 +64,63 @@ public class Curso {
 	public void setOptativas(ArrayList<Disciplina> optativas) {
 		this.optativas = optativas;
 	}
+	
+	
+public ArrayList<Disciplina> recuperarOptativas() throws SQLException, ClassNotFoundException {
+		
+		Connection con = null;
+		try {
+        	String sql = "SELECT * FROM DISCIPLINA WHERE DISCIPLINA.codigo NOT IN (SELECT disciplina FROM OBRIGATORIA)";
+        	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+            
+			ArrayList<Disciplina> optativas = new ArrayList<Disciplina>();
+            while(rs.next()) {
+            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), null, null));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            return optativas;
+            
+        } catch(SQLException e) {
+            System.out.println(e);
+        } finally {        
+			con.close();
+		}
+		return null;
+	}
+
+	public ArrayList<Disciplina> recuperarObrigatorias() throws SQLException, ClassNotFoundException {
+		
+		Connection con = null;
+		try {
+	    	String sql = "SELECT * FROM DISCIPLINA WHERE DISCIPLINA.codigo NOT IN (SELECT disciplina FROM OPTATIVA)";
+	    	
+			con = new DataGetter().getConnection();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+	        
+			ArrayList<Disciplina> obrigatorias = new ArrayList<Disciplina>();
+	        while(rs.next()) {
+	        	obrigatorias.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), null, null));
+	        }
+	        
+	        rs.close();
+	        stmt.close();
+	        
+	        return obrigatorias;
+	        
+	    } catch(SQLException e) {
+	        System.out.println(e);
+	    } finally {        
+			con.close();
+		}
+		return null;
+	}	
 }

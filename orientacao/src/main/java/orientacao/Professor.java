@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import orientacao.Aluno;
 import orientacao.Orientacao;
 import orientacao.Departamento;
 
@@ -42,7 +41,8 @@ public class Professor extends Usuario {
             
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
-            	//orientacoes.add(new Orientacao(rs.getInt("id"), rs.getDate("data"), rs.getTime("horario"), rs.getString("observacao"), rs.getString("destinatario"), rs.getString("remetente")));
+            	Orientacao orientacao = recuperarOrientacaoDisciplina(rs.getInt("id"));
+            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getDate("data"), rs.getTime("horario"), rs.getString("observacao"), recuperarUsuario(rs.getString("destinatario")), recuperarUsuario(rs.getString("remetente")), orientacao.getDisciplinas(), orientacao.getAprovado(), orientacao.getCursando()));
             }
             
             rs.close();
@@ -75,30 +75,4 @@ public class Professor extends Usuario {
 		connection.close();
 		return user;
 	}
-	public ArrayList<Departamento> recuperarDepartamentos() throws SQLException, ClassNotFoundException{
-		Connection con = null;
-		try {
-        	String sql = "SELECT * FROM DEPARTAMENTO";        	
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-            
-			ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
-            while(rs.next()) {
-            	departamentos.add(new Departamento(rs.getInt("codigo"), rs.getString("nome")));
-            }
-            
-            rs.close();
-            stmt.close();
-            
-            return departamentos;
-            
-        } catch(SQLException e) {
-            System.out.println(e);
-        } finally {        
-			con.close();
-		}
-		return null;
-	}	
 }

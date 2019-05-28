@@ -1,8 +1,6 @@
 package orientacao;
 
 import org.apache.commons.mail.*;
-import javax.mail.*;
-import orientacao.Usuario;
 
 public class Email {
 	private SimpleEmail mail;
@@ -66,9 +64,7 @@ public class Email {
 		this.corpo = corpo;
 	}
 	
-	public boolean recuperarSenhaEmail(String email, String novaSenha){
-		Usuario usuario = new Usuario(null, null, novaSenha, email, null, null);
-		
+	public boolean recuperarSenhaEmail(String email, String novaSenha){		
 		try {
 			this.mail.addTo(email);
 			this.mail.setSubject("Recuperação de Senha do Sistema de Orientação Acadêmica"); 
