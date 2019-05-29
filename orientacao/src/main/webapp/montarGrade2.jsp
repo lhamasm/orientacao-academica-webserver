@@ -61,14 +61,14 @@
     </nav>
     
     <div class="container">
-    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"><</button>
+    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"></button>
     	<form method = "post" onsubmit = "return juntaMaterias();" action = "montaOrientacao">
     		<input type = "hidden" name = "codigosGrade" id = "codigosGrade">
     		<input type = "hidden" name = "codigosAtual" id = "codigosAtual">
 	    	<h6>Matérias que estou cursando esse semestre</h6>
 	    	<div class="row form-group">
 	    		<div id="inserir-materias" class="row">
-	    		<button type="button" class="btn mt-2" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keybord="false"><i class="fas fa-plus"></i></button>	    		
+	    		<button type="button" class="btn mt-2" id="adicionar-materias" data-toggle="modal" data-target="#lista-de-materias" data-backdrop="static" keyboard="false"><i class="fas fa-plus"></i></button>	    		
 	    		</div>
 	    	</div>
 
@@ -133,18 +133,6 @@
 	    					out.println("</div>");
 	    					out.println("</li>");	
 		    			}
-	    				
-	    				//<li>
-	    					//<div class="btn materias" id = "MATA61Div" onclick="expandir_botao('MATA61', this);">
-	    					//<h6>MATA61 - Compiladores</h6>
-		    				//<div class="botao-materia-expandida" id="MATA61Exp">
-		    					//<hr>
-		    					//<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Carga Horária:</b> 00h</span> <br>
-	    						
-	    						//	<span class="col-3 col-sm-3 col-lg-3 col-xl-3"><b>Desbloqueia:</b> Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software Engenharia de Software </span>
-		    				//	</div>
-	    					//</div>
-	    				//</li>
 		    		%>
 		    		</ul>
 		    	</div>

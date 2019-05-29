@@ -2,7 +2,6 @@ ADM202;COMUNICAÇÃO                                                 ;68
 ADMF52;HABILIDADES  E COMPETÊNCIAS DO ADMINISTRADOR                ;34
 ADMF54;ESTUDOS ORGANIZACIONAIS I                                   ;68
 ADMF56;INICIAÇÃO CIENTÍFICA                                        ;34
-DIR159;INSTITUICAO DE DIREITO PUBLICO E PRIVADO                    ;68
 FCH001;INTRODUÇÃO À FILOSOFIA                                      ;68
 MAT013;MATEMATICA I                                                ;102
 ADM170;ADMINISTRACAO CONTABIL I                                    ;68
@@ -15,7 +14,6 @@ ADM223;ESTUDOS ANTROPOLÓGICOS DAS ORGANIZAÇÕES                     ;51
 ADM226;GESTAO DE CUSTOS I                                          ;68
 ADMF53;SEMINÁRIOS  DE PRÁTICAS DE GESTÃO I                         ;34
 ADMF59;SISTEMAS DE INFORMAÇÕES GERENCIAIS PARA TOMADA DE DECISÕES  ;85
-DIR164;LEGISLACAO SOCIAL E DIREITO DO TRABALHO                     ;68
 ECO142;ECONOMIA BRASILEIRA                                         ;51
 MAT191;MATEMATICA FINANCEIRA                                       ;68
 ADM150;ESTADO E SOCIEDADE                                          ;68
@@ -51,14 +49,12 @@ ADM180;COMERCIO EXTERIOR                                           ;51
 FCC050;CONTABILIDADE GOVERNAMENTAL                                 ;68
 DIR160;DIREITO ADMINISTRATIVO III                                  ;68
 DIR167;DIREITO COMERCIAL VII                                       ;51
-FCH183;FORMACAO SOCIED BRASILEIRA                                  ;60
 ADMF51;GESTÃO AMBIENTAL E CONSUMO CONSCIENTE NAS ORGANIZAÇÕES      ;51
 ADM254;GESTÃO CULTURAL                                             ;68
 ADM251;GESTAO DE CUSTOS II                                         ;68
 ADMB82;GESTÃO DE SEGURANÇA PÚBLICA                                 ;68
 ADM253;GESTAO PUBLICA E GOVERNO LOCAL                              ;51
 ADM178;INSTRUMENTOS DE MARKETING                                   ;68
-LETE46;Libras-Língua Brasileira de Sinais                          ;34
 ADM252;ORÇAMENTO PUBLICO E EMPRESARIAL                             ;51
 ADM214;ORGANIZACAO E  RELACOES DO TRABALHO                         ;68
 HACB37;ORGANIZAÇÕES INTERNACIONAIS                                 ;68
@@ -217,7 +213,6 @@ ICIA32;TÓPICOS ESPECIAIS EM ARQUIVOLOGIA I                         ;34
 ICIA33;TÓPICOS ESPECIAIS EM ARQUIVOLOGIA II                        ;34
 ICIA34;TÓPICOS ESPECIAIS EM ARQUIVOLOGIA III                       ;34
 ICIA35;TÓPICOS ESPECIAIS EM ARQUIVOLOGIA IV                        ;34
-ICI019;QUALIDADE EM SERVIÇOS DE INFORMAÇÃO                         ;34
 TEAA14;Poéticas da Encenação                                       ;68
 TEAA15;Jogos e Improvisação Teatral                                ;136
 TEAA21;História do Teatro no Brasil e na Bahia                     ;68
@@ -278,7 +273,6 @@ EBA137;DESENHO V                                                   ;102
 EBA139;EXPRESSAO TRIDIMENSIONAL V                                  ;102
 EBA141;GRAVURA II-A                                                ;68
 EBA181;HISTORIA DA ARTE CONTEMPORANEA I                            ;102
-EBA010;HISTORIA DA ARTE BRASILEIRA                                 ;68
 EBA115;COMPOSICAO DECORATIVA I                                     ;102
 EBA143;DESENHO VI                                                  ;102
 EBA147;GRAVURA IV                                                  ;68
@@ -417,7 +411,6 @@ HACC03;TRABALHO DE CONCLUSÃO DE CURSO EM ESTUDOS DAS CIDADES       ;68
 HACB73;UNIVERSIDADE, CONVÍVIO SOCIAL E INTERCULTURALIDADES         ;34
 HACB47;ESPETÁCULOS CULTURAIS CONTEMPORÂNEOS                        ;34
 ICI175;HISTÓRIA DO LIVRO E DAS BIBLIOTECAS                         ;68
-ADM001;INTRODUCÃO À  ADMINISTRACAO                                 ;68
 ICIB67;TECNOLOGIAS EM SERVIÇOS DE INFORMAÇÃO I                     ;68
 ICIB68;NORMALIZAÇÃO DA DOCUMENTAÇÃO                                ;102
 FCH007;INTRODUCAO SOCIOLOGIA II                                    ;85
@@ -967,7 +960,6 @@ EDCH66;ESTÁGIO SUPERVISIONADO IV                                   ;102
 GEO024;PALEONTOLOGIA                                               ;68
 ICS021;FISIOLOGIA I                                                ;68
 BIOD49;ABORD QUALITATIVAS DE PESQ EM ENSINO DE CIÊNCIA E BIOLOGIA  ;68
-BIO454;ACCS:HORTAS URBANAS-CONHECENDO E ESTIMULANDO ESTA ALTERNATIV;68
 BIO144;ADMINISTRACAO DE RECURSOS AMBIENTAIS                        ;102
 BIOA59;AMBIENTE E EDUCAÇÃO                                         ;68
 BIOA91;ANATOMIA DE MADEIRAS                                        ;68
@@ -1014,7 +1006,6 @@ GEO231;FERTILIDADE DO SOLO                                         ;85
 BIO166;FISIOLOGIA DOS ANIMAIS MARINHOS                             ;68
 BIO146;FITOPLANCTON                                                ;68
 ICS057;FUNDAMENTOS DA BIOTECNOLOGIA APLICADA A SAÚDE               ;85
-ECO001;FUNDAMENTOS DE ECONOMIA                                     ;45
 BIOD61;FUNDAMENTOS DE GESTÃO AMBIENTAL                             ;68
 BIO153;GENETICA DE POPULACOES                                      ;75
 BIOA83;GENÉTICA E EVOLUÇÃO DAS PLANTAS                             ;68
@@ -1073,9 +1064,7 @@ ECO145;TOPICOS ESPECIAIS DA ECON. DOS RECURSOS DO MEIO AMBIENTE    ;51
 BIOC74;ZOOLOGIA DE CAMPO II                                        ;85
 BIO147;ZOOPLANCTON                                                 ;68
 BIO124;ZOOTOXICOLOGIA                                              ;68
-BIO007;Introdução a Biologia                                       ;68
 FAR454;ACC/:BUSCA RACIONAL DE NOVOS FÁRMACOS DE ORIGEM VEGETAL     ;68
-BIO454;ACC:HORTAS URBANAS-CONHECENDO E ESTIMULANDO ESTA ALTERNATIVA;68
 BIOC88;ACCS - CIÊNCIA, COMUNICAÇÃO E CIDADANIA: Engajamento da soci;68
 FCHK23;ACCS - POLÍTICAS PÚBLICAS E METODOLOGIAS PARTICIPATIVAS NA  ;68
 EDCH82;ACCS - SABERES E FAZERES DA CULTURA POPULAR NA EDUCAÇÃO     ;68
@@ -1084,7 +1073,6 @@ BIOB64;ECOLOGIA NA SOCIEDADE CONTEMPORÂNEA                         ;68
 BIOB40;FUNDAMENTOS DE TAXONOMIA ZOOLÓGICA                          ;68
 BIOC77;PERCEP.DOS EFEITOS DOS AGROT.SOBRE A S.HUM.E AMB.A.A.TRANSDI;51
 BIOB39;SISTEMÁTICA, ECOLOGIA E HISTÓRIA NATURAL DOS ANFÍBIOS       ;68
-ECO145;TOPCOS ESPECIAIS DA ECON. DOS RECURSOS DO MEIO AMBIENTE     ;45
 FCC033;CONTABILIDADE  INTRODUTORIA I                               ;68
 FCC034;CONTABILIDADE  INTRODUTORIA II                              ;68
 FCC041;MET.PESQ.APLIC.CONTABILIDADE                                ;68
@@ -1516,8 +1504,6 @@ DANA04;MID: ESTUDO DO CORPO IV                                     ;221
 DANA08;MID:ESTUDOS CRITICO-ANALITICOS IV                           ;51
 DANA12;MID: ESTUDOS DOS PROCESSOS CRIATIVOS IV                     ;102
 DAN001;METODO DE TREINAMENTO  INDIVIDUAL                           ;68
-DAN005;ESTUDO MONOGRAFICO SOBRE TOPICOS EM DANCA                   ;68
-DAN265;PRATICA SOLISTICA                                           ;102
 DAN163;PRATICA EM GRUPO                                            ;136
 MUS128;CORAL UNIVERSITARIO I                                       ;85
 FCH179;CULTURA BAIANA                                              ;68
@@ -1558,11 +1544,9 @@ DANA75;PRÁTICA DA DANÇA NA EDUCAÇÃO II                             ;204
 EDC288;ESTATISTICA  EDUCACIONAL                                    ;68
 DAN005;ESTUDO MONOGRAFICO SOBRE TOPICOS EM DANCA                   ;60
 EDC275;HISTÓRIA DA EDUCAÇÃO 2                                      ;68
-DAN001;METODO DE TREINAMENTO  INDIVIDUAL                           ;60
 DAN271;NOTACAO DA DANCA I                                          ;68
 LETA09;OFICINA DE LEITURA E PRODUÇÃO DE TEXTOS                     ;68
 EDCA06;ORGANIZAÇÃO E GESTÃO DO TRABALHO PEDAGÓGICO                 ;68
-DAN163;PRATICA EM GRUPO                                            ;120
 DAN265;PRATICA SOLISTICA                                           ;90
 DANA18;MID:DANÇA COMO TECNOLOGIA EDUCACIONAL I                     ;68
 DANA19;MID:DANÇA COMO TECNOLOGIA EDUCACIONAL II                    ;68
@@ -1642,7 +1626,6 @@ DIR050;DIREITO PROCESSUAL PENAL II-A                               ;68
 DIR192;DIREITOS REAIS I                                            ;68
 DIRA93;PRÁTICA JURÍDICA CÍVEL I                                    ;85
 DIR015;DIREITO DE FAMILIA                                          ;68
-DIR046;DIREITO INTERNACIONAL PUBLICO                               ;68
 DIR063;DIREITO AGRARIO                                             ;68
 DIRA94;PRÁTICA JURÍDICA CÍVEL II                                   ;85
 DIRA95;DIREITO EMPRESARIAL                                         ;68
@@ -1702,9 +1685,6 @@ DIR025;TEMAS APROFUNDADOS DIR PENAL                                ;68
 DIRA98;TEORIA E APLICAÇÃO DA PENA                                  ;68
 DIR030;TEORIA GERAL DO PROCESSO                                    ;68
 DIR046;DIREITO INTERNACIONAL PÚBLICO                               ;68
-DIR015;DIREITO DE FAMíLIA                                          ;68
-DIRA96;TRABALHO DE CONCLUSÃO DE CURSO I                            ;68
-DIRA97;TRABALHO DE CONCLUSÃO DE CURSO II                           ;68
 BIO159;BASES BIOLOGICAS DO  DESENVOLVIMENTO  HUMANO                ;85
 EDCA16;HISTÓRIA DA EDUCAÇÃO FÍSICA ESPORTE LAZER                   ;68
 EDCD40;TEORIA GERAL DA EDUCAÇÃO FÍSICA, ESPORTE E LAZER            ;68
@@ -1740,7 +1720,6 @@ EDC230;BASQUETEBOL II                                              ;85
 EDC239;CAPOEIRA II                                                 ;85
 EDCD67;CULTURA CORPORAL E MEIO AMBIENTE                            ;68
 DAN068;DANÇA FOLCLÓRICA I                                          ;51
-DAN069;DANCA FOLCLORICA II                                         ;45
 EDCD69;EDUCAÇÃO FÍSICA, ESPORTE LAZER, MÍDIA E INDÚSTRIA CULTURAL  ;68
 EDCD68;ESPORTE IV                                                  ;68
 ICS048;FISIOLOGIA DO EXERCÍCIO                                     ;102
@@ -1844,7 +1823,6 @@ IMSA76;TRABALHO DE CONCLUSÃO DE CURSO I                            ;34
 IMSA75;ESTÁGIO CURRICULAR SUPERVISIONADO II                        ;476
 IMSA77;TRABALHO DE CONCLUSÃO DE CURSO II                           ;34
 IMSC86;ACCS - REAB.COGNITIVA P/IDOSOS:PROGR.POSSIB.DE INTERVEÇÃO   ;68
-IMSB06;ACCS:CINEMA E LITER ESTRAT DE SAÚDE E ADESÃO AO CREAS POP-VC;68
 IMS177;FISIOPATOLOGIA E TERAPÊUTICA                                ;68
 IMS150;GENÉTICA HUMANA E MÉDICA                                    ;68
 IMSA01;IMAGINOLOGIA BÁSICA                                         ;68
@@ -1870,7 +1848,6 @@ ENG304;PROJETO DE ESTRADAS                                         ;68
 ENGA52;GEOPROCESSAMENTO                                            ;68
 ENGA53;MATERIAIS DE CONSTRUÇÃO II - A                              ;68
 ENGA54;MECÂNICA DOS SOLOS I                                        ;68
-MAT174;CÁLCULO NUMÉRICO  I                                         ;68
 DIR175;LEGISLAÇÃO SOCIAL                                           ;68
 ENG114;HIPERESTATICA                                               ;68
 ENG298;ESTÁTICA DAS CONSTRUÇÕES                                    ;68
@@ -1925,7 +1902,6 @@ ENG215;TRANSPORTE ÁEREO                                            ;68
 ENGA64;TRANSPORTE E MEIO AMBIENTE                                  ;34
 ENG028;TRANSPORTE PÚBLICO                                          ;68
 ENGJ18;INTRODUÇÃO A ENGENHARIA DE AGRIMENSURA E CARTOGRÁFICA       ;68
-FIS123;FISICA  GERAL E EXPERIMENTAL  III-E                         ;102
 ENGJ17;TECNOLOGIA DOS MATERIAIS APLICADA À ENG. DE AGRIM. E CARTOG.;34
 ENGJ19;TOPOGRAFIA - LEVANTAMENTOS                                  ;68
 ENGJ20;PROGRAMAÇÃO APLICADA À ENG. DE AGRIMENSURA E CARTOGRÁFICA   ;68
@@ -2093,7 +2069,6 @@ ADM574;ECONOMIA DA TECNOLOGIA                                      ;34
 ENG920;ECONOMIA E MERCADO DE GAS NATURAL                           ;30
 ECO200;ECONOMIA INDUSTRIAL I                                       ;68
 ECO171;ELABORACAO  E ANALISE DE PROJETOS                           ;102
-ADM154;ELABORACAO E ANALISE DE PROGRAMAS E PROJETOS                ;85
 MAT186;ELEMENTOS DE PROCESSOS ESTOCÁSTICOS                         ;68
 ENG357;ELETROQUIMICA INDUSTRIAL                                    ;85
 FARA02;EMBALAGEM E ROTULAGEM                                       ;68
@@ -2153,7 +2128,6 @@ ECO166;INTRODUCAO A ECONOMETRIA                                    ;68
 ENG045;INTRODUÇÃO Á ENGENHARIA DE PETRÓLEO                         ;68
 FIS138;INTRODUÇÃO À FÍSICA DA TERRA SÓLIDA                         ;68
 QUIA69;INTRODUÇÃO A INSTRUMENTAÇÃO  ANALÍTICA NO PROCESSO          ;34
-MAT572;INTRODUÇÃO A INTELIGÊNCIA ARTIFICIAL                        ;51
 QUI036;INTRODUCAO A QUIMICA MARINHA                                ;68
 MEV136;INTRODUCAO A ZOOTECNIA                                      ;51
 MAT036;INTRODUCAO AS ESTRUTURAS MATEMATICAS                        ;68
@@ -2196,7 +2170,6 @@ ENG510;PROCESSOS DE SEPARACAO                                      ;34
 ENG364;PRODUCAO E TRANSPORTE DE CALOR                              ;68
 MATC44;PROGRAMAÇÃO DE SOFTWARE BÁSICO                              ;68
 MATC43;PROGRAMAÇÃO ORIENTADA A OBJETOS                             ;68
-ENG431;PROJETO E ENGENHARIA ASSISTIDOS POR COMPUTADOR              ;85
 GEO163;PROSPECÇÃO DE PETRÓLEO                                      ;68
 IPSA40;PSICOLOGIA  SOCIAL - FUNDAMENTOS                            ;51
 IPSA60;PSICOLOGIA DO TREINAMENTO                                   ;68
@@ -2290,7 +2263,6 @@ ENGF14;ESTÁGIO CURRICULAR                                          ;340
 ENGF15;TRABALHO DE CONCLUSÃO DE CURSO                              ;340
 ENG264;AVALIAÇÃO  DE MINAS E ANÁLISE  FINANCEIRA                   ;68
 ENGM88;AVALIAÇÃO DE RESERVATÓRIOS                                  ;68
-ENG017;CIÊNCIAS DOS MATERIAIS  CÊRAMICOS                           ;85
 ENG259;CONTROLE  E INSTRUMENTACAO  DE  PROCESSOS                   ;68
 ENG428;DESATIVAÇÃO DE EMPREEND.MINEIROS E RECUP.DE ÁREAS DEGRADADAS;68
 QUI016;ELEMENTOS DE  QUIMICA  INORGANICA  E ANALTICA               ;85
@@ -2342,8 +2314,6 @@ ENGD92;ANALISE EXERGETICA DE PROCESSOS INDUSTRIAIS                 ;34
 MAT575;PROGRAMACAO NAO-LINEAR                                      ;102
 ENGE93;RECONCILIACAO DE DADOS                                      ;34
 ENG226;SISTEMAS  TELEFONICOS                                       ;85
-ENG708;TEEQ - ENG DA CONFIABILIDADE DE INSTALACAO DE PROCESSOS     ;45
-ENG703;TEEQ - TRATAMENTO DE EFLUENTES                              ;30
 ENG439;INTRODUÇÃO À ENGENHARIA ELÉTRICA                            ;34
 ENGC28;LABORATÓRIO INTEGRADO I                                     ;34
 ENGC29;METODOLOGIA E EXPRESSÃO DO CONHECIMENTO CIENTÍFICO          ;68
@@ -2439,7 +2409,6 @@ ENG031;CONFIABILIDADE E ANÁLISE DE RISCO                           ;68
 ENG435;GERENCIAMENTO DA PRODUÇÃO AUTOMOBILÍSTICA                   ;68
 ENG233;INSTRUMENTAÇÃO E CONTROLE                                   ;68
 ENG036;INTROD. AO ESTUDO DA DINAMICA E DESEMPENHO DOS AUTOMOVEIS   ;68
-ENG228;METALURGIA FÍSICA CORROSÃO PINTURA E PROTEÇÃO CATÓDICA      ;68
 ENG236;PLANEJAMENTO DA MANUTENÇÃO                                  ;68
 ENG230;PROCESSAMENTO DO PETRÓLEO E LUBRIFICAÇÃO                    ;85
 ENG035;PROJETO E CONSTRUCAO VEICULAR                               ;68
@@ -2481,7 +2450,6 @@ ENG289;OPERACOES  UNITARIAS  NA INDUSTRIA  QUIMICA  III            ;85
 QUI041;ORBITAIS MOLECULARES E MÉTODOS COMPUTACIONAIS EM QUÍMICA ORG;68
 ENG508;PROJETO DE REATORES                                         ;34
 MAT051;PROJETOS DE CIRCUITOS LOGICOS                               ;68
-FCH165;PSICOLOGIA  SOCIAL - FUNDAMENTOS                            ;51
 FCH162;PSICOLOGIA DAS RELACOES HUMANAS                             ;68
 FCH385;PSICOLOGIA DO TREINAMENTO                                   ;68
 FCH059;PSICOLOGIA SOCIAL DAS ORGANIZACOES                          ;68
@@ -2515,7 +2483,6 @@ ENG281;ORGANIZACAO E ADMINISTRACAO DE SERVICOS DE SANEAMENTO       ;68
 ENG288;ESTÁGIO EM ENGENHARIA SANITÁRIA E AMBIENTAL                 ;160
 FAR458;ACC:EDUCAÇÃO E SAÚDE:PREVENÇÃO E DIAGNÓST DAS DOENÇAS PARASI;68
 ENGL69;ACCS:SANEAMENTO,EDC AMBIENT E AGROECOL. ÁREAS DE REF AGRÁRIA;68
-ENG297;CONSTRUCAO CIVIL II                                         ;85
 ISC002;EPIDEMIOLOGIA                                               ;102
 ENG282;ESTATISTICA  APLICADA  À  ENGENHARIA  SANITARIA             ;85
 ENG107;FUNDACOES                                                   ;85
@@ -2523,8 +2490,6 @@ ENG385;HIDROLOGIA ANALITICA                                        ;85
 ENG384;LIXO, RESIDUOS SOLIDOS  E LIMPEZA  PUBLICA                  ;85
 ENGF52;POLÍTICA,PLANEJAMENTO E GESTÃO AMBIENTAL                    ;68
 ENGJ93;PREVENÇÃO DA POLUIÇÃO E ECOLOGIA INDUSTRIAL                 ;68
-ENG059;QUALIDADE DO AR                                             ;51
-ENG011;TALUDES E CONTENÇÔES                                        ;85
 MATB59;ESTATÍSTICA BÁSICA A                                        ;68
 MAT223;PROBABILIDADE I                                             ;102
 MATD38;ESTATISTICA BASICA B                                        ;68
@@ -2547,7 +2512,6 @@ MATD53;TRABLHO DE CONCLUSÃO DE CURSO II                            ;102
 MATB41;ÁLGEBRA LINEAR II-B                                         ;68
 MATB44;ANÁLISE I                                                   ;102
 BIO138;BIOMETRIA BASICA                                            ;68
-FIS121;FISICA  GERAL E EXPERIMENTAL  I-E                           ;102
 MATF52;INTRODUÇÃO À MINERAÇÃO DE DADOS                             ;68
 MAT192;MATEMATICA APLICADA A ECONOMIA                              ;102
 IPSA17;MEDIDAS EM PSICOLOGIA                                       ;68
@@ -2588,7 +2552,6 @@ FARA34;TOXICOLOGIA                                                 ;68
 FARA74;MICROBIOLOGIA APLICADA A FARMÁCIA                           ;34
 FARA81;BIOQUÍMICA E ANÁLISE DE ALIMENTOS I                         ;34
 FAR141;QUIMICA FARMACEUTICA III                                    ;102
-FAR147;MÉTODOS  FÍSICOS  DE ANÁLISES APLICADAS                     ;68
 FARA73;ESTÁGIO MODULAR I                                           ;85
 FAR113;CITOLOGIA CLÍNICA                                           ;68
 FAR181;FARMACOLOGIA INTEGRADA                                      ;68
@@ -2610,8 +2573,6 @@ FARA88;ADMINISTRAÇÃO DE EMPRESAS FARMACÊUTICAS                     ;51
 FARA90;DIAGNÓSTICO LABORATORIAL E SAÚDE PÚBLICA                    ;68
 FARA87;TRABALHO DE CONCLUSÃO DE CURSO-III                          ;17
 FARA91;ESTAGIO FINAL DE CONCLUSÃO DE CURSO                         ;510
-FAR458;ACC/EDUCAÇÃO E SAÚDE:PREVENÇÃO E DIAGNÓST DAS DOENÇAS PARASI;60
-BIOC77;ACCS - PERCEP.DOS EFEITOS DOS AGROT.SOBRE A S.HUM.E AMB     ;51
 FAR161;ANALISE TOXICOLOGICA .DE ALIMENTOS                          ;85
 FAR151;BROMATOLOGIA II                                             ;102
 FAR144;FARMACIA DERMATOLOGICA                                      ;85
@@ -2762,7 +2723,6 @@ MATB38;ÁLGEBRA LINEAR I- B                                         ;68
 FISC77;CONCEITOS DE FÍSICA D                                       ;68
 FISC81;DINÂMICA DE FLUIDOS                                         ;68
 FIS150;DINÂMICA DOS OCEANOS I                                      ;68
-EDC001;EDUCAÇÃO ABERTA, CONTINUADA E A DISTÂNCIA                   ;68
 FISC78;ELETRÔNICA A                                                ;68
 FISC79;ELETRÔNICA B                                                ;68
 MAT025;ESTATÍSTICA  III- A                                         ;68
@@ -2773,7 +2733,6 @@ GEO202;GEOLOGIA FÍSICA                                             ;102
 MATB35;GRUPOS E ANÉIS I                                            ;102
 GEO218;HIDRODINÂMICA  EM  MEIOS POROSOS                            ;68
 FIS129;INTRODUÇÃO  A  ELETRÔNICA  QUÂNTICA                         ;68
-BIO007;INTRODUÇÃO A BIOLOGIA                                       ;68
 EDC209;INTRODUÇÃO À EDUCAÇÃO ESPECIAL                              ;68
 FISA83;INTRODUÇÃO Á FÍSICA ATÔMICA E MOLECULAR                     ;68
 FIS149;INTRODUÇÃO À OCEANOGRAFIA DINÂMICA                          ;68
@@ -2793,7 +2752,6 @@ GEO208;MÉTODOS SÍSMICOS                                            ;102
 FISA39;OCEANOGRAFIA FÍSICA DESCRITIVA                              ;68
 FIS119;ÓPTICA                                                      ;68
 QUI006;QUÍMICA  ORGÂNICA I                                         ;51
-EDC328;TEE - DIVERSIDADE, DIFERENÇA E DIREITO                      ;68
 EDC324;TEE - EDUCAÇÃO INDÍGENA E DIREITOS HUMANOS                  ;68
 EDCB79;TEE - HISTÓRIA E CULTURA AFRICANA E AFROBRASILEIRA          ;68
 FISC70;TEORIA ELETROMAGNÉTICA I                                    ;68
@@ -3073,12 +3031,9 @@ GEO225;GEOFISICA APLICADA  A  ENGENHARIA  GEOTECNICA               ;68
 GEOD08;COMPUTAÇÃO EM GEOFÍSICA COM A LINGUAGEM FORTRAN             ;68
 FIS107;ELETROMAGNETISMO I                                          ;102
 FIS108;ELETROMAGNETISMO II                                         ;102
-GEO164;ESTRATIGRAFIA E SEDIMENTOLOGIA  APLIC EXPL DO PETROLEO      ;90
 GEO219;EVOLUCAO DO PENSAMENTO GEOCIENTIFICO                        ;51
-MAT105;FUNÇÕES ANALÍTICAS I                                        ;85
 GEOD07;FUNDAMENTOS DE INVERSÃO GEOFÍSICA                           ;68
 GEO191;GEOLOGIA ESTRUTURAL II-A                                    ;85
-GEO218;HIDRODINAMICA  EM  MEIOS POROSOS                            ;68
 GEO118;HIDROGEOLOGIA                                               ;102
 GEO214;INTERPRETACAO DADOS SISMICOS                                ;85
 FIS111;INTRODUCAO  À FISICA NUCLEAR                                ;102
@@ -3092,7 +3047,6 @@ GEOA14;GEOGRAFIA DA POPULAÇÃO                                      ;68
 GEOA15;CARTOGRAFIA SISTEMÁTICA                                     ;68
 GEO035;TEORIA DA GEOGRAFIA                                         ;68
 GEOA16;CLIMATOLOGIA                                                ;68
-GEOA17;CARTOGRAFIA TEMÁTICA                                        ;68
 GEO134;GEOGRAFIA ECONOMICA                                         ;68
 GEOA19;HIDROGRAFIA                                                 ;68
 GEOA23;GEOGRAFIA URBANA                                            ;68
@@ -3124,13 +3078,8 @@ GEOB07;GEOGRAFIA NO ENSINO FUNDAMENTAL                             ;68
 FCH175;HISTÓRIA ECONÔMICA GERAL E DO BRASIL                        ;68
 GEOA31;ORGANIZAÇÃO REGIONAL  DO ESPAÇO BRASILEIRO                  ;68
 GEOA42;RECURSOS NATURAIS E MEIO AMBIENTE                           ;68
-ENG269;CIENCIAS DO AMBIENTE                                        ;68
-GEOA39;GEOGRAFIA DA SAÚDE                                          ;68
 GEO171;GEOGRAFIA DO BRASIL I-A                                     ;85
 GEO173;GEOGRAFIA DO BRASIL III                                     ;85
-GEOA37;GEOGRAFIA DO TURISMO                                        ;68
-FCH127;HISTÓRIA ECONOMICA POLITICA SOCIAL GERAL DO BRASIL II       ;68
-FCH126;HISTÓRIA ECONOMICA POLITICA SOCIAL GERAL E DO BRASIL I      ;68
 GEO039;GEOLOGIA INTRODUTORIA                                       ;170
 GEO038;QUIM. ANALITICA E ELEMENTOS DE QUIM ORGANIC  APLIC. GEOLOGIA;85
 GEOB16;GEOBIOLOGIA                                                 ;34
@@ -3240,12 +3189,8 @@ MUSA36;TRABALHO DE CONCLUSÃO DE CURSO I                            ;34
 MUSD10;SEMINÁRIOS EM INSTRUMENTO VII                               ;68
 MUSA37;TRABALHO DE CONCLUSÃO DE CURSO II                           ;34
 MUSD11;SEMINÁRIOS EM INSTRUMENTO VIII                              ;68
-MUS182;APRECIACAO MUSICAL                                          ;51
 MUSE67;CORREPETIÇÃO PARA VIOLONISTAS II                            ;34
 MUSE68;CORREPETIÇÃO PARA VIOLONISTAS III                           ;34
-DAN062;ELEMENTOS DA DANCA I                                        ;45
-TEA060;ELEMENTOS DE TEATRO I                                       ;45
-DAN084;EXPRESSAO CORPORAL I                                        ;60
 MUSB68;IMPROVISAÇÃO EXPERIMENTAL                                   ;34
 MUSE01;INTRODUÇÃO À ETNOMUSICOLOGIA                                ;68
 MUSE63;PRÁTICA DE CONJUNTO PARA VIOLONISTAS III                    ;68
@@ -3418,7 +3363,6 @@ LETB73;HISTÓRIA DA LINGÜISTICA                                     ;68
 LETA46;INTRODUÇÃO À  LITERATURA LATINA                             ;68
 LETD17;INTRODUÇÃO À ANÁLISE DO DISCURSO EM LINGUA INGLESA          ;68
 LETB56;INTRODUÇÃO À CRITICA TEXTUAL                                ;68
-EDC209;INTRODUCAO A EDUCACAO  ESPECIAL                             ;68
 LETB74;INTRODUÇÃO À LINGÜISTICA APLICADA                           ;68
 LETB75;INTRODUÇÃO Á LINGÜISTICA TEXTUAL                            ;68
 LETC91;INTRODUÇÃO À PESQUISA EM TRADOÇÃO                           ;68
@@ -3593,14 +3537,12 @@ LETC13;VARIAÇÃO SOCIOLINGÜISTICA NO PORTUGUÊS DO BRASIL MORFOSSINTA;68
 LETC14;VARIAÇÃO SOCIOLINGÜISTICA NO PORTUGUÊS- FONOLOGIA           ;68
 LETC86;LEITURA DE TEXTOS LITERÁRIOS EM LINGUA INGLESA              ;68
 LET326;LITERATURA  HISPANO- AMERICANA IV N-200                     ;68
-EDC308;TEE - A SOCIOLOGIA DA EDUCAÇÃO E A CONTRIBUIÇÃO DE BORDIEU  ;68
 LETB26;LEITURA DE PRODUÇÕES ARTISTICAS EM LINGUA INGLESA           ;34
 LETB27;LEITURA DE PRODUÇÕES DA MIDIA EM LINGUA INGLESA             ;34
 LETD48;CULTURA ESPANHOLA EM LINGUA PORTUGUESA                      ;68
 LETD47;CULTURA HISPANO- AMERICANA EM LINGUA PORTUGUESA             ;68
 LETA67;ESTUDOS COMPARADOS EM LITERATURA DE PAISES DE LINGUA PORTUGU;68
 LETA60;HITÓRIA DA LINGUA ALEMÃ                                     ;68
-EDC326;TEE-CONHECIMENTO E SOCIEDADE: UNIVERSIDADE, NAÇÃO E SOLIDARI;68
 LETB18;TEORIA E PRÁTICA DA TRADUÇÃO ESCRITA EM LINGUA ALEMÃ        ;68
 LETD57;COMPREENSÃO ORAL DE TEXTOS LITERÁRIOS EM LINGUA FRANCESA    ;68
 LETD37;COMPREESÃO ORAL EM LINGUA ESPANHOLA                         ;68
@@ -3621,14 +3563,12 @@ LETD31;TEORIA E PRÁTICA DA TRADUÇÃO ORAL EM LINGUA ESPANHOLA       ;68
 LETC80;TÓPICOS DE CONVERSAÇÃO AVANÇADA EM LINGUA ALEMÃ             ;68
 LETD42;TÓPICOS DE CONVERSAÇÃO EM LINGUA ESPANHOLA                  ;68
 LETC66;LEITURA DE TEXTOS LITERÁRIOS EM LINGUA ALEMÃ                ;68
-EDC308;TEE - EDUCAÇÃO E DIREITOS DA CRIANÇA E DO ADOLESCENTE       ;68
 QUI001;COMPLEMENTOS DE  QUIMICA  I                                 ;68
 BIO111;BOTANICA VII                                                ;68
 GEO023;GEOCIENCIAS                                                 ;85
 QUI148;QUÍMICA ORGÂNICA NAS CIÊNCIAS NATURAIS                      ;102
 BIO006;FUNDAMENTOS ZOOLOGIA                                        ;68
 FIS134;FISICA PARA LICENCIATURA  EM CIENCIAS I                     ;136
-FISA01;INTRODUÇÃO À ASTRONOMIA                                     ;68
 ICS004;BIOQUÍMICA BÁSICA                                           ;85
 MAT218;ESTATISTICA E PROBABILIDADE II                              ;68
 FIS135;FISICA PARA LICENCIATURA  EM CIENCIAS  II                   ;136
@@ -3637,13 +3577,11 @@ EDC219;HIGIENE, EDUCACAO E SAUDE                                   ;68
 EDCJ81;ENSINO DE CIÊNCIAS NATURAIS                                 ;102
 EDC269;ESTAGIO E SEMINARIO CIENCIAS                                ;442
 MEV458;ACC:  MUSEU DE ANATOMIA COMPARADA ( MAC)                    ;60
-MEV454;ACC: ANATOMIA: VISAO COMPARADA VOLTADA AS ESCOLAS DE SSA.   ;60
 EDCH58;ACCS /ESC. SUSTENTÁVEIS: PROTAGON. JUVENIL DES.INTERVENÇÃO  ;68
 FCH005;ETICA I                                                     ;51
 FIS112;EVOLUÇÃO DA FÍSICA                                          ;51
 EDC063;GINASTICA  RITIMICA  ESCOLAR                                ;68
 MAT038;MATEMATICA GERAL I                                          ;102
-GEO155;MINERALOGIA GERAL                                           ;90
 EDC136;PROBLEMAS  BRASILEIROS DA  EDUCACAO  I                      ;51
 EDC110;SOCIOLOGIA EDUCACAO I                                       ;51
 DANA92;Introdução à Educação da Dança a Distância - AVA            ;34
@@ -3810,7 +3748,6 @@ MED243;INTERNATO II EM CLINICA MEDICA                              ;480
 MED244;INTERNATO II EM CLINICA CIRURGICA                           ;480
 MED245;INTERNATO II EM PEDIATRIA                                   ;480
 MED246;INTERNATO II EM OBSTETRICIA E GINECOLOGIA                   ;480
-FAR454;ACC/:BUSCA RACIONAL DE NOVOS FÁRMACOS DE ORIGEM VEGETAL     ;60
 MED198;ANESTESIOLOGIA                                              ;75
 MED189;ANGIOLOGIA II                                               ;75
 MED180;CARDIOLOGIA II                                              ;85
@@ -3955,7 +3892,6 @@ MEV149;DOENCAS DAS AVES                                            ;68
 MEV152;TOXICOLOGIA  VETERINARIA                                    ;68
 MEVC04;INSPEÇÃO DE PRODUTOS DE ORIGEM ANIMAL                       ;102
 MEV155;ESTÁGIO SUPERVISIONADO                                      ;470
-MEV458;ACCS: MUSEU INTERATIVO DE ANATOMIA COMPARADA                ;68
 MEV133;ANAT ANIMAIS DOMESTIC III                                   ;102
 MEV125;ANIMAIS DE LABORATORIO                                      ;68
 ICSF18;DESENVOLVIMENTO EMBRIONÁRIO E CÉLULAS TRONCO APLIC A MED VET;34
@@ -3966,7 +3902,6 @@ MEVC68;INTRODUÇÃO À POLÍTICA AGRÍCOLA                              ;68
 MEVA05;MEDICINA VETERINÁRIA DE ANIMAIS SILVESTRES E EXÓTICOS       ;68
 MEVA06;PATOLOGIA CIRÚRGICA VETERINÁRIA                             ;68
 MEV128;RADIOLOGIA ANIM DOMESTIC                                    ;68
-MEVC25;UTILIZAÇÃO DE BIOTECNOLOGIA REPROD.M.G.ANIMAL DA BOV.LEITEIR;102
 FCHG23;MUSEOLOGIA                                                  ;68
 FCHG24;PESQUISA MUSEOLÓGICA I                                      ;68
 FCHG56;SEMINÁRIOS TEMÁTICOS I                                      ;34
@@ -4034,9 +3969,6 @@ MUSA17;CONTRAPONTO I                                               ;51
 MUSA08;COMPOSIÇÃO PARA AUDIOVISUAL II                              ;51
 MUSA16;COMPOSIÇÃO PARA MÚSICA POPULAR VIII                         ;51
 MUSA18;CONTRAPONTO II                                              ;51
-TEA085;DICCAO I                                                    ;60
-EDC140;DIDÁTICA I                                                  ;120
-FCH002;ESTETICA I                                                  ;75
 MUSA33;TÓPICOS EM TECNOLOGIA APLICADA Á MÚSICA III                 ;34
 ICS067;BIOQUIMICA APLIC.NUTRICAO I                                 ;85
 ICS068;BIOQUIMICA APLIC.NUTRICAO II                                ;68
@@ -4069,7 +4001,6 @@ MEVB63;ACCS:DESENV FAZENDA EXPERIM DE ENTRE-RIOS/CAPRIN,OVINOS,AVES;68
 NUT177;ASPECTOS SOCIOCULTURAIS DA ALIMENTAÇÃO E DA NUTRIÇÃO        ;68
 NUT168;DIETAS NAO CONVENCIONAIS                                    ;68
 NUT178;HÁBITOS ALIMENTARES E COMENSALIDADE                         ;68
-FCH177;HISTORIA DA CULTURA I                                       ;68
 NUT147;INQUERITO DE CONSUMO ALIMENTAR                              ;85
 NUT165;LEGISLACAO DOS ALIMENTOS                                    ;68
 NUT527;NUTRICAO E SAUDE NOS DIFERENTES CICLOS DE VIDA              ;51
@@ -4234,24 +4165,17 @@ IPSB74;SEXUALIDADE, SUBJETIVIDADE E CULTURA                        ;68
 EDC323;TEE -  EDUCAÇÃO PERMANENTE                                  ;68
 EDC322;TEE - COGNIÇÃO, APRENDIZAGEM NAS DEFICIÊNCIAS SENSORIAIS    ;68
 EDC307;TEE - EDUCAÇÃO E DESENVOLVIMENTO MORAL                      ;68
-EDC308;TEE - METODOLOGIA E PRÁTICA DE ALFABETIZAÇÃO PARA A INFÂNCIA;68
 EDCC60;TEE - VAMOS CONTAR OUTRA VEZ? Of.DE CONTAÇÃO DE HIStÒRIA    ;68
 DIR456;ACC: DIREITO AMBIENTAL DA FAUNA                             ;68
-EDCB34;DIDÁTICA PRAXIS PEDAGÓGICA DE BIOLOGIA II                   ;136
 EDC313;METODOLOGIA DO ENSINO DE GEOGRAFIA                          ;102
 EDC312;METODOLOGIA DO ENSINO DE HISTÓRIA                           ;102
 IPSA35;PSICOLOGIA  DA PERSONALIDADE  I                             ;68
 IPSA36;PSICOLOGIA DA PERSONALIDADE II                              ;68
 EDCC53;TEE - COGNIÇÃO E APRENDIZAGEM                               ;68
-EDC308;TEE - EDUCAÇÃO E POLÍTICAS DE AÇÕES AFIRMATIVAS             ;68
-EDC322;TEE - EDUCAÇÃO POPULAR NO CONTEXTO DO CAMPO                 ;68
 EDCB22;TEE - HISTÓRIA GERAL DA EDUCAÇÃO                            ;68
 EDCB24;TEE - INTRODUÇÃO À NEUROPSICOLOGIA DA APRENDIZAGEM          ;68
 EDCC61;TEE - MEMÓRIA EM VíIDEO DE EDUCAÇÃO NA BAHIA                ;68
-EDC324;TEE - PEDAGOGIA  HOSPITALAR                                 ;68
-EDC307;TEE - POLÍTICAS PÚBLICAS EM EDUCAÇÃO                        ;68
 EDCC38;TEE - PRÁTICAS EDUCATIVAS EM CRECHES E PRÉ-ESCOLAS          ;68
-EDC323;TEE- EDUCAÇÃO DE SURDOS                                     ;68
 EDCJ80;EDUCAÇÃO ABERTA, CONTINUADA E A DISTÂNCIA - AVA             ;68
 EDCJ92;ORGANIZAÇÃO DA EDUCAÇÃO BRASILEIRA - AVA                    ;68
 EDCJ93;ANTROPOLOGIA DA EDUCAÇÃO - AVA                              ;68
@@ -4351,7 +4275,6 @@ IPSD69;CLÍNICA DAS DEPRESSÕES E DO SUICÍDIO                        ;68
 IPSC49;CLÍNICA PSICOSSOMÁTICA                                      ;68
 IPSA47;ENTREVISTA PSICOLOGICA                                      ;68
 ISCB53;EPIDEMIOLOGIA EM SAÚDE MENTAL                               ;34
-FCH005;ÉTICA I                                                     ;68
 IPSD60;FUND. DAS INTERAÇÕES SOCIAIS: A PERSPECTIVA DRAMATÚRGICA    ;68
 ISCB59;HISTÓRIA DA  SAÚDE  PÚBLICA  NO  BRASIL                     ;34
 IPSD55;HISTÓRIA DA PSICOLOGIA                                      ;68
@@ -4441,7 +4364,6 @@ IMSB13;ESTUDO DAS REPRESENTAÇÕES SOCIAIS                           ;68
 IMSC88;FILOSOFIA E CIÊNCIA                                         ;68
 IMSC89;INDIVÍDUO E SOCIEDADE: PERSPECTIVAS INTERACIONISTAS         ;68
 IMSB14;INDIVÍDUO E SOCIEDADE: PERSPECTIVAS INTERACIONISTAS         ;68
-IMS108;INTRODUCAO À  ADMINISTRACAO                                 ;68
 IMSC90;LÓGICA I                                                    ;68
 IMSD16;PRINCÍPIOS DE NEUROPSICOLOGIA                               ;68
 IMSB15;PRINCÍPIOS DE PSICOFARMACOLOGIA                             ;68
@@ -4493,7 +4415,6 @@ QUIA66;ESTÁGIO SUPERVISIONADO I                                    ;340
 ICS107;BIOQUIMICA PARA QUIMICOS                                    ;102
 QUI156;ESTUDOS AVANÇADOS EM CROMATOGRAFIA                          ;136
 QUI039;ÉTICA E SEGURANÇA NO TRABALHO EM QUÍMICA                    ;51
-FIS133;FÍSICA DO MEIO AMBIENTE                                     ;60
 QUIB07;HISTÓRIA DA QUÍMICA I                                       ;68
 QUIA32;INTRODUÇÃO À QUÍMICA                                        ;34
 QUIA81;INTRODUÇÃO À QUÍMICA DOS MATERIAIS                          ;85
@@ -4606,7 +4527,6 @@ ADMD01;GESTÃO ECONÔMICA                                            ;51
 LETE21;REDAÇÃO EMPRESARIAL EM LINGUA INGLESA                       ;68
 LETE22;REDAÇÃO EMPRESARIAL EM LINGUA ESPANHOLA                     ;68
 MAT022;ESTATÍSTICA I - C                                           ;68
-ADM202;COMUNICACAO                                                 ;102
 ADM244;GESTAO SECRETARIAL I                                        ;51
 ADMD02;PLANEJAMENTO EMPRESARIAL                                    ;51
 ADMD03;INFORMÁTICA  II                                             ;68
@@ -4618,9 +4538,7 @@ ADMD07;EMPREENDEDORISMO                                            ;34
 ADMD08;SISTEMAS DE INFORMAÇÕES GERENCIAIS  I                       ;68
 ADM240;GESTAO CONTABIL PARA SECRETARIOS                            ;51
 ADMD09;ESTÁGIO CURRICULAR SUPERVISIONADO                           ;102
-ADM218;ABORDAGEM SOCIO POLITICA  DAS ORGANIZACOES                  ;68
 ADM454;ACC: GESTÃO EM ECONOMIA SOLIDÁRIA                           ;68
-ADM223;ESTUDOS ANTROPOLOGICOS DAS ORGANIZACOES                     ;68
 ADM145;INTRODUCAO AS RELACOES PUBLICAS                             ;51
 ADM213;NEGOCIACAO                                                  ;68
 FCHF17;POLÍTICA, ESTADO E SOCIEDADE                                ;68

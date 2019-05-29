@@ -4,7 +4,7 @@ var nomesmateriasselecionadas = [];
 var grade = [];
 var orientadores = [];
 
-if(window.location.href == "localhost:8080/orientacao/montarGrade1.jsp"){
+if(window.location.href == "localhost:8080/orientacao/montarGrade.jsp"){
 	document.getElementById("obrigatorias").style.backgroundColor = "rgb(31, 97, 141)";
 	document.getElementById("obrigatorias").style.color = "white";
 	document.getElementById("optativas").style.backgroundColor = "white";
@@ -172,7 +172,6 @@ function alterarConteudo(tipo){
 function identificaDiscObg(id){
 	document.getElementById("discEscolhida" + id).innerHTML = id;
 	document.getElementById("tipoDisc" + id).innerHTML = "obg";
-	document.getElementById("discNome" + id).innerHTML = document.getElementById(id).innerHTML;	
 	if(document.getElementById(id).style.backgroundColor != "rgb(65, 186, 158)"){
 		document.getElementById("botaoModal" + id).classList.add('btn-success');
 		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
@@ -187,7 +186,6 @@ function identificaDiscObg(id){
 function identificaDiscOp(id){
 	document.getElementById("discEscolhida" + id).innerHTML = id;
 	document.getElementById("tipoDisc" + id).innerHTML = "op";
-	document.getElementById("discNome" + id).innerHTML = document.getElementById(id).innerHTML;
 	if(document.getElementById(id).style.backgroundColor != "rgb(192, 229, 220)"){
 		document.getElementById("botaoModal" + id).classList.add('btn-success');
 		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
@@ -199,34 +197,34 @@ function identificaDiscOp(id){
 	}
 }
 
-function alterarMateria(){
-	var materiaEscolhida = document.getElementById("discEscolhida").innerHTML;
-	if(document.getElementById("tipoDisc").innerHTML == "obg"){
+function alterarMateria(id){
+	var materiaEscolhida = document.getElementById("discEscolhida" + id).innerHTML;
+	if(document.getElementById("tipoDisc" + id).innerHTML == "obg"){
 		if(document.getElementById(materiaEscolhida).style.backgroundColor != "rgb(65, 186, 158)"){
 			document.getElementById(materiaEscolhida).style.backgroundColor = "#41BA9E";
-			document.getElementById("operacaoDisc").innerHTML = "adicionar";
+			document.getElementById("operacaoDisc" + id).innerHTML = "adicionar";
 		}
 		else{
 			document.getElementById(materiaEscolhida).style.backgroundColor = "#B7B7B7";
-			document.getElementById("operacaoDisc").innerHTML = "remover";
+			document.getElementById("operacaoDisc" + id).innerHTML = "remover";
 		}
 	}
 	else{
 		if(document.getElementById(materiaEscolhida).style.backgroundColor != "rgb(192, 229, 220)"){
 			document.getElementById(materiaEscolhida).style.backgroundColor = "#C0E5DC";
-			document.getElementById("operacaoDisc").innerHTML = "adicionar";
+			document.getElementById("operacaoDisc" + id).innerHTML = "adicionar";
 		}
 		else{
 			document.getElementById(materiaEscolhida).style.backgroundColor = "#D0D5FA";
-			document.getElementById("operacaoDisc").innerHTML = "remover";			
+			document.getElementById("operacaoDisc" + id).innerHTML = "remover";			
 		}
 	}
-	if(document.getElementById("operacaoDisc").innerHTML == "adicionar"){
+	if(document.getElementById("operacaoDisc" + id).innerHTML == "adicionar"){
 		document.getElementById("disciplinasTotal").innerHTML += "<input type = 'text' name = 'escolhida" + 
-		document.getElementById("discEscolhida").innerHTML + "' id = 'escolhida" + document.getElementById("discEscolhida").innerHTML + "' value = '" + 
+		document.getElementById("discEscolhida" + id).innerHTML + "' id = 'escolhida" + document.getElementById("discEscolhida" + id).innerHTML + "' value = '" + 
 		document.getElementById("codigo" + materiaEscolhida).innerHTML + "'> <br>";
 		document.getElementById("nomeDisciplinas").innerHTML += "<input type = 'text' name = 'nomeEscolhida" + 
-		document.getElementById("discEscolhida").innerHTML + "' id = 'nomeEscolhida" + document.getElementById("discEscolhida").innerHTML + "' value = '" + 
+		document.getElementById("discEscolhida" + id).innerHTML + "' id = 'nomeEscolhida" + document.getElementById("discEscolhida" + id).innerHTML + "' value = '" + 
 		document.getElementById("nome" + materiaEscolhida).innerHTML + "'> <br>";
 		grade.push(document.getElementById("codigo" + materiaEscolhida).innerHTML);
 		console.log(document.getElementById("codigo" + materiaEscolhida).innerHTML);
@@ -285,4 +283,22 @@ function selecionaOrientador(id){
 		document.getElementById('orientador' + id).classList.remove('active');
 		document.getElementById('orientador' + id).classList.add('list-group-item-action');		
 	}
+}
+
+function juntaMaterias(){
+	grade = sessionStorage.getItem("grade");
+	if(grade.length == 0 || materiasinseridas.length == 0 || document.getElementById('input-orientador').value == ""){
+		console.log("oi");
+		return false;
+	}
+	for(var i=0; i<grade.length; i++){
+		document.getElementById("codigosGrade").value += grade[i] + "/";
+	}
+	for(var i=0; i<materiasinseridas.length; i++){
+		document.getElementById("codigosAtual").value += materiasinseridas[i] + "/";
+	}
+	for(var i=0; i<orientadores.length; i++){
+		document.getElementById("orientadores").value += orientadores[i] + "/";
+	}
+	return true;
 }

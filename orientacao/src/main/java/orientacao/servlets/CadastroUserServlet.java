@@ -36,7 +36,7 @@ public class CadastroUserServlet extends HttpServlet {
 			Curso curso = null;
 
 			try {
-				curso = user.recuperarCurso(codcurso);
+				curso = (Curso) user.recuperarCurso(codcurso);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,4 +1,4 @@
-CREATE DATABASE oa_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE oa_db;
 
 USE oa_db;
 
@@ -85,57 +85,31 @@ CREATE TABLE ORIENTACAO_DISCIPLINA
 
 CREATE TABLE OBRIGATORIA
 (
-	curso int,
+	curso int(11),
 	disciplina char(10),
-	semestre_sugerido int,
+	semestre_sugerido int(11),
+	PRIMARY KEY (curso, disciplina),
 	FOREIGN KEY (curso) REFERENCES CURSO(codigo),
 	FOREIGN KEY (disciplina) REFERENCES DISCIPLINA(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE OPTATIVA
 (
-	curso int,
+	curso int(11),
 	disciplina char(10),
+	PRIMARY KEY (curso, disciplina),
 	FOREIGN KEY (curso) REFERENCES CURSO(codigo),
 	FOREIGN KEY (disciplina) REFERENCES DISCIPLINA(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE PREREQUISITO
 (
-	trancador char(10) not null,
-	trancado char(10) not null,
-	PRIMARY KEY (trancador, trancado),
+  `curso` int(11),
+  `trancado` char(10) COLLATE utf8mb4_unicode_ci,
+  `trancador` char(10) COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`curso`,`trancado`,`trancador`),
+  	FOREIGN KEY (curso) REFERENCES CURSO(codigo),
     FOREIGN KEY (trancador) REFERENCES DISCIPLINA(codigo),
     FOREIGN KEY (trancado) REFERENCES DISCIPLINA(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
-INSERT INTO DEPARTAMENTO VALUES
-(1, 'Departamento de Computação');
-
-INSERT INTO CURSO VALUES
-(112140, 'Ciência da Computação', 8, 1);
-
-LOAD DATA INFILE 'Departamento.csv'
-INTO TABLE DISCIPLINA
-FIELDS TERMINATED BY ';';
-
-LOAD DATA INFILE 'cursos.csv'
-INTO TABLE DISCIPLINA
-FIELDS TERMINATED BY ';';
-
-LOAD DATA INFILE 'disciplinas.csv'
-INTO TABLE DISCIPLINA
-FIELDS TERMINATED BY ';';
-
-LOAD DATA INFILE 'obrigatorias.csv'
-INTO TABLE OBRIGATORIA
-FIELDS TERMINATED BY ';';
-
-LOAD DATA INFILE 'optativas.csv'
-INTO TABLE OPTATIVA
-FIELDS TERMINATED BY ';';
-
-LOAD DATA INFILE 'pre-requisitos.csv'
-INTO TABLE PREREQUISITO
-FIELDS TERMINATED BY ';';
