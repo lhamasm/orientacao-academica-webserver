@@ -1,5 +1,6 @@
+/*****************FRONT-END usa*****************/
 -efetuarLogin:
-	Instanciar INTEIRAMENTE o Usuario
+	Instanciar INTEIRAMENTE o Usuario e seus atributos
 -efetuarCadastro:
 	Salva no banco e efetua Login
 -recuperarDepartamentos:
@@ -10,11 +11,15 @@
 	Altera a orientação recebida pra salvar a resposta do professor
 -enviarNotificacao:
 	Instancia e salva uma Orientacao sem observacaoProf e vetor "aprovado" incompleto
+//cadastro e recuperação de senha, getters e setters
+
+
+/***************Só BACK-END usa******************/
 -recuperarCurso:
 	Retorna um Curso completamente instanciado (usada no login)
 -recuperarProfessores:
-	Retorna a lista de professores que são do departamento do curso do aluno (usada no login pra preencher atributo professores em Departamento)
--recuperarPrerequisitos:
-	Preenche o vetor "prerequisitos" do objeto Obrigatoria que chamar a função (usada no login pra instanciar inteiramente informações atreladas ao usuario aluno)
+	Retorna a lista de professores que são do departamento do curso do aluno (usada em recuperarCurso)
 -recuperarObrigatorias/Optativas
-	Preenche o vetor de obrigatorias/optativas do objeto Curso que chama (usada no login)
+	Preenche o vetor de obrigatorias/optativas do objeto Curso que chama (usada em recuperarCurso)
+-recuperarPrerequisitos:
+	Preenche o vetor "prerequisitos" do objeto Obrigatoria que chamar a função (usada em recuperarObrigatorias)

@@ -7,19 +7,21 @@ public class Orientacao {
 	private int id;
 	private String data;
 	private String horario;
-	private String observacao;
+	private String observacaoAluno;
+	private String observacaoProf;
 	private Usuario destinatario;
 	private Usuario remetente;
 	private ArrayList<Disciplina> disciplinas;
 	private ArrayList<Boolean> cursando;
 	private ArrayList<Boolean> aprovado;
 	
-	public Orientacao(int id, String data, String horario, String obs, Usuario destinatario, Usuario remetente, ArrayList<Disciplina> disc,
+	public Orientacao(int id, String data, String horario, String observacaoAluno, String observacaoProf, Usuario destinatario, Usuario remetente, ArrayList<Disciplina> disc,
 			ArrayList<Boolean> curs, ArrayList<Boolean> apr){
 		this.setId(id);
 		this.setData(data);
 		this.setHorario(horario);
-		this.setObservacao(obs);
+		this.setObservacaoAluno(observacaoAluno);
+		this.setObservacaoProf(observacaoProf);
 		this.setDestinatario(destinatario);
 		this.setRemetente(remetente);
 		this.setDisciplinas(disc);
@@ -51,12 +53,20 @@ public class Orientacao {
 		this.horario = horario;
 	}
 
-	public String getObservacao() {
-		return observacao;
+	public String getObservacaoAluno() {
+		return observacaoAluno;
 	}
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setObservacaoAluno(String observacaoAluno) {
+		this.observacaoAluno = observacaoAluno;
+	}
+
+	public String getObservacaoProf() {
+		return observacaoProf;
+	}
+
+	public void setObservacaoProf(String observacaoProf) {
+		this.observacaoProf = observacaoProf;
 	}
 
 	public Usuario getDestinatario() {

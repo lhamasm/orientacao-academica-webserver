@@ -1,12 +1,16 @@
 package orientacao;
 
+import java.util.ArrayList;
+
 public class Departamento {
 	private int codigo;
 	private String nome;
+	private ArrayList<Professor> professores;
 	
-	public Departamento(int codigo, String nome) {
+	public Departamento(int codigo, String nome, ArrayList<Professor> professores) {
 		this.codigo = codigo;
 		this.nome = nome;
+		this.professores = professores;
 	}
 
 	public int getCodigo() {
@@ -25,5 +29,11 @@ public class Departamento {
 		this.nome = nome;
 	}
 	
-	
+	public ArrayList<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(ArrayList<Professor> professores) {
+		this.professores = professores;
+	}
 }

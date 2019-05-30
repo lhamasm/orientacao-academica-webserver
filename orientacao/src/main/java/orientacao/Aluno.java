@@ -38,6 +38,7 @@ public class Aluno extends Usuario{
 	public void setSemestre(int semestre) {
 		this.semestre = semestre;
 	}
+
 	
 	public void enviarNotificacao(Orientacao orientacao) throws ClassNotFoundException, SQLException {
 		
@@ -46,7 +47,7 @@ public class Aluno extends Usuario{
 			String sql = "INSERT INTO ORIENTACAO VALUES('" +
 							orientacao.getData() + "','" +
 							orientacao.getHorario() + "','" +
-							orientacao.getObservacao() + "','" +
+							orientacao.getObservacaoAluno() + "','" +
 							orientacao.getDestinatario() + "','" +
 							orientacao.getRemetente() + "')";
 					
@@ -60,8 +61,6 @@ public class Aluno extends Usuario{
 	        			orientacao.getData() + 
 	        			" AND horario=" +
 	        			orientacao.getHorario() +
-	        			" AND observacao=" +
-	        			orientacao.getObservacao() +
 	        			" AND destinatario=" + 
 	        			(orientacao.getDestinatario()).getMatricula() +
 	        			" AND remetente=" + 
@@ -116,21 +115,7 @@ public class Aluno extends Usuario{
 			con.close();
 		}
 	}
-	
-	public ArrayList<Professor> recuperarProfessores() throws SQLException, ClassNotFoundException{
-		ArrayList<Professor> professores = new ArrayList<Professor>();
-		Connection connection = new DataGetter().getConnection();
-		String sql = "SELECT USUARIO.* , DEPARTAMENTO.codigo, DEPARTAMENTO.nome AS nomedep FROM USUARIO, PROFESSOR, CURSO, DEPARTAMENTO WHERE CURSO.codigo = " + this.curso.getCodigo() + " AND CURSO.departamento = DEPARTAMENTO.codigo AND DEPARTAMENTO.codigo = PROFESSOR.departamento AND  USUARIO.matricula = PROFESSOR.matricula";
-		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
-		ResultSet rs = stmt.executeQuery();
-		while(rs.next()){
-			professores.add(new Professor(rs.getString("nome"), rs.getString("sobrenome"), "", rs.getString("email"), rs.getString("matricula"), "", new Departamento(rs.getInt("codigo"), rs.getString("nomedep"))));
-		}
-		
-		return professores;
-	}
-	
-	
+
 	public Orientacao recuperarOrientacaoDisciplina(int orientacao) throws ClassNotFoundException, SQLException{
 		Connection con = null;
 		try {
@@ -148,7 +133,7 @@ public class Aluno extends Usuario{
             	aprovado.add(rs.getBoolean("aprovado"));
             	cursando.add(rs.getBoolean("cursando"));
             	disciplinas.add(recuperarDisciplina(rs.getString("codigo")));
-            	o = new Orientacao(-1, null, null, null, null, null, disciplinas, aprovado, cursando);
+            	o = new Orientacao(-1, null, null, null, null, null, null, disciplinas, aprovado, cursando);
             }
             
             rs.close();
@@ -163,6 +148,7 @@ public class Aluno extends Usuario{
 		}
 		return null;
 	}
+	
 	public ArrayList<Orientacao> recuperarNotificacoes(Aluno aluno) throws ClassNotFoundException, SQLException {
 		
 		Connection con = null;
@@ -176,7 +162,7 @@ public class Aluno extends Usuario{
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
             	Orientacao orientacao = recuperarOrientacaoDisciplina(rs.getInt("id"));
-            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getString("data"), rs.getString("horario"), rs.getString("observacao"), recuperarUsuario(rs.getString("destinatario")), recuperarUsuario(rs.getString("remetente")), orientacao.getDisciplinas(), orientacao.getAprovado(), orientacao.getCursando()));
+            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getString("data"), rs.getString("horario"), rs.getString("observacaoAluno"), rs.getString("observacaoProf"), recuperarUsuario(rs.getString("destinatario")), recuperarUsuario(rs.getString("remetente")), orientacao.getDisciplinas(), orientacao.getAprovado(), orientacao.getCursando()));
             }
             
             rs.close();
@@ -191,7 +177,6 @@ public class Aluno extends Usuario{
 		}
 		return null;
 	}
-
 
 	public Usuario recuperarUsuario(String matricula) throws SQLException, ClassNotFoundException {
 		Connection con = null;
@@ -218,7 +203,6 @@ public class Aluno extends Usuario{
 		}
 		return null;
 	}
-	
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
 		Aluno user = null;
