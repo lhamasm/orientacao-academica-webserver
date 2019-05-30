@@ -1,0 +1,20 @@
+-efetuarLogin:
+	Instanciar INTEIRAMENTE o Usuario
+-efetuarCadastro:
+	Salva no banco e efetua Login
+-recuperarDepartamentos:
+	Retorna lista de departamentos sem professores
+-recuperarCursos:
+	Retorna lista de cursos sem departamento, obrigatorias e optativas
+-respondeNortificacao:
+	Altera a orientação recebida pra salvar a resposta do professor
+-enviarNotificacao:
+	Instancia e salva uma Orientacao sem observacaoProf e vetor "aprovado" incompleto
+-recuperarCurso:
+	Retorna um Curso completamente instanciado (usada no login)
+-recuperarProfessores:
+	Retorna a lista de professores que são do departamento do curso do aluno (usada no login pra preencher atributo professores em Departamento)
+-recuperarPrerequisitos:
+	Preenche o vetor "prerequisitos" do objeto Obrigatoria que chamar a função (usada no login pra instanciar inteiramente informações atreladas ao usuario aluno)
+-recuperarObrigatorias/Optativas
+	Preenche o vetor de obrigatorias/optativas do objeto Curso que chama (usada no login)

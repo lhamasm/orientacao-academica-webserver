@@ -1,0 +1,18 @@
+Cardel:
+	recuperarSenha()
+	responderNotificacao()
+	efetuarLogin()
+	alterarCadastro()
+	efetuarCadastro()
+Larissa:
+	enviarNotificacao()
+	recuperarOptativas()
+	recuperarNotificacoes()
+	recuperarProfessores()
+	recuperarDepartamentos()
+Luis:
+	alterarSenha()
+	recuperarObrigatorias()
+	recuperarPreRequisitos()
+	recuperarCurso()
+	recuperarCursos()
