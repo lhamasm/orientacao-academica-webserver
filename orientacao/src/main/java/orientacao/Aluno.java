@@ -38,7 +38,6 @@ public class Aluno extends Usuario{
 	public void setSemestre(int semestre) {
 		this.semestre = semestre;
 	}
-
 	
 	public void enviarNotificacao(Orientacao orientacao) throws ClassNotFoundException, SQLException {
 		
@@ -48,6 +47,7 @@ public class Aluno extends Usuario{
 							orientacao.getData() + "','" +
 							orientacao.getHorario() + "','" +
 							orientacao.getObservacaoAluno() + "','" +
+							orientacao.getObservacaoProfessor() + "','" +
 							orientacao.getDestinatario() + "','" +
 							orientacao.getRemetente() + "')";
 					
@@ -57,13 +57,17 @@ public class Aluno extends Usuario{
 	        stmt.execute();
 	        
 	        try {
-	        	sql = "SELECT id FROM ORIENTACAO WHERE data=" +
+	        	sql = "SELECT id FROM ORIENTACAO WHERE data =" +
 	        			orientacao.getData() + 
-	        			" AND horario=" +
+	        			" AND horario =" +
 	        			orientacao.getHorario() +
-	        			" AND destinatario=" + 
+	        			" AND observacao_aluno =" +
+	        			orientacao.getObservacaoAluno() +
+	        			" AND observacao_professor =" +
+	        			orientacao.getObservacaoProfessor() +
+	        			" AND destinatario =" + 
 	        			(orientacao.getDestinatario()).getMatricula() +
-	        			" AND remetente=" + 
+	        			" AND remetente =" + 
 	        			(orientacao.getRemetente()).getMatricula();
 	        	
 	        	stmt = con.prepareStatement(sql);
@@ -95,7 +99,7 @@ public class Aluno extends Usuario{
 		            
 		            while(rs.next()) {
 		            	Email email = new Email();
-		    		email.notificarOrientacao(rs.getString("email"), rs.getString("nome"), this.getNome());
+		            	email.notificarOrientacao(rs.getString("email"), rs.getString("nome"), this.getNome());
 		            }
 		            
 		            rs.close();
@@ -115,87 +119,34 @@ public class Aluno extends Usuario{
 			con.close();
 		}
 	}
-
-	public Orientacao recuperarOrientacaoDisciplina(int orientacao) throws ClassNotFoundException, SQLException{
-		Connection con = null;
-		try {
-        	String sql = "SELECT * FROM ORIENTACAO_DISCIPLINA WHERE orientacao=" + orientacao;        	
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-            
-			Orientacao o = null;
-            while(rs.next()) {
-            	ArrayList<Boolean> aprovado = new ArrayList<Boolean>();
-            	ArrayList<Boolean> cursando = new ArrayList<Boolean>();
-            	ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
-            	aprovado.add(rs.getBoolean("aprovado"));
-            	cursando.add(rs.getBoolean("cursando"));
-            	disciplinas.add(recuperarDisciplina(rs.getString("codigo")));
-            	o = new Orientacao(-1, null, null, null, null, null, null, disciplinas, aprovado, cursando);
-            }
-            
-            rs.close();
-            stmt.close();
-            
-            return o;
-            
-        } catch(SQLException e) {
-            System.out.println(e);
-        } finally {        
-			con.close();
-		}
-		return null;
-	}
 	
-	public ArrayList<Orientacao> recuperarNotificacoes(Aluno aluno) throws ClassNotFoundException, SQLException {
-		
+	public ArrayList<Professor> recuperarProfessores() throws SQLException, ClassNotFoundException{
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM ORIENTACAO WHERE remetente=" + aluno.getMatricula();        	
+			String sql = "SELECT USUARIO.*, DEPARTAMENTO.codigo, DEPARTAMENTO.nome as nomeDep FROM USARIO, DEPARTAMENTO, PROFESSOR WHERE PROFESSOR.matricula = USUARIO.matricula AND PROFESSOR.departamento = DEPARTAMENTO.codigo";
+			
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-            
-			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
-            while(rs.next()) {
-            	Orientacao orientacao = recuperarOrientacaoDisciplina(rs.getInt("id"));
-            	orientacoes.add(new Orientacao(rs.getInt("id"), rs.getString("data"), rs.getString("horario"), rs.getString("observacaoAluno"), rs.getString("observacaoProf"), recuperarUsuario(rs.getString("destinatario")), recuperarUsuario(rs.getString("remetente")), orientacao.getDisciplinas(), orientacao.getAprovado(), orientacao.getCursando()));
+			
+			ArrayList<Professor> professores = new ArrayList<Professor>();
+			while(rs.next()) {
+            	Professor professor = new Professor(rs.getString("nome"),
+            			rs.getString("sobrenome"),
+            			rs.getString("senha"),
+            			rs.getString("email"),
+            			rs.getString("matricula"),
+            			rs.getString("cpf"),
+            			new Departamento(rs.getInt("codigo"), rs.getString("nomeDep"))
+            	);
             }
             
             rs.close();
             stmt.close();
             
-            return orientacoes;
+            return professores;
             
-        } catch(SQLException e) {
-            System.out.println(e);
-        } finally {        
-			con.close();
-		}
-		return null;
-	}
-
-	public Usuario recuperarUsuario(String matricula) throws SQLException, ClassNotFoundException {
-		Connection con = null;
-		try {
-			String sql = "SELECT * FROM USUARIO WHERE matriucla=" + matricula;
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			
-			Usuario usuario = null;
-			while(rs.next()) {
-				usuario = new Usuario(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), matricula, rs.getString("cpf"));
-			}
-			
-			rs.close();
-            stmt.close();
-            
-            return usuario;
 		} catch(SQLException e) {
             System.out.println(e);
         } finally {        
@@ -203,6 +154,7 @@ public class Aluno extends Usuario{
 		}
 		return null;
 	}
+	
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
 		Aluno user = null;
