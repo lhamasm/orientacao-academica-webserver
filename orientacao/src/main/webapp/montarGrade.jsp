@@ -22,11 +22,13 @@ pageEncoding="ISO-8859-1"%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script> 
-	<script type = "text/javascript" src="./script/scriptGrade.js"> </script>  
 </head>
 
 <% 
 	Aluno aluno = (Aluno) session.getAttribute("user");
+	ArrayList<Disciplina> b = aluno.getCurso().getOptativas();
+	ArrayList<Obrigatoria> a = aluno.getCurso().getObrigatorias();	
+
 %>
 
 <body>
@@ -71,10 +73,9 @@ pageEncoding="ISO-8859-1"%>
      	  		for(int j=1; j<=aluno.getCurso().getDuracao(); j++){
      	  			out.println("<h6>" + j + "º Semestre </h6>");
      	  			out.println("<div class = \"mb-1 row\">");
-  					ArrayList<Obrigatoria> a = aluno.getCurso().recuperarObrigatorias();	
   	  				for (int i=0; i< a.size(); i++) {
   	  					if(a.get(i).getSemestreSugerido() == j){
-      						out.println("<button class = 'ml-1 mt-1 btn btn-materias' data-toggle = 'modal' data-target = '#infoDisc" + a.get(i).getCodigo() + "' onclick = \"identificaDiscObg('" + a.get(i).getCodigo() + "');\" id ='" +a.get(i).getCodigo()+ "'> <b id = 'codigo" +a.get(i).getCodigo()+"'>" + a.get(i).getCodigo() +"</b> - <span id = 'nome" +a.get(i).getCodigo()+"'>" + a.get(i).getNome() + "</span> </button>");
+      						out.println("<button class = 'ml-1 mt-1 btn btn-materias' data-toggle = 'modal' data-target = '#infoDisc" + a.get(i).getCodigo() + "' onclick = \"identificaDiscObg('" + a.get(i).getCodigo() + "');\" id ='" +a.get(i).getCodigo()+ "'> <b id = 'codigo" +a.get(i).getCodigo()+"'>" + a.get(i).getCodigo() +"</b> <br> <span id = 'nome" +a.get(i).getCodigo()+"'>" + a.get(i).getNome() + "</span> </button>");
       						out.println("<div class=\"modal fade\" role=\"dialog\" id=\"infoDisc" + a.get(i).getCodigo() + "\">");
       	        		    out.println("<label style =\"display: none;\" id = \"discEscolhida"+ a.get(i).getCodigo() + "\"> </label>");
       	        		    out.println("<label style =\"display: none;\" id = \"operacaoDisc"+ a.get(i).getCodigo() + "\"></label>");
@@ -89,7 +90,7 @@ pageEncoding="ISO-8859-1"%>
       	        		    out.println("<p> <b> Carga Horaria: </b>" + a.get(i).getCargaHoraria()+ "h </p>");
       	        			out.println("</div>");
       	        		    out.println("<div class=\"modal-footer\">");
-      	        		    out.println("<button id = \"botaoModal" + a.get(i).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + a.get(i).getCodigo() + "');\"> Adicionar à  grade </button>");
+      	        		    out.println("<button id = \"botaoModal" + a.get(i).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + a.get(i).getCodigo() + "');\"> Adicionar na  grade </button>");
       	        			out.println("</div>");
       	        			out.println("</div>");
       	        			out.println("</div>");
@@ -102,24 +103,23 @@ pageEncoding="ISO-8859-1"%>
     </div>
     <div class = "mt-5 container" id = "container-optativas">
     	  	<% 
-    	  		ArrayList<Disciplina> b = aluno.getCurso().recuperarOptativas();
-    	  		for (int i=0; i < b.size(); i++) {
-        			out.println("<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc" + b.get(i).getCodigo() + "' onclick = \"identificaDiscOp('" + b.get(i).getCodigo() + "');\" id ='" +b.get(i).getCodigo()+ "'> <b id = 'codigo" +b.get(i).getCodigo()+"'>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() +"</b> - <span id = 'nome" +b.get(i).getCodigo()+"'>" + b.get(i).getNome() + "</span> </button>");
-        		    out.println("<div class=\"modal fade\" role=\"dialog\" id=\"infoDisc" + b.get(i).getCodigo() + "\">");
-        		    out.println("<label style =\"display: none;\" id = \"discEscolhida"+ b.get(i).getCodigo() + "\"> </label>");
-        		    out.println("<label style =\"display: none;\" id = \"operacaoDisc"+ b.get(i).getCodigo() + "\"></label>");
-        		    out.println("<label style =\"display: none;\" id = \"tipoDisc" + b.get(i).getCodigo() + "\"> </label>");
+    	  		for (int j=0; j < b.size(); j++) {
+        			out.println("<button class = 'text-left col-12 btn btn-light link-optativas' data-toggle = 'modal' data-target = '#infoDisc" + b.get(j).getCodigo() + "' onclick = \"identificaDiscOp('" + b.get(j).getCodigo() + "');\" id ='" +b.get(j).getCodigo()+ "'> <b id = 'codigo" +b.get(j).getCodigo()+"'>" + b.get(j).getCodigo() +"</b> - <span id = 'nome" +b.get(j).getCodigo()+"'>" + b.get(j).getNome() + "</span> </button>");
+        		    out.println("<div class=\"modal fade\" role=\"dialog\" id=\"infoDisc" + b.get(j).getCodigo() + "\">");
+        		    out.println("<label style =\"display: none;\" id = \"discEscolhida"+ b.get(j).getCodigo() + "\"> </label>");
+        		    out.println("<label style =\"display: none;\" id = \"operacaoDisc"+ b.get(j).getCodigo() + "\"></label>");
+        		    out.println("<label style =\"display: none;\" id = \"tipoDisc" + b.get(j).getCodigo() + "\"> </label>");
         		    out.println("<div class=\"modal-dialog modal-dialog-centered\">");
         		    out.println("<div class=\"modal-content\">");
         		    out.println("<div class=\"modal-header\">");
-        		    out.println("<h4 class=\"modal-title\">" + b.get(i).getNome() + "</h4>");
+        		    out.println("<h4 class=\"modal-title\">" + b.get(j).getNome() + "</h4>");
         		    out.println("<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>");
         		    out.println("</div>");
         		    out.println("<div class=\"modal-body\"");
-        		    out.println("<p> <b> Carga Horaria: </b>" + b.get(i).getCargaHoraria()+ "h </p>");
+        		    out.println("<p> <b> Carga Horaria: </b>" + b.get(j).getCargaHoraria()+ "h </p>");
         			out.println("</div>");
         		    out.println("<div class=\"modal-footer\">");
-        		    out.println("<button id = \"botaoModal" + b.get(i).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + b.get(i).getCodigo() + "');\"> Adicionar à  grade </button>");
+        		    out.println("<button id = \"botaoModal" + b.get(j).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + b.get(j).getCodigo() + "');\"> Adicionar na  grade </button>");
         			out.println("</div>");
         			out.println("</div>");
         			out.println("</div>");
@@ -152,5 +152,6 @@ pageEncoding="ISO-8859-1"%>
    		<input type = "hidden" id = "sair" name = "sair">
    </form>     
 </body>
-<script type = "text/javascript" src="./script/scriptGrade1.js"> </script>     	   
+<script type = "text/javascript" src="./script/scriptGrade1.js"> </script>     
+<script type = "text/javascript" src="./script/scriptGrade.js"> </script>  	   
 </html>

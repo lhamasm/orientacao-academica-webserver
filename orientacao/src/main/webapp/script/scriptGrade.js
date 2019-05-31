@@ -2,14 +2,22 @@ var codigosmateriasselecionadas = [];
 var materiasinseridas = [];
 var nomesmateriasselecionadas = [];
 var grade = [];
+var nomesGrade = [];
 var orientadores = [];
+var tipoMateria = [];
 
-if(window.location.href == "localhost:8080/orientacao/montarGrade.jsp"){
-	document.getElementById("obrigatorias").style.backgroundColor = "rgb(31, 97, 141)";
-	document.getElementById("obrigatorias").style.color = "white";
-	document.getElementById("optativas").style.backgroundColor = "white";
-	document.getElementById("optativas").style.color = "black";
-	var selecionado = "obg";
+if(sessionStorage.getItem("grade") != null){
+	grade = JSON.parse(sessionStorage.getItem("grade"));
+	nomesGrade = JSON.parse(sessionStorage.getItem("nomesGrade"));
+	tipoMateria = JSON.parse(sessionStorage.getItem("tipoMateria"));
+	for(var i=0; i<grade.length; i++){
+		if(tipoMateria[i] == "obg"){
+			document.getElementById(grade[i]).style.backgroundColor = "#41BA9E";
+		}
+		else{
+			document.getElementById(grade[i]).style.backgroundColor = "#C0E5DC";
+		}
+	}
 }
 
 function sair(){
@@ -77,7 +85,7 @@ function confirmaMaterias(item){
 		str+= "');";
 
 		x = document.getElementById("inserir-materias");
-		x.innerHTML += '<div id = "' + item + '"> <div class="materias-selecionadas mt-2 ml-3 container-fluid"><div class="row"><button class="offset-11" type="button" onclick="' + str + '">&times;</button></div><p class="codigo">' + item + '</p> <p class="titulomateria">' + nomesmateriasselecionadas[indice] + '</p> </div> <select style = "width: 11.5em; margin-left: 1em; font-size: 0.9em" class = "px-0 form-control mt-1" id = "expectativa' + item + '" name = "expectativa' + item + '"> <option> Acho que vou passar </option> <option> Acho que vou reprovar </option> <option> Ja passei </option> <option> Ja reprovei </option> </select> </div>';
+		x.innerHTML += '<div id = "' + item + '"> <div class="materias-selecionadas mt-2 ml-3 container-fluid"><div class="row"><button class="offset-11" type="button" onclick="' + str + '">&times;</button></div><p class="codigo">' + item + '</p> <p class="titulomateria">' + nomesmateriasselecionadas[indice] + '</p> </div> <select style = "width: 11.5em; margin-left: 1em; font-size: 0.9em" class = "px-0 form-control mt-1" id = "expectativa' + item + '" name = "expectativa' + item + '"> <option> Acho que vou passar </option> <option> Acho que vou reprovar </option> </select> </div>';
 		materiasinseridas.push(item);
 	}
 }
@@ -175,7 +183,7 @@ function identificaDiscObg(id){
 	if(document.getElementById(id).style.backgroundColor != "rgb(65, 186, 158)"){
 		document.getElementById("botaoModal" + id).classList.add('btn-success');
 		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
-		document.getElementById("botaoModal" + id).innerHTML = "Adicionar à grade";
+		document.getElementById("botaoModal" + id).innerHTML = "Adicionar na grade";
 	}else{
 		document.getElementById("botaoModal" + id).classList.remove('btn-success');
 		document.getElementById("botaoModal" + id).classList.add('btn-danger');
@@ -189,7 +197,7 @@ function identificaDiscOp(id){
 	if(document.getElementById(id).style.backgroundColor != "rgb(192, 229, 220)"){
 		document.getElementById("botaoModal" + id).classList.add('btn-success');
 		document.getElementById("botaoModal" + id).classList.remove('btn-danger');
-		document.getElementById("botaoModal"+ id).innerHTML = "Adicionar à grade";
+		document.getElementById("botaoModal"+ id).innerHTML = "Adicionar na grade";
 	}else{
 		document.getElementById("botaoModal" + id).classList.remove('btn-success');
 		document.getElementById("botaoModal" + id).classList.add('btn-danger');
@@ -227,12 +235,20 @@ function alterarMateria(id){
 		document.getElementById("discEscolhida" + id).innerHTML + "' id = 'nomeEscolhida" + document.getElementById("discEscolhida" + id).innerHTML + "' value = '" + 
 		document.getElementById("nome" + materiaEscolhida).innerHTML + "'> <br>";
 		grade.push(document.getElementById("codigo" + materiaEscolhida).innerHTML);
-		console.log(document.getElementById("codigo" + materiaEscolhida).innerHTML);
+		nomesGrade.push(document.getElementById("nome" + materiaEscolhida).innerHTML);
+		if(document.getElementById("tipoDisc" + id).innerHTML == "obg"){
+			tipoMateria.push("obg");
+		}
+		else{
+			tipoMateria.push("op");
+		}
 	}
 	else{
 		var index = grade.indexOf(document.getElementById("codigo" + materiaEscolhida).innerHTML);
 		if(index >= 0){
-			materiasinseridas.splice(index, 1);
+			grade.splice(index, 1);
+			nomesGrade.splice(index, 1);
+			tipoMateria.splice(index, 1);
 		}		
 		document.getElementById("escolhida" + materiaEscolhida).remove();
 		document.getElementById("nomeEscolhida" + materiaEscolhida).remove();
@@ -242,30 +258,16 @@ function alterarMateria(id){
 
 function preencheGrade(){
 	document.getElementById("gradeInfo").innerHTML = "";
-	for(var i=0; i<document.getElementById("disciplinasTotal").elements.length; i++){
-		document.getElementById("gradeInfo").innerHTML += "<b>" + document.getElementById("disciplinasTotal").elements[i].value + " </b> - " + document.getElementById("nomeDisciplinas").elements[i].value + "<br>";
+	for(var i=0; i<grade.length; i++){
+		document.getElementById("gradeInfo").innerHTML += "<b>" + grade[i] + " </b> - " + nomesGrade[i] + "<br>";
 	}
 }
 
 function redirectGrade1(){
-	sessionStorage.setItem("grade", grade);
+	sessionStorage.setItem("grade", JSON.stringify(grade));
+	sessionStorage.setItem("nomesGrade", JSON.stringify(nomesGrade));
+	sessionStorage.setItem("tipoMateria", JSON.stringify(tipoMateria));
 	location.href="./montarGrade2.jsp";
-}
-
-function juntaMaterias(){
-	grade = sessionStorage.getItem("grade");
-	if(grade.length == 0 || materiasinseridas.length == 0 || document.getElementById('input-orientador').value == ""){
-		console.log("oi");
-		return false;
-	}
-	for(var i=0; i<grade.length; i++){
-		document.getElementById("codigosGrade").value += grade[i] + "/";
-	}
-	for(var i=0; i<materiasinseridas.length; i++){
-		document.getElementById("codigosAtual").value + materiasinseridas[i] + "/";
-	}
-	console.log("tchau");
-	return true;
 }
 
 function selecionaOrientador(id){
@@ -286,7 +288,6 @@ function selecionaOrientador(id){
 }
 
 function juntaMaterias(){
-	grade = sessionStorage.getItem("grade");
 	if(grade.length == 0 || materiasinseridas.length == 0 || document.getElementById('input-orientador').value == ""){
 		console.log("oi");
 		return false;

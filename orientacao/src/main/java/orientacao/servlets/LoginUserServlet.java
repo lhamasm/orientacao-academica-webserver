@@ -28,7 +28,7 @@ public class LoginUserServlet extends HttpServlet {
 		Usuario user = new Usuario("", "", senha, "", matricula, "");
 		HttpSession session = req.getSession();		
 		try {
-			user = user.login(matricula, senha);
+			user = user.efetuarLogin(matricula, senha);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

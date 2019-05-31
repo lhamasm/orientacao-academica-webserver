@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -33,11 +34,10 @@ public class MontarGradeServlet extends HttpServlet {
 		String[] codigosGrade = grade.split("/");
 		String[] codigosAtual = atual.split("/");
 		String[] matriculaOrientadores = orientadoresA.split("/");
+		String obsAluno = request.getParameter("obsAluno");
 		HttpSession session = request.getSession();
 		Aluno user = (Aluno) session.getAttribute("user");
-		ArrayList<Disciplina> disciplinasGrade = new ArrayList<Disciplina>();
-		ArrayList<Disciplina> disciplinasAtual = new ArrayList<Disciplina>();
-		ArrayList<Professor> profOrientadores = new ArrayList<Professor>();
+		ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		ArrayList<Boolean> cursando = new ArrayList<Boolean>();
 		ArrayList<Boolean> expectativas = new ArrayList<Boolean>();
 		for(int i=0; i<codigosGrade.length; i++) {
@@ -52,7 +52,7 @@ public class MontarGradeServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			cursando.add(false);
-			disciplinasGrade.add(d);
+			disciplinas.add(d);
 		}
 		for(int i=0; i<codigosAtual.length; i++) {
 			Disciplina d = null;
@@ -72,21 +72,7 @@ public class MontarGradeServlet extends HttpServlet {
 				expectativas.add(false);
 			}
 			cursando.add(true);
-			disciplinasAtual.add(d);
-		}
-		for(int i=0; i<matriculaOrientadores.length; i++) {
-			Professor professor = null;
-			try {
-				Usuario ori = user.recuperarUsuario(matriculaOrientadores[i]);
-				professor = new Professor(ori.getNome(), ori.getSobrenome(), ori.getSenha(), ori.getEmail(), ori.getCpf(), ori.getMatricula(), user.getCurso().getDepartamento());
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			profOrientadores.add(professor);
+			disciplinas.add(d);
 		}
 		String pattern = "DD/MM/YYYY";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -97,10 +83,9 @@ public class MontarGradeServlet extends HttpServlet {
 		simpleDateFormat1.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 		String hora = simpleDateFormat1.format(new Date());
 		System.out.println(hora + " " + date);
-		for(int i=0; i<profOrientadores.size(); i++) {
-			Orientacao orientacao = new Orientacao(-1, date, hora, request.getParameter("observacao"), profOrientadores.get(i), user, disciplinasGrade, cursando, expectativas);
+		for(int i=0; i<matriculaOrientadores.length ; i++) {
 			try {
-				user.enviarNotificacao(orientacao);
+				user.enviarNotificacao(matriculaOrientadores[i], obsAluno, disciplinas, cursando, expectativas);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

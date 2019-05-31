@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>OrientaÃ§Ã£o AcadÃªmica</title>
+	<title>Orientação Acadêmica</title>
 	
 	<link rel="icon" href="./imagens/BrasaoUFBA.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -61,7 +61,7 @@
     </nav>
     
     <div class="container">
-    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"></button>
+    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"> < </button>
     	<form method = "post" onsubmit = "return juntaMaterias();" action = "montaOrientacao">
     		<input type = "hidden" name = "codigosGrade" id = "codigosGrade">
     		<input type = "hidden" name = "codigosAtual" id = "codigosAtual">
@@ -75,15 +75,15 @@
 	    	<h6 class="mt-4">Escolha os orientadores</h6>
                 <div class="list-group" style = "max-height: 200px; overflow-y: scroll;">
                 	<% 	
-                		for(int k=0; k<aluno.recuperarProfessores().size(); k++){
-                			out.println("<button id = \"orientador" + k + "\" onclick = \"selecionaOrientador('" + k + "');\" class=\"list-group-item list-group-item-action\">" + aluno.recuperarProfessores().get(k).getNome() + "</button>");
+                		for(int k=0; k<aluno.getCurso().getDepartamento().getProfessores().size(); k++){
+                			out.println("<button id = \"orientador" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "\" onclick = \"selecionaOrientador('" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "');\" class=\"list-group-item list-group-item-action\">" + aluno.getCurso().getDepartamento().getProfessores().get(k).getNome() + "</button>");
                 		}
                 	// <button id = "orientador1" onclick = "selecionaOrientador('1');" class="list-group-item list-group-item-action">Tiago Januário</button>
                 	%>
                 					
 				</div>
 	    	<h6 class="mt-4">Algo a acrescentar?</h6>
-	    	<TEXTAREA class="form-control" cols="10"></TEXTAREA>
+	    	<TEXTAREA name = "obsAluno" class="form-control" cols="10"></TEXTAREA>
 	    	
 	    	<div id="subirForm">
 	    		<button class="btn mt-4 btn-info" type="submit">Enviar</button>
@@ -108,11 +108,6 @@
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
 		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b>" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "h</span> <br>");	    						
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b>Desbloqueia:</b>"); 
-		    				for(int j=0; j<aluno.getCurso().getObrigatorias().get(i).getDesbloqueia().size(); j++){ 
-		    					out.println(aluno.getCurso().getObrigatorias().get(i).getDesbloqueia().get(j).getNome() + " ");
-		    				}
-		    				out.println("</span>");
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	
@@ -124,11 +119,6 @@
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getOptativas().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
 		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b>" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "h</span> <br>");	    						
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b>Desbloqueia:</b>"); 
-		    				for(int j=0; j<aluno.getCurso().getOptativas().get(i).getDesbloqueia().size(); j++){ 
-		    					out.println(aluno.getCurso().getOptativas().get(i).getDesbloqueia().get(j).getNome() + " ");
-		    				}
-		    				out.println("</span>");
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	
