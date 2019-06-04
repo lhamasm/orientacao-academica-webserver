@@ -60,8 +60,8 @@ public class Orientacao {
 	public void setObservacaoAluno(String observacaoAluno) {
 		this.observacaoAluno = observacaoAluno;
 	}
-	
-	public String getObservacaoProfessor() {
+
+	public String getObservacaoProf() {
 		return observacaoProf;
 	}
 

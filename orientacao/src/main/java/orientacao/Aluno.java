@@ -8,6 +8,12 @@ import java.util.ArrayList;
 
 import orientacao.DataGetter;
 import orientacao.Usuario;
+import orientacao.src.main.java.orientacao.Boolean;
+import orientacao.src.main.java.orientacao.ClassNotFoundException;
+import orientacao.src.main.java.orientacao.Departamento;
+import orientacao.src.main.java.orientacao.Email;
+import orientacao.src.main.java.orientacao.Professor;
+import orientacao.src.main.java.orientacao.String;
 import orientacao.Orientacao;
 import orientacao.Disciplina;
 import orientacao.Curso;
@@ -38,6 +44,7 @@ public class Aluno extends Usuario{
 	public void setSemestre(int semestre) {
 		this.semestre = semestre;
 	}
+
 	
 	public void enviarNotificacao(Orientacao orientacao) throws ClassNotFoundException, SQLException {
 		
@@ -47,7 +54,7 @@ public class Aluno extends Usuario{
 							orientacao.getData() + "','" +
 							orientacao.getHorario() + "','" +
 							orientacao.getObservacaoAluno() + "','" +
-							orientacao.getObservacaoProfessor() + "','" +
+							orientacao.getObservacaoProf() + "','" +
 							orientacao.getDestinatario() + "','" +
 							orientacao.getRemetente() + "')";
 					
@@ -64,7 +71,7 @@ public class Aluno extends Usuario{
 	        			" AND observacao_aluno =" +
 	        			orientacao.getObservacaoAluno() +
 	        			" AND observacao_professor =" +
-	        			orientacao.getObservacaoProfessor() +
+	        			orientacao.getObservacaoProf() +
 	        			" AND destinatario =" + 
 	        			(orientacao.getDestinatario()).getMatricula() +
 	        			" AND remetente =" + 
@@ -138,12 +145,19 @@ public class Aluno extends Usuario{
             			rs.getString("email"),
             			rs.getString("matricula"),
             			rs.getString("cpf"),
-            			new Departamento(rs.getInt("codigo"), rs.getString("nomeDep"))
+            			new Departamento(rs.getInt("codigo"), rs.getString("nomeDep"), null)
             	);
+            	professores.add(professor);
             }
             
             rs.close();
             stmt.close();
+            
+            for(int i=0; i<professores.size(); i++) {
+            	Departamento departamento = professores.get(i).getDepartamento();
+            	departamento.setProfessores(professores);
+            	professores.get(i).setDepartamento(departamento);
+            }
             
             return professores;
             
@@ -154,7 +168,7 @@ public class Aluno extends Usuario{
 		}
 		return null;
 	}
-	
+
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
 		Aluno user = null;
