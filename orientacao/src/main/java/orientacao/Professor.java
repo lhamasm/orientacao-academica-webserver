@@ -15,18 +15,8 @@ public class Professor extends Usuario {
 	
 	private Departamento departamento;
 
-	public Professor(String nome, String sobrenome, String senha, String email, String matricula, String cpf,
-			Departamento departamento) {
+	public Professor(String nome, String sobrenome, String senha, String email, String matricula, String cpf) {
 		super(nome, sobrenome, senha, email, matricula, cpf);
-		this.departamento = departamento;
-	}
-
-	public Departamento getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
 	}
 	
 	public Usuario efetuarCadastro(Professor professor) throws SQLException, ClassNotFoundException {
