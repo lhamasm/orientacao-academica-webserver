@@ -87,7 +87,7 @@ pageEncoding="ISO-8859-1"%>
       	        		    out.println("<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>");
       	        		    out.println("</div>");
       	        		    out.println("<div class=\"modal-body\"");
-      	        		    out.println("<p> <b> Carga Horaria: </b>" + a.get(i).getCargaHoraria()+ "h </p>");
+      	        		    out.println("<p> <b> Carga Horaria: </b> <span id = \"carga"+ a.get(i).getCodigo() + "\">" + a.get(i).getCargaHoraria()+ "h </span> </p>");
       	        			out.println("</div>");
       	        		    out.println("<div class=\"modal-footer\">");
       	        		    out.println("<button id = \"botaoModal" + a.get(i).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + a.get(i).getCodigo() + "');\"> Adicionar na  grade </button>");
@@ -116,7 +116,7 @@ pageEncoding="ISO-8859-1"%>
         		    out.println("<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>");
         		    out.println("</div>");
         		    out.println("<div class=\"modal-body\"");
-        		    out.println("<p> <b> Carga Horaria: </b>" + b.get(j).getCargaHoraria()+ "h </p>");
+        		    out.println("<p> <b> Carga Horaria: </b> <span id = \"carga" + b.get(j).getCodigo() + "\">" + b.get(j).getCargaHoraria()+ "h </span> </p>");
         			out.println("</div>");
         		    out.println("<div class=\"modal-footer\">");
         		    out.println("<button id = \"botaoModal" + b.get(j).getCodigo() + "\" type = \"button\" class = \"btn\" data-dismiss = \"modal\" onclick = \"alterarMateria('" + b.get(j).getCodigo() + "');\"> Adicionar na  grade </button>");

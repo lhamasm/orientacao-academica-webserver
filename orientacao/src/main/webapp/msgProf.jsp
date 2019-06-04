@@ -1,5 +1,7 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import ="java.util.*" %>
+
 
 
 <!DOCTYPE html>
@@ -8,7 +10,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=width-device, initial-scale=1.0, shrink-to-fit=no">
 
-		<title>Orienta√ß√£o Acad√™mica</title>
+		<title>OrientaÁ„o AcadÍmica</title>
 		<link rel="icon" href="./imagens/BrasaoUFBA.png">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">   
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -22,6 +24,10 @@
 	    <script type="text/javascript" src="../scripts/js/scriptInboxProf.js"></script>
 <% 
 	Professor professor = (Professor) session.getAttribute("user");
+	Orientacao ori = (Orientacao) session.getAttribute("orientacao");
+	ArrayList<Disciplina> disc = ori.getDisciplinas();
+	int i=0;
+	int j=0;
 %>	
 
 	</head>
@@ -46,7 +52,7 @@
 						<li class = "nav-item mr-3" id = "alterar-cadastro">
 		                    <button type = "button" onclick = "redirectCadastro();" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
 		                </li>
-		                <li class = "nav-item mr-4" id = "sair">
+		                <li class = "nav-item mr-4">
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
@@ -59,28 +65,28 @@
 		</nav>
 
 		<div class="mt-3 mb-2 row">
-			<p class="offset-1 col-2" id="nomeAluno"><b>Remetente:</b> Luis</p>
-			<p class="col-2"><b>Semestre: </b>8</p>
+			<p class="offset-1 col-2" id="nomeAluno"><b>Remetente: </b> <% out.println(ori.getRemetente().getNome()); %></p>
+			<p class="col-2"><b>Semestre: </b><% out.println(ori.getRemetente().getSemestre()); %></p>
 		</div>
 
 		<div class="mt-3 container shadow conteudos">
-			<p id="conteudoMensagem">Professor, estou em d√∫vida se eu devo ou n√£o pegar estas mat√©rias no pr√≥ximo semestre pois ouvi falar que todas s√£o trabalhosas e que Vaninha est√° levemente descompensada ultimamente</p>
+			<p id="conteudoMensagem"> <% out.println(ori.getObservacaoAluno()); %> </p>
 		</div>
 
 		<form> 
 
 			<div class = "row">
 				<div class = "offset-1 col-5">
-					<h5 class = "sub-title"> Mat√©rias cursadas atualmente </h5>
+					<h5 class = "sub-title"> MatÈrias cursadas atualmente </h5>
 					<div class="container shadow conteudos" id="tabelaMateriasSemAtual">
 						<table class="table">
 							<thead class = "thead-light">
 								<tr>
 									<th>
-										Mat√©ria
+										MatÈria
 									</th>
 									<th>
-										Carga Hor√°ria
+										Carga Hor·ria
 									</th>
 									<th>
 										Expectativa
@@ -88,87 +94,46 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td>
-										Acho que vou passar
-									</td>
-								</tr>
+							<%
+								for(i=0; i<disc.size(); i++){
+									if(ori.getCursando().get(i) == true){
+										out.println("<tr>");
+										out.println("<td>");
+										out.println(disc.get(i).getCodigo() + " - " + disc.get(i).getNome());
+										out.println("</td>");
+										out.println("<td>");
+										out.println(Integer.toString(disc.get(i).getCargaHoraria()));
+										out.println("</td>");
+										out.println("<td>");
+										if(ori.getAprovado().get(i) == true){
+											out.println("Acho que vou passar");
+										}
+										else{
+											out.println("Acho que vou reprovar");
+										}
+										out.println("</td>");
+										out.println("</tr>");
+									}
+									else{
+										break;
+									}
+								}
+							%>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class = "col-5" >
-					<h5 class = "sub-title"> Inten√ß√£o de grade </h5>					
+					<h5 class = "sub-title"> IntenÁ„o de grade </h5>					
 					<div class="container shadow conteudos" id = "tabelaMateriasProxSem">
 						<table class="table">
 							<thead class = "thead-light">
 								<tr>
 									<th>
-										Mat√©ria
+										MatÈria
 									</th>
 									<th>
-										Carga Hor√°ria
+										Carga Hor·ria
 									</th>
 									<th>
 										Veredicto
@@ -176,72 +141,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "0">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "1">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "2">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "3">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "4">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										MATA200 - Compiladores
-									</td>
-									<td>
-										68h
-									</td>
-									<td class = "px-5">
-										<input type="checkbox" name="veredicto[]" value = "5">
-									</td>
-								</tr>
+							<%
+								for(j=i; j<disc.size(); j++){
+									out.println("<tr>");
+									out.println("<td>");
+									out.println(disc.get(j).getCodigo() + " - " + disc.get(j).getNome());
+									out.println("</td>");
+									out.println("<td>");
+									out.println(Integer.toString(disc.get(j).getCargaHoraria()));
+									out.println("</td>");									
+									out.println("<td class = \"px-5\">");
+									out.println("<input type=\"checkbox\" name=\"veredicto[]\" value = \"" + j +  "\">");
+									out.println("</tr>");									
+								}
+							%>
 							</tbody>
 						</table>
 					</div>
@@ -256,7 +169,7 @@
 				<button type = "submit" class = "offset-5 col-2 text-center btn btn-info"> Responder </button>
 			</div>
 		</form>
-   <form method = "post" action = "sair">
+   <form method = "post" action = "sair" id = "formSair">
    		<input type = "hidden" id = "sair" name = "sair">
    		<input type = "hidden" id = "tipo" name = "tipo">
    </form> 		
