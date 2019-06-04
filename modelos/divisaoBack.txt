@@ -15,4 +15,4 @@ Luis:
 	recuperarObrigatorias()
 	recuperarPreRequisitos()
 	recuperarCurso()
-	recuperarCursos()
+	recuperarTodosOsCursos()

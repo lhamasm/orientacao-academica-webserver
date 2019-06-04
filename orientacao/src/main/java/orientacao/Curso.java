@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import orientacao.*;
+
 public class Curso {
 	private int codigo;
 	private String nome;
@@ -65,90 +67,7 @@ public class Curso {
 		this.optativas = optativas;
 	}
 	
-	
-	public ArrayList<Disciplina> recuperarPreRequisitos(String codigo) throws ClassNotFoundException, SQLException{
-		Connection con = null;
-		try {
-	    	String sql = "SELECT * FROM PREREQUISITO WHERE PREREQUISITO.trancado = " + codigo;
-	    	
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-	        
-			ArrayList<Disciplina> preRequisitos = new ArrayList<Disciplina>();
-			while(rs.next()) {
-	        	preRequisitos.add(recuperarDisciplina(codigo));
-	        }
-	        
-	        rs.close();
-	        stmt.close();
-	        
-	        return preRequisitos;
-	        
-	    } catch(SQLException e) {
-	        System.out.println(e);
-	    } finally {        
-			con.close();
-		}
-		return null;
-	}
-	public Disciplina recuperarDisciplina(String codigo) throws SQLException, ClassNotFoundException {
-		Connection con = null;
-		try {
-        	String sql = "SELECT * FROM DISCIPLINA WHERE codigo=" + codigo;        	
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-            
-			Disciplina disciplina = null;
-            while(rs.next()) {
-            	disciplina = new Disciplina(codigo, rs.getString("nome"), rs.getInt("carga_horaria"), null, null);
-            }
-            
-            rs.close();
-            stmt.close();
-            
-            return disciplina;
-            
-        } catch(SQLException e) {
-            System.out.println(e);
-        } finally {        
-			con.close();
-		}
-		return null;
-	}
-	
-	public ArrayList<Disciplina> recuperarDesbloqueia(String codigo) throws ClassNotFoundException, SQLException{
-		Connection con = null;
-		try {
-	    	String sql = "SELECT * FROM PREREQUISITO WHERE PREREQUISITO.trancador = " + codigo;
-	    	
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-	        
-			ArrayList<Disciplina> desbloqueia = new ArrayList<Disciplina>();
-			while(rs.next()) {
-	        	desbloqueia.add(recuperarDisciplina(codigo));
-	        }
-	        
-	        rs.close();
-	        stmt.close();
-	        
-	        return desbloqueia;
-	        
-	    } catch(SQLException e) {
-	        System.out.println(e);
-	    } finally {        
-			con.close();
-		}
-		return null;
-	}
-
-	public ArrayList<Disciplina> recuperarOptativas() throws SQLException, ClassNotFoundException {
+	public void recuperarOptativas() throws SQLException, ClassNotFoundException {
 		
 		Connection con = null;
 		try {
@@ -161,23 +80,22 @@ public class Curso {
             
 			ArrayList<Disciplina> optativas = new ArrayList<Disciplina>();
             while(rs.next()) {
-            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), recuperarPreRequisitos(rs.getString("codigo")), recuperarDesbloqueia(rs.getString("codigo"))));
+            	optativas.add(new Disciplina(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria")));
             }
             
             rs.close();
             stmt.close();
             
-            return optativas;
-            
+            this.setOptativas(optativas);
+                        
         } catch(SQLException e) {
             System.out.println(e);
         } finally {        
 			con.close();
 		}
-		return null;
 	}
 	
-	public ArrayList<Obrigatoria> recuperarObrigatorias() throws SQLException, ClassNotFoundException {
+	public void recuperarObrigatorias() throws SQLException, ClassNotFoundException {
 		
 		Connection con = null;
 		try {
@@ -190,19 +108,19 @@ public class Curso {
             
 			ArrayList<Obrigatoria> obrigatorias = new ArrayList<Obrigatoria>();
             while(rs.next()) {
-            	obrigatorias.add(new Obrigatoria(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), recuperarPreRequisitos(rs.getString("codigo")), recuperarDesbloqueia(rs.getString("codigo")), rs.getInt("semestre_sugerido")));
+            	Obrigatoria ob = new Obrigatoria(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), rs.getInt("semestre_sugerido"), null);
+            	ob.recuperaPreRequisitos(this.codigo);
+            	obrigatorias.add(ob);
             }
             
             rs.close();
             stmt.close();
-            
-            return obrigatorias;
+            this.obrigatorias = obrigatorias;
             
         } catch(SQLException e) {
             System.out.println(e);
         } finally {        
 			con.close();
 		}
-		return null;
 	}
 }

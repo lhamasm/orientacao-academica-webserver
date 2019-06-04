@@ -7,24 +7,28 @@ public class Orientacao {
 	private int id;
 	private String data;
 	private String horario;
-	private String observacao;
-	private Usuario destinatario;
-	private Usuario remetente;
+	private String observacaoAluno;
+	private String observacaoProf;
+	private Professor destinatario;
+	private Aluno remetente;
 	private ArrayList<Disciplina> disciplinas;
 	private ArrayList<Boolean> cursando;
 	private ArrayList<Boolean> aprovado;
+	private boolean lida;
 	
-	public Orientacao(int id, String data, String horario, String obs, Usuario destinatario, Usuario remetente, ArrayList<Disciplina> disc,
-			ArrayList<Boolean> curs, ArrayList<Boolean> apr){
+	public Orientacao(int id, String data, String horario, String observacaoAluno, String observacaoProf, Professor destinatario, Aluno remetente, ArrayList<Disciplina> disc,
+			ArrayList<Boolean> curs, ArrayList<Boolean> apr, boolean lida){
 		this.setId(id);
 		this.setData(data);
 		this.setHorario(horario);
-		this.setObservacao(obs);
+		this.setObservacaoAluno(observacaoAluno);
+		this.setObservacaoProf(observacaoProf);
 		this.setDestinatario(destinatario);
 		this.setRemetente(remetente);
 		this.setDisciplinas(disc);
 		this.setCursando(curs);
 		this.setAprovado(apr);
+		this.setLida(lida);
 	}
 
 	public int getId() {
@@ -51,27 +55,35 @@ public class Orientacao {
 		this.horario = horario;
 	}
 
-	public String getObservacao() {
-		return observacao;
+	public String getObservacaoAluno() {
+		return observacaoAluno;
 	}
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setObservacaoAluno(String observacaoAluno) {
+		this.observacaoAluno = observacaoAluno;
+	}
+	
+	public String getObservacaoProf() {
+		return observacaoProf;
 	}
 
-	public Usuario getDestinatario() {
+	public void setObservacaoProf(String observacaoProf) {
+		this.observacaoProf = observacaoProf;
+	}
+
+	public Professor getDestinatario() {
 		return destinatario;
 	}
 
-	public void setDestinatario(Usuario destinatario) {
+	public void setDestinatario(Professor destinatario) {
 		this.destinatario = destinatario;
 	}
 
-	public Usuario getRemetente() {
+	public Aluno getRemetente() {
 		return remetente;
 	}
 
-	public void setRemetente(Usuario remetente) {
+	public void setRemetente(Aluno remetente) {
 		this.remetente = remetente;
 	}
 
@@ -97,6 +109,14 @@ public class Orientacao {
 
 	public void setAprovado(ArrayList<Boolean> aprovado) {
 		this.aprovado = aprovado;
+	}
+	
+	public boolean getLida() {
+		return lida;
+	}
+
+	public void setLida(boolean lida) {
+		this.lida = lida;
 	}
 
 }
