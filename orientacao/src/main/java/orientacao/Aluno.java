@@ -9,17 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import orientacao.DataGetter;
-import orientacao.Usuario;
-import orientacao.src.main.java.orientacao.Boolean;
-import orientacao.src.main.java.orientacao.ClassNotFoundException;
-import orientacao.src.main.java.orientacao.Departamento;
-import orientacao.src.main.java.orientacao.Email;
-import orientacao.src.main.java.orientacao.Professor;
-import orientacao.src.main.java.orientacao.String;
-import orientacao.Orientacao;
-import orientacao.Disciplina;
-import orientacao.Curso;
+import orientacao.*;
 
 public class Aluno extends Usuario{
 	private Curso curso;

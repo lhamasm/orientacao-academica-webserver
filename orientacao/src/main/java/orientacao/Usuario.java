@@ -8,16 +8,7 @@ import java.util.Random;
 
 import com.mysql.jdbc.Connection;
 
-import orientacao.Curso;
-import orientacao.Aluno;
-import orientacao.Departamento;
-import orientacao.DataGetter;
-import orientacao.Email;
-import orientacao.src.main.java.orientacao.Boolean;
-import orientacao.src.main.java.orientacao.ClassNotFoundException;
-import orientacao.src.main.java.orientacao.Disciplina;
-import orientacao.src.main.java.orientacao.Orientacao;
-import orientacao.src.main.java.orientacao.String;
+import orientacao.*;
 
 public class Usuario {
 	private String nome;

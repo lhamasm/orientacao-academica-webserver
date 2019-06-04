@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import orientacao.src.main.java.orientacao.ClassNotFoundException;
-import orientacao.src.main.java.orientacao.DataGetter;
-import orientacao.src.main.java.orientacao.Disciplina;
-import orientacao.src.main.java.orientacao.String;
+import orientacao.*;
 
 public class Curso {
 	private int codigo;
