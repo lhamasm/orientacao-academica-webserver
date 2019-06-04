@@ -29,10 +29,18 @@ public class MontarGradeServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String grade = request.getParameter("codigosGrade");
+		String gradeNomes = request.getParameter("nomesGrade");
+		String gradeCh = request.getParameter("chGrade");		
 		String atual = request.getParameter("codigosAtual");
+		String atualNomes = request.getParameter("nomesAtual");
+		String atualCh = request.getParameter("chAtual");
 		String orientadoresA = request.getParameter("orientadores");
 		String[] codigosGrade = grade.split("/");
+		String[] nomesGrade = gradeNomes.split("/");
+		String[] chGrade = gradeCh.split("/");
 		String[] codigosAtual = atual.split("/");
+		String[] nomesAtual = atualNomes.split("/");
+		String[] chAtual = atualCh.split("/");
 		String[] matriculaOrientadores = orientadoresA.split("/");
 		String obsAluno = request.getParameter("obsAluno");
 		HttpSession session = request.getSession();
@@ -40,31 +48,8 @@ public class MontarGradeServlet extends HttpServlet {
 		ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		ArrayList<Boolean> cursando = new ArrayList<Boolean>();
 		ArrayList<Boolean> expectativas = new ArrayList<Boolean>();
-		for(int i=0; i<codigosGrade.length; i++) {
-			Disciplina d = null;
-			try {
-				d = user.recuperarDisciplina(codigosGrade[i]);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			cursando.add(false);
-			disciplinas.add(d);
-		}
 		for(int i=0; i<codigosAtual.length; i++) {
-			Disciplina d = null;
-			try {
-				d = user.recuperarDisciplina(codigosAtual[i]);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Disciplina d = new Disciplina(codigosAtual[i], nomesAtual[i], Integer.parseInt(chAtual[i]));
 			if(request.getParameter("expectativa" + codigosAtual[i]).equals("Acho que vou passar")) {
 				expectativas.add(true);
 			}
@@ -72,6 +57,12 @@ public class MontarGradeServlet extends HttpServlet {
 				expectativas.add(false);
 			}
 			cursando.add(true);
+			disciplinas.add(d);
+		}		
+		for(int i=0; i<codigosGrade.length; i++) {
+			Disciplina d = new Disciplina(codigosGrade[i], nomesGrade[i], Integer.parseInt(chGrade[i]));
+			cursando.add(false);
+			expectativas.add(false);
 			disciplinas.add(d);
 		}
 		String pattern = "DD/MM/YYYY";

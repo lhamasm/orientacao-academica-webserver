@@ -1,5 +1,6 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import ="java.util.*" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -64,7 +65,12 @@
     	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"> < </button>
     	<form method = "post" onsubmit = "return juntaMaterias();" action = "montaOrientacao">
     		<input type = "hidden" name = "codigosGrade" id = "codigosGrade">
+    		<input type = "hidden" name = "nomesGrade" id = "nomesGrade">
+    		<input type = "hidden" name = "chGrade" id = "chGrade">
     		<input type = "hidden" name = "codigosAtual" id = "codigosAtual">
+    		<input type = "hidden" name = "nomesAtual" id = "nomesAtual">
+    		<input type = "hidden" name = "chAtual" id = "chAtual">    		
+    		<input type = "hidden" name = "orientadores" id = "orientadores">
 	    	<h6>Matérias que estou cursando esse semestre</h6>
 	    	<div class="row form-group">
 	    		<div id="inserir-materias" class="row">
@@ -104,10 +110,10 @@
 		    			for(int i=0; i<aluno.getCurso().getObrigatorias().size(); i++){
 		    				out.println("<li>");
 		    				out.println("<div class=\"btn materias\" id = \"" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Div\" onclick=\"expandir_botao('" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "', this);\">");
-	    					out.println("<h6>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + " - " + aluno.getCurso().getObrigatorias().get(i).getNome() + "</h6>");
+	    					out.println("<h6>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + " - <span id = \"nome" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "\">" + aluno.getCurso().getObrigatorias().get(i).getNome() + "</h6>");
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b>" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "h</span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "\">" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "h </span> </span> <br>");	    						
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	
@@ -115,10 +121,10 @@
 	    				for(int i=0; i<aluno.getCurso().getOptativas().size(); i++){
 		    				out.println("<li>");
 		    				out.println("<div class=\"btn materias\" id = \"" + aluno.getCurso().getOptativas().get(i).getCodigo() + "Div\" onclick=\"expandir_botao('" + aluno.getCurso().getOptativas().get(i).getCodigo() + "', this);\">");
-	    					out.println("<h6>" + aluno.getCurso().getOptativas().get(i).getCodigo() + " - " + aluno.getCurso().getOptativas().get(i).getNome() + "</h6>");
+	    					out.println("<h6>" + aluno.getCurso().getOptativas().get(i).getCodigo() + " - <span id = \"nome" + aluno.getCurso().getOptativas().get(i).getCodigo() + "\">" + aluno.getCurso().getOptativas().get(i).getNome() + " </span> </h6>");
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getOptativas().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b>" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "h</span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getOptativas().get(i).getCodigo() + "\">" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "h </span> </span> <br>");	    						
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	
