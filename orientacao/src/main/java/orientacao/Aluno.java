@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import orientacao.DataGetter;
 import orientacao.Usuario;
@@ -46,17 +49,22 @@ public class Aluno extends Usuario{
 	}
 
 	
-	public void enviarNotificacao(Orientacao orientacao) throws ClassNotFoundException, SQLException {
+	public void enviarNotificacao(String destinatario, String obsAluno, ArrayList<Disciplina> listaMaterias, ArrayList<Boolean> listaCursando, ArrayList<Boolean> listaAprovado) throws ClassNotFoundException, SQLException {
 		
 		Connection con = null;
 		try {
+			
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat horaFormat = new SimpleDateFormat("HH:mm");
+			Date date = new Date();
+
 			String sql = "INSERT INTO ORIENTACAO VALUES('" +
-							orientacao.getData() + "','" +
-							orientacao.getHorario() + "','" +
-							orientacao.getObservacaoAluno() + "','" +
-							orientacao.getObservacaoProf() + "','" +
-							orientacao.getDestinatario() + "','" +
-							orientacao.getRemetente() + "')";
+							dateFormat.format(date) + "','" +
+							horaFormat.format(date) + "','" +
+							obsAluno +
+							"NULL ,'" +
+							destinatario + "','" +
+							this.getMatricula() + "', FALSE)";
 					
 			con = new DataGetter().getConnection();
 			
@@ -64,33 +72,18 @@ public class Aluno extends Usuario{
 	        stmt.execute();
 	        
 	        try {
-	        	sql = "SELECT id FROM ORIENTACAO WHERE data =" +
-	        			orientacao.getData() + 
-	        			" AND horario =" +
-	        			orientacao.getHorario() +
-	        			" AND observacao_aluno =" +
-	        			orientacao.getObservacaoAluno() +
-	        			" AND observacao_professor =" +
-	        			orientacao.getObservacaoProf() +
-	        			" AND destinatario =" + 
-	        			(orientacao.getDestinatario()).getMatricula() +
-	        			" AND remetente =" + 
-	        			(orientacao.getRemetente()).getMatricula();
+	        	sql = "SELECT LAST_INSERT_ID()";
 	        	
 	        	stmt = con.prepareStatement(sql);
 	            ResultSet rs = stmt.executeQuery();
 		        
-		        ArrayList<Disciplina> disciplinas = orientacao.getDisciplinas();
-		        ArrayList<Boolean> aprovado = orientacao.getAprovado();
-		        ArrayList<Boolean> cursando = orientacao.getCursando();
-		        
 		        while(rs.next()) {
-		        	for(int i=0; i<disciplinas.size(); i++){
+		        	for(int i=0; i<listaMaterias.size(); i++){
 						sql = "INSERT INTO ORIENTACAO_DISCIPLINA VALUES('" +
-								disciplinas.get(i).getCodigo() + "'," + 
-								rs.getInt("id") + "," +
-								aprovado.get(i) + "," +
-								cursando.get(i) + ")"; 
+								listaMaterias.get(i).getCodigo() + "'," + 
+								rs.getInt("LAST_INSERT_ID()") + "," +
+								listaAprovado.get(i) + "," +
+								listaCursando.get(i) + ")"; 
 						
 						stmt = con.prepareStatement(sql);
 				        stmt.execute();
@@ -99,7 +92,7 @@ public class Aluno extends Usuario{
 		        
 		        try {
 		        	sql = "SELECT nome, email FROM USUARIO WHERE matricula=" +
-		        			(orientacao.getDestinatario()).getMatricula();
+		        			destinatario;
 		        	
 		        	stmt = con.prepareStatement(sql);
 		            rs = stmt.executeQuery();
@@ -126,49 +119,6 @@ public class Aluno extends Usuario{
 			con.close();
 		}
 	}
-	
-	public ArrayList<Professor> recuperarProfessores() throws SQLException, ClassNotFoundException{
-		Connection con = null;
-		try {
-			String sql = "SELECT USUARIO.*, DEPARTAMENTO.codigo, DEPARTAMENTO.nome as nomeDep FROM USARIO, DEPARTAMENTO, PROFESSOR WHERE PROFESSOR.matricula = USUARIO.matricula AND PROFESSOR.departamento = DEPARTAMENTO.codigo";
-			
-			con = new DataGetter().getConnection();
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			
-			ArrayList<Professor> professores = new ArrayList<Professor>();
-			while(rs.next()) {
-            	Professor professor = new Professor(rs.getString("nome"),
-            			rs.getString("sobrenome"),
-            			rs.getString("senha"),
-            			rs.getString("email"),
-            			rs.getString("matricula"),
-            			rs.getString("cpf"),
-            			new Departamento(rs.getInt("codigo"), rs.getString("nomeDep"), null)
-            	);
-            	professores.add(professor);
-            }
-            
-            rs.close();
-            stmt.close();
-            
-            for(int i=0; i<professores.size(); i++) {
-            	Departamento departamento = professores.get(i).getDepartamento();
-            	departamento.setProfessores(professores);
-            	professores.get(i).setDepartamento(departamento);
-            }
-            
-            return professores;
-            
-		} catch(SQLException e) {
-            System.out.println(e);
-        } finally {        
-			con.close();
-		}
-		return null;
-	}
-
 	
 	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
 		Aluno user = null;

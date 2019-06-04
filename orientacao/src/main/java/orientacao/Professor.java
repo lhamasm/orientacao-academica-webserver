@@ -13,19 +13,17 @@ import orientacao.Departamento;
 
 public class Professor extends Usuario {
 	
-	private Departamento departamento;
-
 	public Professor(String nome, String sobrenome, String senha, String email, String matricula, String cpf) {
 		super(nome, sobrenome, senha, email, matricula, cpf);
 	}
-	
+
 	public Usuario efetuarCadastro(Professor professor) throws SQLException, ClassNotFoundException {
 		Professor user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "INSERT INTO USUARIO VALUES ('" + professor.getMatricula()+ "', '" + professor.getNome() + "', '" + professor.getSobrenome() + "', '" + professor.getEmail() + "', '" + professor.getSenha() + "', '" + professor.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		if (!stmt.execute()) {
-			sql = "INSERT INTO PROFESSOR VALUES ('" + professor.getMatricula() + "', " + professor.getDepartamento().getCodigo() + ")";
+			sql = "INSERT INTO PROFESSOR VALUES ('" + professor.getMatricula();
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			if (!stmt.execute()) {
 				user = professor;

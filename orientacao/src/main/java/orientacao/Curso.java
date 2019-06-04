@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import orientacao.src.main.java.orientacao.ClassNotFoundException;
+import orientacao.src.main.java.orientacao.DataGetter;
+import orientacao.src.main.java.orientacao.Disciplina;
+import orientacao.src.main.java.orientacao.String;
+
 public class Curso {
 	private int codigo;
 	private String nome;
@@ -65,7 +70,7 @@ public class Curso {
 		this.optativas = optativas;
 	}
 	
-	public ArrayList<Disciplina> recuperarOptativas() throws SQLException, ClassNotFoundException {
+	public void recuperarOptativas() throws SQLException, ClassNotFoundException {
 		
 		Connection con = null;
 		try {
@@ -84,17 +89,16 @@ public class Curso {
             rs.close();
             stmt.close();
             
-            return optativas;
-            
+            this.setOptativas(optativas);
+                        
         } catch(SQLException e) {
             System.out.println(e);
         } finally {        
 			con.close();
 		}
-		return null;
 	}
 	
-	public ArrayList<Obrigatoria> recuperarObrigatorias() throws SQLException, ClassNotFoundException {
+	public void recuperarObrigatorias() throws SQLException, ClassNotFoundException {
 		
 		Connection con = null;
 		try {
@@ -115,13 +119,11 @@ public class Curso {
             rs.close();
             stmt.close();
             this.obrigatorias = obrigatorias;
-            return obrigatorias;
             
         } catch(SQLException e) {
             System.out.println(e);
         } finally {        
 			con.close();
 		}
-		return null;
 	}
 }
