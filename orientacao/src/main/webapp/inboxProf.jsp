@@ -21,6 +21,7 @@
 	    <script type="text/javascript" src="./script/scriptInboxProf.js"></script>
 <% 
 	Professor professor = (Professor) session.getAttribute("user");
+	ArrayList<Orientacao> respostas = professor.recuperarNotificacoes();
 %>	
 
 	</head>
@@ -69,13 +70,18 @@
 	    			</tr>
 	    		</thead>
 	    		<tbody id = "cxMensagens">
-	                <tr>
-	    				<td id = "msg1remetente">Pandora</td>
-	    				<td id = "msg1curso">Oceanografia</td>
-	    				<td id = "msg1semestre"> 7º Semestre </td>
-	    				<td id = "msg1data"> 10/05/2019	</td>
-	    				<td id = "msg1hora"> 12:32 </td>
-	    			</tr> 
+	    			<% 
+	    			for (int i = 0; i < respostas.size() ; i++) {
+
+                    	Aluno remetente = (Aluno) respostas.get(i).getRemetente();
+
+	                    out.println("<tr onclick=\"selecionaOri(" + i + ");\">");
+	                    out.println("<td id = \"msg" + i + "remetente\">" + remetente.getNome() + " " + remetente.getSobrenome() + "</td>");
+	                    out.println("<td id = \"msg" + i + "curso\">" + remetente.getCurso() + "</td>");
+	                    out.println("<td id = \"msg" + i + "semestre\">" + remetente.getSemestre() + "</td>");
+	                    out.println("<td id = \"msg" + i + "data\">" + respostas.get(i).getData() + "</td>");
+	                    out.println("<td id = \"msg" + i + "hora\">" + respostas.get(i).getHorario() + "</td></tr>"); 
+	                } %>
 	            </tbody>
 	    	</table>
 	     </div>
@@ -83,4 +89,11 @@
    		<input type = "hidden" id = "sair" name = "sair">
    </form> 	     
 	</body>
+	<script type = "text/javascript"> 
+		function selecionaOri(i){
+			<%
+				session.setAttribute("orientacao") = respostas.get(i);
+			%>
+		}
+	</script>
 </html>

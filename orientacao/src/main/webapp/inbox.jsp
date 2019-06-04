@@ -25,6 +25,7 @@
 
 <% 
 	Aluno aluno = (Aluno) session.getAttribute("user");
+    ArrayList<Orientacao> respostas = aluno.recuperarNotificacoes();
 %>
 
 <body>
@@ -44,7 +45,7 @@
                 <li class = "nav-item mr-3" id = "alterar-cadastro">
                     <button type = "button" class = "btn btn-alterar"> Alterar Dados Cadastrais </button>
                 </li>
-                <li class = "nav-item" id = "sair">
+                <li class = "nav-item">
                     <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
                 </li>
                 <li class = "nav-item">
@@ -57,7 +58,7 @@
         </div>
     </nav>
    	<div class = "mt-3 container">
-    	<h2 id ="title">Caixa de Entrada</h2>
+        <h2 id ="title">Caixa de Entrada</h2>
     	<table class = "table">
     		<thread>
         		<tr>
@@ -66,43 +67,44 @@
 					<th>Data</th>
 					<th>Hora </th>
     			</tr>
-    			<tr class = "btn-msg-aprovado" data-toggle="modal" data-target="#myModal">
-    				<td id = "msg1remetente">Pandora</td>
-    				<td id = "msg1veredicto"><b> APROVADO </b></td>
-    				<td id = "msg1data"> 10/05/2019	</td>
-    				<td id = "msg1hora"> 12:32 </td>
-    			</tr>
     		</thread>
     		<tbody id = "cxMensagens">
+                <% for (int i = 0; i < respostas.size() ; i++) {
+                    ArrayList<Boolean> vindividual = respostas.get(i).getAprovado();
                     
+                    String veredicto = "aprovado";
+                    for(int j = 0; j < vindividual.size(); j++){
+                        if(!vindividual.get(j)){
+                            veredicto = "reprovado";
+                        }
+                    }
+                    
+                    out.println("<tr class = \"btn-msg-" + veredicto + "\" data-toggle=\"modal\" data-target=\"#m" + i + "\">");
+                    out.println("<td id = \"msg" + i + "remetente\">" + respostas.get(i).getRemetente().getNome() + " " + respostas.get(i).getRemetente().getSobrenome() + "</td>");
+                    out.println("<td class=\"veredicto\" id = \"msg" + i + "veredicto\"><b>" + veredicto + "</b></td>");
+                    out.println("<td id = \"msg" + i + "data\">" + respostas.get(i).getData() + "</td>");
+                    out.println("<td id = \"msg" + i + "hora\">" + respostas.get(i).getHorario() + "</td></tr>");
+
+                    out.println("<div class=\"modal fade\" id=\"m" + i + "\" role=\"dialog\" tabindex=\"-1\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4 class=\"modal-title\"></h4></div><div class=\"modal-body\"><div class=\"container\">");
+                    out.println("<table><thead>");
+                    for(int j = 0; j < vindividual.size(); j++){
+                        if(vindividual.get(j)){
+                            out.println("<th class=\"aprovado\">");
+                        }
+                        else{
+                            out.println("<th class=\"reprovado\">");
+                        }
+                        out.println(respostas.get(i).getDisciplinas().get(j).getNome() + "</th>");
+                    }
+                    out.println("</thead><tbody></tbody></table><p>");
+                    out.println(respostas.get(i).getObservacao());
+                    out.println("</p></div><div class=\"modal-footer\"><button type=\"button\" class=\"fechaModal btn btn-danger\" data-dismiss=\"modal\">Close</button></div></div></div></div>");
+                } %>
             </tbody>
     	</table>
      </div>
+    <form method = "post" action = "sair" id = "formSair">
+        <input type = "hidden" id = "sair" name = "sair">
+    </form> 
 </body>
-<div class="modal fade" id="myModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body"> <!-- Formulario-->
-            <div class="container">
-                <p> Olá, Bruno! </p> 
-                <p> Não pegue banco de dados com Vaninha, pois ela é um pouco descompensada e você já está com matérias que tem trabalhos demais para fazer, tipo compiladores. Inclusive, comece o trabalho de compiladores o quanto antes para não desesperar no último final de semana. </p>  
-                <p> Boa sorte! </p> 
-                <p> Pandora. </p>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" id = "fechaModal">Close</button>
-        </div>
-      </div>
-    </div>
-   <form method = "post" action = "sair" id = "formSair">
-   		<input type = "hidden" id = "sair" name = "sair">
-   </form>     
-</div>
 </html>
