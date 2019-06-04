@@ -10,7 +10,7 @@ public class DataGetter {
         try {
         	Class.forName("com.mysql.jdbc.Driver");
             return (Connection) DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/oa_db?autoReconnect=true&useSSL=false", "root", "wonhoeuteamo123");
+                    "jdbc:mysql://localhost:3306/oa_db?autoReconnect=true&useSSL=false", "root", "modesto");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

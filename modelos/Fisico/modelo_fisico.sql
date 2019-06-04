@@ -60,6 +60,7 @@ CREATE TABLE ORIENTACAO
 	observacaoProf text,
 	destinatario char(9),
 	remetente char(9),
+	lida boolean,
 	PRIMARY KEY (id),
     FOREIGN KEY (destinatario) REFERENCES USUARIO(matricula),
     FOREIGN KEY (remetente) REFERENCES USUARIO(matricula)
