@@ -84,7 +84,6 @@
                 		for(int k=0; k<aluno.getCurso().getDepartamento().getProfessores().size(); k++){
                 			out.println("<button id = \"orientador" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "\" onclick = \"selecionaOrientador('" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "');\" class=\"list-group-item list-group-item-action\">" + aluno.getCurso().getDepartamento().getProfessores().get(k).getNome() + "</button>");
                 		}
-                	// <button id = "orientador1" onclick = "selecionaOrientador('1');" class="list-group-item list-group-item-action">Tiago Januário</button>
                 	%>
                 					
 				</div>

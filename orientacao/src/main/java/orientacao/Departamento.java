@@ -44,8 +44,7 @@ public class Departamento {
 	public void recuperarProfessores() throws SQLException, ClassNotFoundException{
 		Connection con = null;
 		try {
-			String sql = "SELECT USUARIO.*, DEPARTAMENTO.codigo, DEPARTAMENTO.nome as nomeDep FROM USARIO, DEPARTAMENTO, PROFESSOR WHERE PROFESSOR.matricula = USUARIO.matricula AND PROFESSOR.departamento = " + this.codigo;
-			
+			String sql = "SELECT USUARIO.* FROM USUARIO, PROFESSOR WHERE PROFESSOR.matricula = USUARIO.matricula AND PROFESSOR.departamento = " + this.codigo;
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -61,12 +60,13 @@ public class Departamento {
             			rs.getString("cpf")
             	);
             	professores.add(professor);
+            	System.out.println(professores.size());
             }
             
             rs.close();
             stmt.close();
             
-            this.professores = professores;
+            this.setProfessores(professores);
             
 		} catch(SQLException e) {
             System.out.println(e);

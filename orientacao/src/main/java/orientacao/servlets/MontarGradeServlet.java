@@ -8,15 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import orientacao.*;
 import orientacao.Aluno;
-import orientacao.Professor;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.TimeZone;
 
 
 @SuppressWarnings("serial")
@@ -65,15 +59,6 @@ public class MontarGradeServlet extends HttpServlet {
 			expectativas.add(false);
 			disciplinas.add(d);
 		}
-		String pattern = "DD/MM/YYYY";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
-		String date = simpleDateFormat.format(new Date());
-		String patternHora = "HH:mm";
-		SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(patternHora);
-		simpleDateFormat1.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
-		String hora = simpleDateFormat1.format(new Date());
-		System.out.println(hora + " " + date);
 		for(int i=0; i<matriculaOrientadores.length ; i++) {
 			try {
 				user.enviarNotificacao(matriculaOrientadores[i], obsAluno, disciplinas, cursando, expectativas);

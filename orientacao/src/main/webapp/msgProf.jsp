@@ -44,7 +44,7 @@
 							<span class="navbar-brand"><i id="iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
 								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
-								<span id="departamento"><% out.println(professor.getDepartamento().getNome()); %></span>
+								<span id="departamento"><% //out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -73,7 +73,7 @@
 			<p id="conteudoMensagem"> <% out.println(ori.getObservacaoAluno()); %> </p>
 		</div>
 
-		<form> 
+		<form method = "post" action = "responderMsg"> 
 
 			<div class = "row">
 				<div class = "offset-1 col-5">

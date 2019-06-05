@@ -30,26 +30,13 @@ public class CadastroUserServlet extends HttpServlet {
 		String senha = req.getParameter("senha");
 		String matricula = req.getParameter("matricula");
 		HttpSession session = req.getSession();						
-		Usuario user = new Usuario(nome, sobrenome, senha, email, cpf, matricula);		
 		if(req.getParameter("tipo").equals("Estudante")) {
 			int codcurso = Integer.parseInt(req.getParameter("curso"));
-			Curso curso = null;
-
-			try {
-				curso = (Curso) user.recuperarCurso(codcurso);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 			int semestre = Integer.parseInt(req.getParameter("semestre"));
-			Aluno aluno = new Aluno(nome, sobrenome, senha, email, matricula, cpf, curso, semestre);
+			Aluno aluno = new Aluno(nome, sobrenome, senha, email, matricula, cpf, null, semestre);
 
 			try {
-				aluno = (Aluno) aluno.efetuarCadastro(aluno);
+				aluno = aluno.efetuarCadastro(aluno, codcurso);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -69,22 +56,10 @@ public class CadastroUserServlet extends HttpServlet {
 		}
 		else if(req.getParameter("tipo").equals("Docente")) {
 			int departamento = Integer.parseInt(req.getParameter("dep"));
-			Departamento dep = null;
+			Professor professor = new Professor(nome, sobrenome, senha, email, matricula, cpf);
 
 			try {
-				dep = user.recuperarDepartamento(departamento);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			Professor professor = new Professor(nome, sobrenome, senha, email, matricula, cpf, dep);
-
-			try {
-				professor = (Professor) professor.efetuarCadastro(professor);
+				professor = professor.efetuarCadastro(professor, departamento);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

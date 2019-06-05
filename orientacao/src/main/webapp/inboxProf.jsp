@@ -1,5 +1,7 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import ="java.util.*" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -22,6 +24,7 @@
 <% 
 	Professor professor = (Professor) session.getAttribute("user");
 	ArrayList<Orientacao> respostas = professor.recuperarNotificacoes();
+	int i = 0;
 %>	
 
 	</head>
@@ -38,7 +41,6 @@
 							<span class="navbar-brand"><i id="iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
 								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
-								<span id="departamento"><% out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -71,7 +73,7 @@
 	    		</thead>
 	    		<tbody id = "cxMensagens">
 	    			<% 
-	    			for (int i = 0; i < respostas.size() ; i++) {
+	    			for (i = 0; i < respostas.size() ; i++) {
 
                     	Aluno remetente = (Aluno) respostas.get(i).getRemetente();
 
@@ -87,13 +89,9 @@
 	     </div>
    <form method = "post" action = "sair" id = "formSair">
    		<input type = "hidden" id = "sair" name = "sair">
-   </form> 	     
+   </form>
+   <form method = "post" action = "selecionarOrientacao" id = "selecOri">
+   		<input type = "hidden" id = "indexOri" name = "indexOri">
+   </form>
 	</body>
-	<script type = "text/javascript"> 
-		function selecionaOri(i){
-			<%
-				session.setAttribute("orientacao") = respostas.get(i);
-			%>
-		}
-	</script>
 </html>

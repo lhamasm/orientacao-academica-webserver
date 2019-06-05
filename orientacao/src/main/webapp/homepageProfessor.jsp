@@ -37,7 +37,7 @@
 							<span class="navbar-brand"><i id = "iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
 								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
-								<span id="departamento"><% out.println(professor.getDepartamento().getNome()); %></span>
+								<span id="departamento"><% //out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -49,7 +49,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
+		                    <span onclick = "redirectMsg();" id = "notif"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
 		                    <span onclick = "redirectHome();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>

@@ -7,22 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import orientacao.*;
-import orientacao.Aluno;
 import orientacao.Professor;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.TimeZone;
 
 
 @SuppressWarnings("serial")
 @WebServlet(
         name = "respondemsgservlet",
-        urlPatterns = "/montaOrientacao"
+        urlPatterns = "/responderMsg"
 )
 
 
@@ -42,5 +36,6 @@ public class ResponderMsgServlet extends HttpServlet {
 		ori.setAprovado(aprovado);
 		ori.setLida(true);
 		professor.responderNotificacao(ori);
+		response.sendRedirect("inboxProf.jsp");
 	}
 }

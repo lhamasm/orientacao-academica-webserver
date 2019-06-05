@@ -288,7 +288,7 @@ public class Usuario {
 	public Departamento recuperarDepartamento(int codDepartamento) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.codigo='" + codDepartamento + "'";
+        	String sql = "SELECT * FROM DEPARTAMENTO WHERE DEPARTAMENTO.codigo=" + codDepartamento + "";
         	
 			con = new DataGetter().getConnection();
 
@@ -316,7 +316,7 @@ public class Usuario {
 	
 	public ArrayList<Curso> recuperarTodosOsCursos () throws SQLException, ClassNotFoundException {
 
-    	String sql = "SELECT * FROM CURSO";
+    	String sql = "SELECT * FROM CURSO ORDER BY nome";
     	
 		Connection con = new DataGetter().getConnection();
 		
@@ -341,13 +341,12 @@ public class Usuario {
 	public Curso recuperarCurso (int codigo) throws SQLException, ClassNotFoundException {
 
 		Connection con = new DataGetter().getConnection();
-    	String sql = "SELECT CURSO.codigo AS codigo_curso, CURSO.nome AS nome_curso, CURSO.duracao, DEPARTAMENTO.codigo AS codigo_dep, DEPARTAMENTO.nome AS nome_dep FROM CURSO WHERE CURSO.codigo=" + codigo + " AND CURSO.departamento=DEPARTAMENTO.codigo";			
+    	String sql = "SELECT CURSO.codigo AS codigo_curso, CURSO.nome AS nome_curso, CURSO.duracao, DEPARTAMENTO.codigo AS codigo_dep, DEPARTAMENTO.nome AS nome_dep FROM CURSO, DEPARTAMENTO WHERE CURSO.codigo=" + codigo + " AND CURSO.departamento=DEPARTAMENTO.codigo";			
 		PreparedStatement stmt = con.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
-        
 		Curso curso = null;
         while(rs.next()) {
-        	Departamento departamento = new Departamento(rs.getInt("codigo_dep"), rs.getString("nome_dep"), null);
+        	Departamento departamento = new Departamento(rs.getInt("codigo_dep"), rs.getString("nome_dep"), new ArrayList<Professor>());
         	departamento.recuperarProfessores();
         	curso = new Curso(rs.getInt("codigo_curso"), rs.getString("nome_curso"), rs.getInt("duracao"), departamento, null, null);
         	curso.recuperarObrigatorias();
@@ -363,7 +362,7 @@ public class Usuario {
 	}
 	
 	
-	public Usuario login(String matricula, String senha) throws SQLException, ClassNotFoundException {
+	public Usuario efetuarLogin(String matricula, String senha) throws SQLException, ClassNotFoundException {
 		Usuario user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT USUARIO.*, ALUNO.semestre, Aluno.curso FROM USUARIO, ALUNO WHERE USUARIO.matricula='" + matricula + "' AND USUARIO.matricula = ALUNO.matricula";
@@ -418,7 +417,7 @@ public class Usuario {
 	public ArrayList<Departamento> recuperarDepartamentos() throws SQLException, ClassNotFoundException{
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM DEPARTAMENTO";        	
+        	String sql = "SELECT * FROM DEPARTAMENTO ORDER BY nome";        	
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -426,7 +425,7 @@ public class Usuario {
             
 			ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
             while(rs.next()) {
-            	Departamento departamento = new Departamento(rs.getInt("codigo_dep"), rs.getString("nome_dep"), null);
+            	Departamento departamento = new Departamento(rs.getInt("codigo"), rs.getString("nome"), null);
             	departamentos.add(departamento);
             }
             

@@ -71,7 +71,7 @@ public class Curso {
 		
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM DISCIPLINA WHERE DISCIPLINA.codigo NOT IN (SELECT disciplina FROM OBRIGATORIA)";
+        	String sql = "SELECT * FROM DISCIPLINA, OPTATIVA WHERE DISCIPLINA.codigo = OPTATIVA.disciplina AND OPTATIVA.curso = " + this.codigo;
         	
 			con = new DataGetter().getConnection();
 			
@@ -99,7 +99,7 @@ public class Curso {
 		
 		Connection con = null;
 		try {
-        	String sql = "SELECT DISCIPLINA.codigo as codigo, DISCIPLINA.nome as nome, DISCIPLINA.carga_horaria as carga_horaria, OBRIGATORIA.semestre_sugerido as semestre_sugerido FROM DISCIPLINA, OBRIGATORIA WHERE OBRIGATORIA.disciplina = DISCIPLINA.codigo";
+        	String sql = "SELECT DISCIPLINA.codigo as codigo, DISCIPLINA.nome as nome, DISCIPLINA.carga_horaria as carga_horaria, OBRIGATORIA.semestre_sugerido as semestre_sugerido FROM DISCIPLINA, OBRIGATORIA WHERE OBRIGATORIA.disciplina = DISCIPLINA.codigo AND OBRIGATORIA.curso = " + this.codigo;
         	
 			con = new DataGetter().getConnection();
 			
@@ -108,14 +108,14 @@ public class Curso {
             
 			ArrayList<Obrigatoria> obrigatorias = new ArrayList<Obrigatoria>();
             while(rs.next()) {
-            	Obrigatoria ob = new Obrigatoria(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), rs.getInt("semestre_sugerido"), null);
+            	Obrigatoria ob = new Obrigatoria(rs.getString("codigo"), rs.getString("nome"), rs.getInt("carga_horaria"), rs.getInt("semestre_sugerido"), new ArrayList<Disciplina>());
             	ob.recuperaPreRequisitos(this.codigo);
             	obrigatorias.add(ob);
             }
             
             rs.close();
             stmt.close();
-            this.obrigatorias = obrigatorias;
+            this.setObrigatorias(obrigatorias);
             
         } catch(SQLException e) {
             System.out.println(e);

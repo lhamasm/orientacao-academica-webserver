@@ -1,5 +1,6 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import = "java.util.*" %>
 
 <!doctype html>
 
@@ -8,7 +9,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="view-port" content="width=width-device, initial-scale=1.0, shrink-to-fit=no">
-	<title>OrientaÃ§Ã£o Academica</title>
+	<title>Orientação Acadêmica</title>
     <link rel="icon" href="./imagens/BrasaoUFBA.png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -60,14 +61,14 @@
    	<div class = "mt-3 container">
         <h2 id ="title">Caixa de Entrada</h2>
     	<table class = "table">
-    		<thread>
+    		<thead>
         		<tr>
 					<th>Remetente</th>
 					<th>Veredicto</th>
 					<th>Data</th>
 					<th>Hora </th>
     			</tr>
-    		</thread>
+    		</thead>
     		<tbody id = "cxMensagens">
                 <% for (int i = 0; i < respostas.size() ; i++) {
                     ArrayList<Boolean> vindividual = respostas.get(i).getAprovado();
@@ -97,7 +98,7 @@
                         out.println(respostas.get(i).getDisciplinas().get(j).getNome() + "</th>");
                     }
                     out.println("</thead><tbody></tbody></table><p>");
-                    out.println(respostas.get(i).getObservacao());
+                    out.println(respostas.get(i).getObservacaoProf());
                     out.println("</p></div><div class=\"modal-footer\"><button type=\"button\" class=\"fechaModal btn btn-danger\" data-dismiss=\"modal\">Close</button></div></div></div></div>");
                 } %>
             </tbody>

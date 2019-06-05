@@ -17,7 +17,7 @@ public class Professor extends Usuario {
 		super(nome, sobrenome, senha, email, matricula, cpf);
 	}
 
-	public Usuario efetuarCadastro(Professor professor) throws SQLException, ClassNotFoundException {
+	public Professor efetuarCadastro(Professor professor, int departamento) throws SQLException, ClassNotFoundException {
 		Professor user = null;
 		Connection connection = new DataGetter().getConnection();
 		String sql = "INSERT INTO USUARIO VALUES ('" + professor.getMatricula()+ "', '" + professor.getNome() + "', '" + professor.getSobrenome() + "', '" + professor.getEmail() + "', '" + professor.getSenha() + "', '" + professor.getCpf() + "')";
@@ -36,5 +36,8 @@ public class Professor extends Usuario {
 		stmt.close();
 		connection.close();
 		return user;
+	}
+	public boolean responderNotificacao(Orientacao orientacao) {
+		return false;
 	}
 }

@@ -29,7 +29,7 @@ public class Obrigatoria extends Disciplina{
 
 	public void recuperaPreRequisitos(int codigoCurso) throws SQLException, ClassNotFoundException {
 		Connection con = new DataGetter().getConnection();
-		String sql = "SELECT DISCIPLINA.codigo as codigo, DISCIPLINA.nome as nome, DISCIPLINA.carga_horaria as carga_horaria FROM DISCIPLINA, PREREQUISITO WHERE PREREQUISITO.trancador = DISCIPLINA.codigo AND PREREQUISITO.trancado = '" + this.getCodigo() + "' PREREQUISITOS.curso = " + codigoCurso;
+		String sql = "SELECT DISCIPLINA.codigo as codigo, DISCIPLINA.nome as nome, DISCIPLINA.carga_horaria as carga_horaria FROM DISCIPLINA, PREREQUISITO WHERE PREREQUISITO.trancador = DISCIPLINA.codigo AND PREREQUISITO.trancado = '" + this.getCodigo() + "' AND PREREQUISITO.curso = " + codigoCurso;
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();

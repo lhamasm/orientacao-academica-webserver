@@ -1,7 +1,6 @@
 package orientacao.servlets;
 
-import orientacao.Aluno;
-import orientacao.Usuario;
+import orientacao.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,10 +28,7 @@ public class LoginUserServlet extends HttpServlet {
 		HttpSession session = req.getSession();		
 		try {
 			user = user.efetuarLogin(matricula, senha);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

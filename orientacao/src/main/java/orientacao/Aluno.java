@@ -110,13 +110,12 @@ public class Aluno extends Usuario{
 		}
 	}
 	
-	public Usuario efetuarCadastro(Aluno aluno) throws SQLException, ClassNotFoundException {
-		Aluno user = null;
+	public void efetuarCadastro(int codcurso) throws SQLException, ClassNotFoundException {
 		Connection connection = new DataGetter().getConnection();
-		String sql = "INSERT INTO USUARIO VALUES ('" + aluno.getMatricula() + "', '" + aluno.getNome() + "', '" + aluno.getSobrenome() + "', '" + aluno.getEmail() + "', '" + aluno.getSenha() + "', '" + aluno.getCpf() + "')";
+		String sql = "INSERT INTO USUARIO VALUES ('" + this.getMatricula() + "', '" + this.getNome() + "', '" + this.getSobrenome() + "', '" + this.getEmail() + "', '" + this.getSenha() + "', '" + this.getCpf() + "')";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 		if (!stmt.execute()) {
-			sql = "INSERT INTO ALUNO VALUES ('" + aluno.getMatricula() + "', " + aluno.getSemestre() + ", " + aluno.getCurso().getCodigo() + ")";
+			sql = "INSERT INTO ALUNO VALUES ('" + this.getMatricula() + "', " + this.getSemestre() + ", " + this.getCurso().getCodigo() + ")";
 			stmt = (PreparedStatement) connection.prepareStatement(sql);
 			if (!stmt.execute()) {
 				user = aluno;
@@ -128,6 +127,5 @@ public class Aluno extends Usuario{
 		}
 		stmt.close();
 		connection.close();
-		return user;
 	}
 }

@@ -14,3 +14,8 @@ function redirectHome(){
 function redirectCadastro(){
 	 location.href="./alterarCadastroProf.jsp"; 
 }
+
+function selecionaOri(i){
+	document.getElementById("indexOri").value = i;
+	document.getElementById("selecOri").submit();
+}

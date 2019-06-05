@@ -27,8 +27,7 @@ pageEncoding="ISO-8859-1"%>
 <% 
 	Aluno aluno = (Aluno) session.getAttribute("user");
 	ArrayList<Disciplina> b = aluno.getCurso().getOptativas();
-	ArrayList<Obrigatoria> a = aluno.getCurso().getObrigatorias();	
-
+	ArrayList<Obrigatoria> a = aluno.getCurso().getObrigatorias();
 %>
 
 <body>
