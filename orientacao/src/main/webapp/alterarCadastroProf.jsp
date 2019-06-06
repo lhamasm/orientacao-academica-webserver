@@ -80,6 +80,17 @@
 	                    <input type = "hidden" value = "professor" name = "tipo">
 	                </div>
 	                <hr> 
+	                <a id = "alterarSenha" onclick = "alteraSenha();" > Deseja alterar sua senha? </a>
+	                <div class = "row">
+	                    <div class = "col-6 form-group" id = "senhaAntigaCol">
+	                        <label for = "senhaAntiga"> Senha antiga </label>
+	                        <input max = "10" type = "text" class = "form-control" name = "senhaAntiga" id = "senhaAntiga">
+	                    </div>
+	                    <div class = "col-6 form-group" id = "senhaNovaCol">
+	                        <label for = "senhaNova"> Nova senha </label>
+	                         <input max = "10" type = "text" class = "form-control" name = "senhaNova" id = "senhaNova">         
+	                    </div>                    
+	                </div>	                
 	                <button type = "submit" class = "mt-2 mb-3 col-12 btn btn-info"> Alterar </button>
 	            </form>
 	        </div>

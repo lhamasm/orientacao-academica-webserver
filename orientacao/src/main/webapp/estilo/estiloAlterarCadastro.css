@@ -8,3 +8,13 @@
 	max-width: 730px;
 	margin-top: 7em;
 }
+
+#senhaAntigaCol, #senhaNovaCol{
+	display: none;
+}
+
+#alterarSenha{
+	cursor: pointer;
+	color: blue;
+	text-decoration: underline;
+}

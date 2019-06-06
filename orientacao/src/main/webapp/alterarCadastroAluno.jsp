@@ -75,9 +75,20 @@
                         <label for = "semestre"> Semestre </label>
                          <input type = "number" class = "form-control" name = "semestre" id = "semestre" min="1" value = <%out.println(aluno.getSemestre()); %>>         
                     </div>                    
-                    <input type = "hidden" value = "aluno" name = "tipo">
                 </div>
-                <hr> 
+                <hr>
+                <a id = "alterarSenha" onclick = "alteraSenha();" > Deseja alterar sua senha? </a>
+                <div class = "row">
+                    <div class = "col-6 form-group" id = "senhaAntigaCol">
+                        <label for = "senhaAntiga"> Senha antiga </label>
+                        <input max = "10" type = "text" class = "form-control" name = "senhaAntiga" id = "senhaAntiga">
+                    </div>
+                    <div class = "col-6 form-group" id = "senhaNovaCol">
+                        <label for = "senhaNova"> Nova senha </label>
+                         <input max = "10" type = "text" class = "form-control" name = "senhaNova" id = "senhaNova">         
+                    </div>                    
+                </div>
+				<input type = "hidden" value = "aluno" name = "tipo">                
                 <button type = "submit" class = "mt-2 mb-3 col-12 btn btn-info"> Alterar </button>
             </form>
         </div>

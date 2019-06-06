@@ -76,14 +76,14 @@ public class Usuario {
 
 		for(int i = 0; i<9; i++){
 			Random rand = new Random();
-			int numero = rand.nextInt(123);
+			char numero = (char) rand.nextInt(123);
 			if( (numero >= 48 && numero <= 57) || (numero >= 65 && numero <= 90) || (numero >= 97 && numero <= 122) ) {
 				novaSenha += numero;
 			} else {
 				i--;
 			}
 		}
-
+		System.out.println(novaSenha);
 		return novaSenha;
 	}
 	
@@ -254,7 +254,7 @@ public class Usuario {
 		String novaSenha = gerarNovaSenha();
 		sql = "UPDATE USUARIO SET senha = '" + novaSenha + "' WHERE cpf = '" + cpf + "'";
 		stmt = (PreparedStatement) connection.prepareStatement(sql);
-		if (!stmt.execute()) {
+		if (stmt.execute()) {
 			stmt.close();
 			connection.close();
 			return false;

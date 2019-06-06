@@ -83,11 +83,11 @@
                 <div class="row">
 	                <div class = "col-6 form-group">
 	                    <label for = "senha"> Senha </label>
-	                    <input name = "senha" type = "password" class = "form-control" id = "senha">
+	                    <input max = "10" name = "senha" type = "password" class = "form-control" id = "senha">
 	                </div>
 	                <div class = "col-6 form-group">
 	                    <label for = "repsenha"> Repita a senha </label>
-	                    <input type = "password" class = "form-control" id = "repsenha">
+	                    <input max = "10" type = "password" class = "form-control" id = "repsenha">
 	                </div>
 	            </div>
 	            <hr> 

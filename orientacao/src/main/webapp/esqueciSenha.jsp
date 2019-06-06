@@ -22,12 +22,8 @@
         <div class = "mt-3 container shadow" id = "container-login">
             <form method = "post" action = "recuperarSenha"> 
                 <div class = "form-group">
-                    <label for = "matricula" class = "mt-3"> Número de Matrícula </label> 
-                    <input required type = "text" class = "form-control input-sm" id = "matricula" name = "matricula">
-                </div>
-                <div class = "form-group">
-                    <label for = "email"> Email </label>
-                    <input required type = "text" class = "form-control input-sm" id = "email" name = "email">
+                    <label for = "matricula" class = "mt-3"> CPF </label> 
+                    <input required type = "text" class = "form-control input-sm" id = "cpf" name = "cpf">
                 </div>
                 <button type = "submit" class = "mt-2 mb-3 col-12 btn btn-info"> Recuperar Senha </button>        
             </form>

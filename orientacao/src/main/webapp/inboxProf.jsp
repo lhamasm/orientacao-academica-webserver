@@ -52,7 +52,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span>
+		                    <span class = "ml-5" onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span>
 		                    <span onclick = "redirectHome();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>

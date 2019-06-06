@@ -27,6 +27,8 @@ public class AlterarCadastroServlet extends HttpServlet{
 		String nome = req.getParameter("nomeAlterar");
 		String sobrenome = req.getParameter("sobrenome");
 		String email = req.getParameter("email");
+		String senhaAntiga = req.getParameter("senhaAntiga");
+		String senhaNova = req.getParameter("senhaNova");
 		System.out.println(email);
 		String tipo = req.getParameter("tipo");
 		int semestre;
@@ -36,6 +38,9 @@ public class AlterarCadastroServlet extends HttpServlet{
 			semestre = Integer.parseInt(req.getParameter("semestre"));
 			try {
 				aluno = (Aluno) aluno.alterarCadastro(nome, sobrenome, email, semestre);
+				if(senhaAntiga != null && senhaNova != null) {
+					aluno.alterarSenha(senhaAntiga, senhaNova);
+				}				
 				session.setAttribute("user", aluno);
 				resp.sendRedirect("homepageAluno.jsp");
 			} catch (ClassNotFoundException e) {
@@ -51,6 +56,9 @@ public class AlterarCadastroServlet extends HttpServlet{
 			semestre = -1;
 			try {
 				professor = (Professor) professor.alterarCadastro(nome, sobrenome, email, semestre);
+				if(senhaAntiga != null && senhaNova != null) {
+					professor.alterarSenha(senhaAntiga, senhaNova);
+				}				
 				session.setAttribute("user", professor);
 				resp.sendRedirect("homepageProfessor.jsp");				
 			} catch (ClassNotFoundException e) {

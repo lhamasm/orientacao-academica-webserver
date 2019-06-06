@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>orientacao.servlets.SelecionaOrientacaoServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RecuperaSenhaServlet</servlet-name>
+  	<display-name>RecuperaSenhaServlet</display-name>
+  	<description></description>
+  	<servlet-class>orientacao.servlets.RecuperaSenhaServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CadastroUserServlet</servlet-name>
   	<url-pattern>/CadastroUserServlet</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>SelecionaOrientacaoServlet</servlet-name>
   	<url-pattern>/SelecionaOrientacaoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RecuperaSenhaServlet</servlet-name>
+  	<url-pattern>/RecuperaSenhaServlet</url-pattern>
   </servlet-mapping>
 </web-app>

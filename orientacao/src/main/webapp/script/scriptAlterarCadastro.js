@@ -27,3 +27,14 @@ function sair(){
 	sessionStorage.clear();
 	document.getElementById('formSair').submit();
 }
+
+function alteraSenha(){
+	if(document.getElementById('senhaNovaCol').style.display != "block"){
+		document.getElementById('senhaNovaCol').style.display = "block";
+		document.getElementById('senhaAntigaCol').style.display = "block";
+	}
+	else{
+		document.getElementById('senhaNovaCol').style.display = "none";
+		document.getElementById('senhaAntigaCol').style.display = "none";
+	}
+}
