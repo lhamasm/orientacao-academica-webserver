@@ -1,7 +1,8 @@
 package orientacao;
 
+import org.apache.commons.mail.*;
 import orientacao.Usuario;
-
+import javax.mail.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +49,7 @@ public class Professor extends Usuario {
 		}
 		return cadastrou;
 	}
-	public boolean responderNotificacao(Orientacao orientacao) throws SQLException, ClassNotFoundException {
+	public boolean responderNotificacao(Orientacao orientacao) throws SQLException, ClassNotFoundException, EmailException {
 		Connection con = null;
 		try{
 			boolean falhou = false;
@@ -68,7 +69,7 @@ public class Professor extends Usuario {
 				}
 				if(falhou == false) {
 					Email email = new Email();
-					email.notificarOrientacao(orientacao.getRemetente().getEmail(), orientacao.getRemetente().getNome(), this.getNome());
+					email.respostaOrientacao(orientacao.getRemetente().getEmail(), this.getNome(), orientacao.getRemetente().getNome());
 					return true;
 				}
 			}		

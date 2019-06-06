@@ -48,8 +48,6 @@
                 </li>
                 <li class = "nav-item">
                     <span class = "ml-5" id = "notif" onclick = "redirectMsgAluno();"> <i class="fas fa-envelope"></i> </span>
-                </li>
-                <li class = "nav-item">
                     <span id = "notif" onclick = "redirectHomeAluno();"> <i class="fas fa-home"></i> </span>
                 </li>                
             </ul>

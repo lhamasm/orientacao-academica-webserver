@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.mail.EmailException;
+
 import orientacao.*;
 import orientacao.Professor;
 import java.io.IOException;
@@ -40,6 +43,9 @@ public class ResponderMsgServlet extends HttpServlet {
 		try {
 			professor.responderNotificacao(ori);
 		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EmailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

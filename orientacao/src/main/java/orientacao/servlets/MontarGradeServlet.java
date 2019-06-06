@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.mail.EmailException;
+
 import orientacao.*;
 import orientacao.Aluno;
 import java.io.IOException;
@@ -68,8 +71,12 @@ public class MontarGradeServlet extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (EmailException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+		response.sendRedirect("./homepageAluno.jsp");
 	}
 
 }

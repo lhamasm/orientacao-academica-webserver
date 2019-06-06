@@ -1,10 +1,12 @@
 package orientacao;
 
 import java.sql.PreparedStatement;
+import org.apache.commons.mail.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.mail.*;
 
 import com.mysql.jdbc.Connection;
 
@@ -149,7 +151,7 @@ public class Usuario {
 		
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM ORIENTACAO WHERE remetente='" + this.matricula + "' OR destinatario='" + this.matricula + "'";        	
+        	String sql = "SELECT * FROM ORIENTACAO WHERE remetente='" + this.matricula + "' OR destinatario='" + this.matricula + "' ORDER BY dt DESC, horario DESC";        	
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -234,7 +236,7 @@ public class Usuario {
 	}
 	
 	
-	public boolean recuperarSenha(String cpf) throws SQLException, ClassNotFoundException {
+	public boolean recuperarSenha(String cpf) throws SQLException, ClassNotFoundException, EmailException {
 		Connection connection = new DataGetter().getConnection();
 		String sql = "SELECT email FROM USUARIO WHERE cpf = '" + cpf + "'";
 		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);

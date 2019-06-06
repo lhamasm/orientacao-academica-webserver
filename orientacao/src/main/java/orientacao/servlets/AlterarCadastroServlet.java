@@ -27,6 +27,7 @@ public class AlterarCadastroServlet extends HttpServlet{
 		String nome = req.getParameter("nomeAlterar");
 		String sobrenome = req.getParameter("sobrenome");
 		String email = req.getParameter("email");
+		System.out.println(email);
 		String tipo = req.getParameter("tipo");
 		int semestre;
 		HttpSession session = req.getSession();

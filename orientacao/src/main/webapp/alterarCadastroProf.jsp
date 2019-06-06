@@ -75,7 +75,7 @@
 	                <div class = "row">
 	                    <div class = "col-6 form-group">
 	                        <label for = "email"> E-mail </label>
-	                        <input type = "email" class = "form-control" id = "email" value = "<% out.println(professor.getEmail()); %>" required>
+	                        <input name = "email" type = "email" class = "form-control" id = "email" value = "<% out.println(professor.getEmail()); %>" required>
 	                    </div>
 	                    <input type = "hidden" value = "professor" name = "tipo">
 	                </div>

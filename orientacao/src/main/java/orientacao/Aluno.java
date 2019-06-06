@@ -1,5 +1,7 @@
 package orientacao;
 
+import org.apache.commons.mail.*;
+import javax.mail.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +41,7 @@ public class Aluno extends Usuario{
 	}
 
 	
-	public void enviarNotificacao(String destinatario, String obsAluno, ArrayList<Disciplina> listaMaterias, ArrayList<Boolean> listaCursando, ArrayList<Boolean> listaAprovado) throws ClassNotFoundException, SQLException {
+	public void enviarNotificacao(String destinatario, String obsAluno, ArrayList<Disciplina> listaMaterias, ArrayList<Boolean> listaCursando, ArrayList<Boolean> listaAprovado) throws ClassNotFoundException, SQLException, EmailException {
 		
 		Connection con = null;
 		try {
@@ -81,9 +83,9 @@ public class Aluno extends Usuario{
 		        }
 		        
 		        try {
-		        	sql = "SELECT nome, email FROM USUARIO WHERE matricula=" +
-		        			destinatario;
-		        	
+		        	sql = "SELECT nome, email FROM USUARIO WHERE matricula='" +
+		        			destinatario + "'";
+		        	System.out.println(destinatario);
 		        	stmt = con.prepareStatement(sql);
 		            rs = stmt.executeQuery();
 		            

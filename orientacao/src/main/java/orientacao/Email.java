@@ -1,6 +1,7 @@
 package orientacao;
 
 import org.apache.commons.mail.*;
+import javax.mail.*;
 
 public class Email {
 	private HtmlEmail mail;
@@ -81,6 +82,7 @@ public class Email {
 	
 	public void notificarOrientacao(String email, String nomeProfessor, String nomeAluno){
 		try {
+			System.out.println(email);
 			this.mail.addTo(email);
 			this.mail.setSubject("Nova Orientação no Sistema de Orientação Acadêmica"); 
 			this.mail.setHtmlMsg("Caro(a) Professor(a) " + nomeProfessor + ",<br>O aluno " + nomeAluno + " solicita a sua orientação.");
