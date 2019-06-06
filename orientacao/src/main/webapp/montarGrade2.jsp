@@ -62,7 +62,7 @@
     </nav>
     
     <div class="container">
-    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"> < </button>
+    	<button type="button" class="btn" id="voltar" title="Voltar à página anterior" onclick="redirectBack();"> &lt; </button>
     	<form method = "post" onsubmit = "return juntaMaterias();" action = "montaOrientacao">
     		<input type = "hidden" name = "codigosGrade" id = "codigosGrade">
     		<input type = "hidden" name = "nomesGrade" id = "nomesGrade">
@@ -82,7 +82,7 @@
                 <div class="list-group" style = "max-height: 200px; overflow-y: scroll;">
                 	<% 	
                 		for(int k=0; k<aluno.getCurso().getDepartamento().getProfessores().size(); k++){
-                			out.println("<button id = \"orientador" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "\" onclick = \"selecionaOrientador('" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "');\" class=\"list-group-item list-group-item-action\">" + aluno.getCurso().getDepartamento().getProfessores().get(k).getNome() + "</button>");
+                			out.println("<button type = \"button\" id = \"orientador" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "\" onclick = \"selecionaOrientador('" + aluno.getCurso().getDepartamento().getProfessores().get(k).getMatricula() + "');\" class=\"list-group-item list-group-item-action\">" + aluno.getCurso().getDepartamento().getProfessores().get(k).getNome() + " " + aluno.getCurso().getDepartamento().getProfessores().get(k).getSobrenome() + "</button>");
                 		}
                 	%>
                 					
@@ -112,7 +112,7 @@
 	    					out.println("<h6>" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + " - <span id = \"nome" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "\">" + aluno.getCurso().getObrigatorias().get(i).getNome() + "</h6>");
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getObrigatorias().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "\">" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "h </span> </span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getObrigatorias().get(i).getCodigo() + "\">" + aluno.getCurso().getObrigatorias().get(i).getCargaHoraria() + "</span>h </span> <br>");	    						
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	
@@ -123,7 +123,7 @@
 	    					out.println("<h6>" + aluno.getCurso().getOptativas().get(i).getCodigo() + " - <span id = \"nome" + aluno.getCurso().getOptativas().get(i).getCodigo() + "\">" + aluno.getCurso().getOptativas().get(i).getNome() + " </span> </h6>");
 		    				out.println("<div class=\"botao-materia-expandida\" id=\""+ aluno.getCurso().getOptativas().get(i).getCodigo() + "Exp\">");
 		    				out.println("<hr>");
-		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getOptativas().get(i).getCodigo() + "\">" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "h </span> </span> <br>");	    						
+		    				out.println("<span class=\"col-3 col-sm-3 col-lg-3 col-xl-3\"><b> Carga Horária:</b> <span id = \"carga" + aluno.getCurso().getOptativas().get(i).getCodigo() + "\">" + aluno.getCurso().getOptativas().get(i).getCargaHoraria() + "</span>h </span> <br>");	    						
 		    				out.println("</div>");
 	    					out.println("</div>");
 	    					out.println("</li>");	

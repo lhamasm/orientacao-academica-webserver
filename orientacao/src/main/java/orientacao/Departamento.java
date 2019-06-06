@@ -60,7 +60,6 @@ public class Departamento {
             			rs.getString("cpf")
             	);
             	professores.add(professor);
-            	System.out.println(professores.size());
             }
             
             rs.close();

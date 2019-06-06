@@ -21,7 +21,7 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 	    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
-	    <script type="text/javascript" src="../scripts/js/scriptInboxProf.js"></script>
+	    <script type="text/javascript" src="./script/scriptMsg.js"></script>
 <% 
 	Professor professor = (Professor) session.getAttribute("user");
 	Orientacao ori = (Orientacao) session.getAttribute("orientacao");
@@ -44,7 +44,6 @@
 							<span class="navbar-brand"><i id="iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
 								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
-								<span id="departamento"><% //out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -56,7 +55,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
+		                    <span onclick = "redirectMsg();" id = "notif"> <i class="fas fa-envelope"></i> </span> 
 		                    <span onclick = "redirectHome();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>
@@ -114,9 +113,6 @@
 										out.println("</td>");
 										out.println("</tr>");
 									}
-									else{
-										break;
-									}
 								}
 							%>
 							</tbody>
@@ -142,17 +138,29 @@
 							</thead>
 							<tbody>
 							<%
-								for(j=i; j<disc.size(); j++){
-									out.println("<tr>");
-									out.println("<td>");
-									out.println(disc.get(j).getCodigo() + " - " + disc.get(j).getNome());
-									out.println("</td>");
-									out.println("<td>");
-									out.println(Integer.toString(disc.get(j).getCargaHoraria()));
-									out.println("</td>");									
-									out.println("<td class = \"px-5\">");
-									out.println("<input type=\"checkbox\" name=\"veredicto[]\" value = \"" + j +  "\">");
-									out.println("</tr>");									
+								for(j=0; j<disc.size(); j++){
+									if(ori.getCursando().get(j) == false){
+										out.println("<tr>");
+										out.println("<td>");
+										out.println(disc.get(j).getCodigo() + " - " + disc.get(j).getNome());
+										out.println("</td>");
+										out.println("<td>");
+										out.println(Integer.toString(disc.get(j).getCargaHoraria()));
+										out.println("</td>");									
+										out.println("<td class = \"px-5\">");
+										if(!ori.getLida()){
+											out.println("<input type=\"checkbox\" name=\"veredicto[]\" value = \"" + j +  "\">");
+										}
+										else{
+											if(ori.getAprovado().get(j)){
+												out.println("<input type=\"checkbox\" checked disabled name=\"veredicto[]\" value = \"" + j +  "\">");
+											}
+											else{
+												out.println("<input type=\"checkbox\" disabled name=\"veredicto[]\" value = \"" + j +  "\">");												
+											}
+										}
+										out.println("</tr>");
+									}
 								}
 							%>
 							</tbody>
@@ -161,13 +169,21 @@
 				</div>
 			</div>
 
-			<div class = "mt-3 mb-3 container">
-				<textarea placeholder = "Escreva uma mensagem para resposta" id = "mensagem" name = "mensagem" class = "shadow form-control" rows = 3></textarea>
-			</div>
-
-			<div class = "row">
-				<button type = "submit" class = "offset-5 col-2 text-center btn btn-info"> Responder </button>
-			</div>
+			<% 
+				if(!ori.getLida()){
+					out.println("<div class = \"mt-3 mb-3 container\">");
+					out.println("<textarea placeholder = \"Escreva uma mensagem para resposta\" id = \"mensagem\" name = \"mensagem\" class = \"shadow form-control\" rows = 3></textarea>");
+					out.println("</div>");
+					out.println("<div class = \"row\">");
+					out.println("<button type = \"submit\" class = \"offset-5 col-2 text-center btn btn-info\"> Responder </button>");
+					out.println("</div>");
+				}
+				else{
+					out.println("<div class = \"mt-3 mb-3 container\">");
+					out.println("<textarea disabled id = \"mensagem\" name = \"mensagem\" class = \"shadow form-control\" rows = 3>" + ori.getObservacaoProf() + "</textarea>");
+					out.println("</div>");
+				}
+			%>
 		</form>
    <form method = "post" action = "sair" id = "formSair">
    		<input type = "hidden" id = "sair" name = "sair">

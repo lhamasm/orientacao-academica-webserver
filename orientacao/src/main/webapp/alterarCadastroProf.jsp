@@ -52,7 +52,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsgProf();" id = "notif"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
+		                    <span onclick = "redirectMsgProf();" id = "notif"> <i class="fas fa-envelope"></i> </span>
 		                    <span onclick = "redirectHomeProf();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>
@@ -61,7 +61,7 @@
 		</nav>
 		<div class = "container-fluid">
 	        <div class = "mt-5 py-3 container shadow" id = "container-cadastro">
-	            <form name = "form-cadastro"> 
+	            <form name = "form-cadastro" method = "post" action = "alterarCadastro"> 
 	                <div class = "row">
 	                    <div class = "col-6 form-group">
 	                        <label for = "nome"> Nome </label> 

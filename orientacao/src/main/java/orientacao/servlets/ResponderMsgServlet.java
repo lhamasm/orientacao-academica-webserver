@@ -28,14 +28,21 @@ public class ResponderMsgServlet extends HttpServlet {
 		Orientacao ori = (Orientacao) session.getAttribute("orientacao");
 		ArrayList<Boolean> aprovado = ori.getAprovado();
 		String[] selecionados = request.getParameterValues("veredicto[]");
-		for(int i=0; i<selecionados.length; i++) {
-			aprovado.set(Integer.parseInt(selecionados[i]), true);
+		if(selecionados != null) {
+			for(int i=0; i<selecionados.length; i++) {
+				aprovado.set(Integer.parseInt(selecionados[i]), true);
+			}
 		}
 		String respostaProf = request.getParameter("mensagem");
 		ori.setObservacaoProf(respostaProf);
 		ori.setAprovado(aprovado);
 		ori.setLida(true);
-		professor.responderNotificacao(ori);
+		try {
+			professor.responderNotificacao(ori);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		response.sendRedirect("inboxProf.jsp");
 	}
 }

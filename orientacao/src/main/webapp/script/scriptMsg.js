@@ -1,16 +1,13 @@
-function redirect(){
-	location.href="./montarGrade.jsp";
-}
 function redirectMsg(){
-	 location.href="./inbox.jsp"; 
+	 location.href="./inboxProf.jsp"; 
 }
 
 function redirectHome(){
-	 location.href="./homepageAluno.jsp"; 
+	 location.href="./homepageProfessor.jsp"; 
 }
 
 function redirectCadastro(){
-	 location.href="./alterarCadastroAluno.jsp"; 
+	 location.href="./alterarCadastroProf.jsp"; 
 }
 
 function sair(){

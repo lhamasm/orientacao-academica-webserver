@@ -9,7 +9,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=width-device, initial-scale=1.0, shrink-to-fit=no">
 
-		<title>OrientaÃ§Ã£o AcadÃªmica</title>
+		<title>Orientação Acadêmica</title>
 		<link rel="icon" href="./imagens/BrasaoUFBA.png">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">   
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -52,7 +52,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
+		                    <span onclick = "redirectMsg();" id = "notif""> <i class="fas fa-envelope"></i> </span>
 		                    <span onclick = "redirectHome();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>
@@ -74,12 +74,18 @@
 	    		<tbody id = "cxMensagens">
 	    			<% 
 	    			for (i = 0; i < respostas.size() ; i++) {
+	    				
+	    				
 
                     	Aluno remetente = (Aluno) respostas.get(i).getRemetente();
 
-	                    out.println("<tr onclick=\"selecionaOri(" + i + ");\">");
+	                    out.print("<tr");
+	                    if(respostas.get(i).getLida()){
+	                    	out.print(" class = \"lida\"");
+	                    }
+	                    out.println(" onclick=\"selecionaOri(" + i + ");\">");
 	                    out.println("<td id = \"msg" + i + "remetente\">" + remetente.getNome() + " " + remetente.getSobrenome() + "</td>");
-	                    out.println("<td id = \"msg" + i + "curso\">" + remetente.getCurso() + "</td>");
+	                    out.println("<td id = \"msg" + i + "curso\">" + remetente.getCurso().getNome() + "</td>");
 	                    out.println("<td id = \"msg" + i + "semestre\">" + remetente.getSemestre() + "</td>");
 	                    out.println("<td id = \"msg" + i + "data\">" + respostas.get(i).getData() + "</td>");
 	                    out.println("<td id = \"msg" + i + "hora\">" + respostas.get(i).getHorario() + "</td></tr>"); 

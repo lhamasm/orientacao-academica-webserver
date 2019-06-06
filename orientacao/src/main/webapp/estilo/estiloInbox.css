@@ -19,6 +19,10 @@ body{
 	cursor: pointer;
 	background-color: #83EAD1;
 }
+.btn-msg-pendente:hover{
+	cursor: pointer;
+	background-color: rgb(240, 240, 240);
+}
 .btn-msg-reprovado, .reprovado{
 	background-color: #F38B8B;
 }

@@ -11,13 +11,25 @@ var tipoMateria = [];
 
 function sair(){
 	document.getElementById('sair').value = "a";
+	sessionStorage.clear();
 	document.getElementById('formSair').submit();
 }
 function redirectMsg(){
+	sessionStorage.clear();	
 	location.href="./inbox.jsp" 
 }
 
+if(sessionStorage.getItem("grade") != null){
+	grade = JSON.parse(sessionStorage.getItem("grade"));
+	nomesGrade = JSON.parse(sessionStorage.getItem("nomesGrade"));
+	tipoMateria = JSON.parse(sessionStorage.getItem("tipoMateria"));
+	chGrade = JSON.parse(sessionStorage.getItem("chGrade"));
+	console.log(grade.length);
+	console.log(nomesGrade.length);
+}
+
 function redirectHome(){
+	sessionStorage.clear();
 	location.href="./homepageAluno.jsp" 
 }
 
@@ -271,7 +283,7 @@ function selecionaOrientador(id){
 		orientadores.push(id);
 		document.getElementById('orientador' + id).classList.add('active');
 		document.getElementById('orientador' + id).classList.remove('list-group-item-action');
-		document.getElementById('orientador' + id).classList.add('text-left');		
+		document.getElementById('orientador' + id).classList.add('text-left');
 	}
 	else{
 		var index = orientadores.indexOf(id);
@@ -284,8 +296,10 @@ function selecionaOrientador(id){
 }
 
 function juntaMaterias(){
-	if(grade.length == 0 || materiasinseridas.length == 0 || document.getElementById('input-orientador').value == ""){
-		console.log("oi");
+	if(grade.length == 0 || materiasinseridas.length == 0 || orientadores.length == 0){
+		console.log(grade.length);
+		console.log(materiasinseridas.length);
+		console.log(orientadores.length);
 		return false;
 	}
 	for(var i=0; i<grade.length; i++){
@@ -296,7 +310,7 @@ function juntaMaterias(){
 	for(var i=0; i<materiasinseridas.length; i++){
 		document.getElementById("codigosAtual").value += materiasinseridas[i] + "/";
 		document.getElementById("nomesAtual").value += nomesmateriasinseridas[i] + "/";
-		document.getElementById("chAtual").value += chmaeteriasinseridas[i] + "/";
+		document.getElementById("chAtual").value += chmateriasinseridas[i] + "/";
 	}
 	for(var i=0; i<orientadores.length; i++){
 		document.getElementById("orientadores").value += orientadores[i] + "/";

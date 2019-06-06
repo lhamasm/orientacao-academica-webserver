@@ -1,5 +1,6 @@
 function sair(){
 	document.getElementById('sair').value = "a";
+	sessionStorage.clear();
 	document.getElementById('formSair').submit();
 }
 

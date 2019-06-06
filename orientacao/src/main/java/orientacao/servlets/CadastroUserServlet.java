@@ -30,13 +30,13 @@ public class CadastroUserServlet extends HttpServlet {
 		String senha = req.getParameter("senha");
 		String matricula = req.getParameter("matricula");
 		HttpSession session = req.getSession();						
+		boolean cadastro = false;
 		if(req.getParameter("tipo").equals("Estudante")) {
 			int codcurso = Integer.parseInt(req.getParameter("curso"));
 			int semestre = Integer.parseInt(req.getParameter("semestre"));
 			Aluno aluno = new Aluno(nome, sobrenome, senha, email, matricula, cpf, null, semestre);
-
 			try {
-				aluno = aluno.efetuarCadastro(aluno, codcurso);
+				cadastro = aluno.efetuarCadastro(codcurso);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -45,7 +45,7 @@ public class CadastroUserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			if(aluno != null) {
+			if(cadastro) {
 				session.setAttribute("user", aluno);
 				resp.sendRedirect("homepageAluno.jsp");
 			}
@@ -59,7 +59,7 @@ public class CadastroUserServlet extends HttpServlet {
 			Professor professor = new Professor(nome, sobrenome, senha, email, matricula, cpf);
 
 			try {
-				professor = professor.efetuarCadastro(professor, departamento);
+				cadastro = professor.efetuarCadastro(departamento);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,7 +68,7 @@ public class CadastroUserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			if(professor != null) {
+			if(cadastro) {
 				session.setAttribute("user", professor);
 		        resp.sendRedirect("homepageProfessor.jsp");
 			}

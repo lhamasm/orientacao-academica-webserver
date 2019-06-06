@@ -1,5 +1,6 @@
 <%@ page import ="javax.servlet.*" %>
 <%@ page import ="orientacao.*" %>
+<%@ page import = "java.util.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,7 @@
 		
 <% 
 	Professor professor = (Professor) session.getAttribute("user");
+	ArrayList<Orientacao> oris = professor.recuperarNotificacoes();
 %>	
 		<nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top px-5">
 			<div class="container-fluid">
@@ -37,7 +39,6 @@
 							<span class="navbar-brand"><i id = "iconeProfessor" class="fas fa-chalkboard-teacher"></i></span>
 							<div class="itensinfo">
 								<span id="nome"> <% out.println(professor.getNome() + " " + professor.getSobrenome()); %> </span>
-								<span id="departamento"><% //out.println(professor.getDepartamento().getNome()); %></span>
 							</div>
 						</li>
 					</ul>
@@ -49,7 +50,7 @@
 		                    <button onclick = "sair();" type = "button" class = "btn btn-danger"> Sair </button>
 		                </li>
 		                <li class = "nav-item">
-		                    <span onclick = "redirectMsg();" id = "notif"> <i class="fas fa-envelope"></i> </span> <span class="px-1 pt-0 badge badge-pill badge-danger" id = "notif-num">1</span>
+		                    <span onclick = "redirectMsg();" id = "notif"> <i class="fas fa-envelope"></i> </span>
 		                    <span onclick = "redirectHome();" id = "notif"> <i class="fas fa-home"></i> </span>
 		                </li>
 					</ul>

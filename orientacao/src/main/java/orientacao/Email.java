@@ -3,16 +3,16 @@ package orientacao;
 import org.apache.commons.mail.*;
 
 public class Email {
-	private SimpleEmail mail;
+	private HtmlEmail mail;
 	private String emailDestinatario;
 	private String nomeDestinatario;
 	private String assunto;
 	private String corpo;
 	
 	public Email() {
-		super();
-		this.mail = new SimpleEmail();
+		this.mail = new HtmlEmail();
 		try {
+			this.mail.setCharset("utf-8");
 			this.mail.setHostName("smtp.googlemail.com");
 			this.mail.setSmtpPort(465);
 			this.mail.setAuthenticator(new DefaultAuthenticator("machad.lari@gmail.com", "doremifasol"));
@@ -24,11 +24,11 @@ public class Email {
 		}		
 	}
 
-	public SimpleEmail getMail() {
+	public HtmlEmail getMail() {
 		return mail;
 	}
 
-	public void setMail(SimpleEmail mail) {
+	public void setMail(HtmlEmail mail) {
 		this.mail = mail;
 	}
 
@@ -68,8 +68,8 @@ public class Email {
 		try {
 			this.mail.addTo(email);
 			this.mail.setSubject("Recuperação de Senha do Sistema de Orientação Acadêmica"); 
-			this.mail.setMsg("Sua nova senha é : " + novaSenha);
-			
+			this.mail.setHtmlMsg("Sua nova senha é : " + novaSenha);
+			this.mail.send();			
 			return true;
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
@@ -83,7 +83,8 @@ public class Email {
 		try {
 			this.mail.addTo(email);
 			this.mail.setSubject("Nova Orientação no Sistema de Orientação Acadêmica"); 
-			this.mail.setMsg("Caro(a) Professor(a) " + nomeProfessor + ",<br>O aluno " + nomeAluno + " solicita a sua orienta��o.");
+			this.mail.setHtmlMsg("Caro(a) Professor(a) " + nomeProfessor + ",<br>O aluno " + nomeAluno + " solicita a sua orientação.");
+			this.mail.send();
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +95,8 @@ public class Email {
 		try {
 			this.mail.addTo(email);
 			this.mail.setSubject("Notificação de Resposta no Sistema de Orientação Acadêmica"); 
-			this.mail.setMsg("Caro(a) Aluno(a) " + nomeAluno + ", <br>Você possui uma nova resposta do professor(a) " + nomeProfessor + ".");
+			this.mail.setHtmlMsg("Caro(a) Aluno(a) " + nomeAluno + ", <br>Você possui uma nova resposta do professor(a) " + nomeProfessor + ".");
+			this.mail.send();		
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

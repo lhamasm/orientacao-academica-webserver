@@ -48,11 +48,11 @@ public class Aluno extends Usuario{
 			DateFormat horaFormat = new SimpleDateFormat("HH:mm");
 			Date date = new Date();
 
-			String sql = "INSERT INTO ORIENTACAO VALUES('" +
+			String sql = "INSERT INTO ORIENTACAO(dt, horario, observacaoAluno, observacaoProf, destinatario, remetente, lida) VALUES('" +
 							dateFormat.format(date) + "','" +
 							horaFormat.format(date) + "','" +
 							obsAluno +
-							"NULL ,'" +
+							"', ' ', '" +
 							destinatario + "','" +
 							this.getMatricula() + "', FALSE)";
 					
@@ -72,8 +72,8 @@ public class Aluno extends Usuario{
 						sql = "INSERT INTO ORIENTACAO_DISCIPLINA VALUES('" +
 								listaMaterias.get(i).getCodigo() + "'," + 
 								rs.getInt("LAST_INSERT_ID()") + "," +
-								listaAprovado.get(i) + "," +
-								listaCursando.get(i) + ")"; 
+								listaCursando.get(i) + "," +
+								listaAprovado.get(i) + ")"; 
 						
 						stmt = con.prepareStatement(sql);
 				        stmt.execute();
@@ -110,22 +110,34 @@ public class Aluno extends Usuario{
 		}
 	}
 	
-	public void efetuarCadastro(int codcurso) throws SQLException, ClassNotFoundException {
-		Connection connection = new DataGetter().getConnection();
-		String sql = "INSERT INTO USUARIO VALUES ('" + this.getMatricula() + "', '" + this.getNome() + "', '" + this.getSobrenome() + "', '" + this.getEmail() + "', '" + this.getSenha() + "', '" + this.getCpf() + "')";
-		PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
-		if (!stmt.execute()) {
-			sql = "INSERT INTO ALUNO VALUES ('" + this.getMatricula() + "', " + this.getSemestre() + ", " + this.getCurso().getCodigo() + ")";
-			stmt = (PreparedStatement) connection.prepareStatement(sql);
+	public boolean efetuarCadastro(int codcurso) throws SQLException, ClassNotFoundException {
+		Connection con = null;
+		boolean cadastrou = false;
+		try{
+			con = new DataGetter().getConnection();
+			String sql = "INSERT INTO USUARIO VALUES ('" + this.getMatricula() + "', '" + this.getNome() + "', '" + this.getSobrenome() + "', '" + this.getEmail() + "', '" + this.getSenha() + "', '" + this.getCpf() + "')";
+			PreparedStatement stmt = con.prepareStatement(sql);
 			if (!stmt.execute()) {
-				user = aluno;
-			} else {
-				sql = "DELETE FROM USUARIO WHERE matricula = '" + aluno.getMatricula() + "'";
-				stmt = (PreparedStatement) connection.prepareStatement(sql);
-				stmt.execute();
+				sql = "INSERT INTO ALUNO VALUES ('" + this.getMatricula() + "', " + this.semestre + ", " + codcurso + ")";
+				stmt = con.prepareStatement(sql);
+				this.setCurso(this.recuperarCurso(codcurso));
+				if (stmt.execute()) {
+					sql = "DELETE FROM USUARIO WHERE matricula = '" + this.getMatricula() + "'";
+					stmt = con.prepareStatement(sql);
+					stmt.execute();
+					cadastrou = false;
+				}
+				else {
+					cadastrou = true;
+				}
 			}
+			stmt.close();
+			con.close();
+		}catch(SQLException e){
+			 System.out.println(e);
+		} finally{
+			con.close();
 		}
-		stmt.close();
-		connection.close();
+		return cadastrou;
 	}
 }

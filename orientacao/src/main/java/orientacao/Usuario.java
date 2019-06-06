@@ -88,7 +88,7 @@ public class Usuario {
 	public Disciplina recuperarDisciplina(String codigo) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM DISCIPLINA WHERE codigo =" + codigo;        	
+        	String sql = "SELECT * FROM DISCIPLINA WHERE codigo ='" + codigo + "'";        	
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -128,7 +128,7 @@ public class Usuario {
             while(rs.next()) {
             	aprovado.add(rs.getBoolean("aprovado"));
             	cursando.add(rs.getBoolean("cursando"));
-            	disciplinas.add(recuperarDisciplina(rs.getString("codigo")));
+            	disciplinas.add(recuperarDisciplina(rs.getString("disciplina")));
             	orientacao = new Orientacao(id, null, null, null, null, null, null, disciplinas, cursando, aprovado, false);
             }
             
@@ -149,7 +149,7 @@ public class Usuario {
 		
 		Connection con = null;
 		try {
-        	String sql = "SELECT * FROM ORIENTACAO WHERE remetente=" + this.matricula + "OR destinatario=" + this.matricula;        	
+        	String sql = "SELECT * FROM ORIENTACAO WHERE remetente='" + this.matricula + "' OR destinatario='" + this.matricula + "'";        	
 			con = new DataGetter().getConnection();
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -158,12 +158,12 @@ public class Usuario {
 			ArrayList<Orientacao> orientacoes = new ArrayList<Orientacao>();
             while(rs.next()) {
             	Orientacao orientacao = recuperarOrientacaoDisciplina(rs.getInt("id"));
-            	orientacao.setData(rs.getString("data"));
+            	orientacao.setData(rs.getString("dt"));
             	orientacao.setHorario(rs.getString("horario"));
-            	orientacao.setObservacaoAluno(rs.getString("observacao_aluno"));
-            	orientacao.setObservacaoProf(rs.getString("observacao_professor"));
+            	orientacao.setObservacaoAluno(rs.getString("observacaoAluno"));
+            	orientacao.setObservacaoProf(rs.getString("observacaoProf"));
             	orientacao.setRemetente(recuperarAluno(rs.getString("remetente")));
-            	orientacao.setDestinatario((Professor)recuperarUsuario(rs.getString("destinatario")));
+            	orientacao.setDestinatario(recuperarProfessor(rs.getString("destinatario")));
             	orientacao.setLida(rs.getBoolean("lida"));
             	orientacoes.add(orientacao);
             }
@@ -181,7 +181,7 @@ public class Usuario {
 		return null;
 	}
 	
-	public Usuario recuperarUsuario(String matricula) throws SQLException, ClassNotFoundException {
+	public Professor recuperarProfessor(String matricula) throws SQLException, ClassNotFoundException {
 		Connection con = null;
 		try {
 			String sql = "SELECT * FROM USUARIO WHERE matricula='" + matricula + "'";
@@ -190,9 +190,9 @@ public class Usuario {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			
-			Usuario usuario = null;
+			Professor usuario = null;
 			while(rs.next()) {
-				usuario = new Usuario(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), matricula, rs.getString("cpf"));
+				usuario = new Professor(rs.getString("nome"), rs.getString("sobrenome"), rs.getString("senha"), rs.getString("email"), matricula, rs.getString("cpf"));
 			}
 			
 			rs.close();
@@ -385,18 +385,12 @@ public class Usuario {
 		return user;
 	}
 	public Usuario alterarCadastro(String nome, String sobrenome, String email, int semestre) throws ClassNotFoundException, SQLException{
-		String sql_semestre = "UPDATE ALUNO SET semestre = '" + semestre + "' WHERE matricula = '" + this.matricula + "'";
-		String sql_nome = "UPDATE USUARIO SET nome = '" + nome + "' WHERE matricula = '" + this.matricula + "'";
-		String sql_sobrenome = "UPDATE USUARIO SET sobrenome = '" + sobrenome + "' WHERE matricula = '" + this.matricula + "'";
-		String sql_email = "UPDATE USUARIO SET email = '" + email + "' WHERE matricula = '"  + this.matricula + "'";
+		String sql_semestre = "UPDATE ALUNO SET semestre = " + semestre + " WHERE matricula = '" + this.matricula + "'";
+		String sql_usuario = "UPDATE USUARIO SET nome = '" + nome + "', sobrenome = '" + sobrenome + "', email = '" + email + "' WHERE matricula = '" + this.matricula + "'";
 		Connection connection = new DataGetter().getConnection();
-		PreparedStatement stmt_nome = (PreparedStatement) connection.prepareStatement(sql_nome);
-		PreparedStatement stmt_sobrenome = (PreparedStatement) connection.prepareStatement(sql_sobrenome);
-		PreparedStatement stmt_email = (PreparedStatement) connection.prepareStatement(sql_email);
+		PreparedStatement stmt_usuario = (PreparedStatement) connection.prepareStatement(sql_usuario);
 		PreparedStatement stmt_semestre = (PreparedStatement) connection.prepareStatement(sql_semestre);
-		stmt_nome.executeUpdate();
-		stmt_sobrenome.executeUpdate();
-		stmt_email.executeUpdate();
+		stmt_usuario.executeUpdate();
 		if(semestre != -1) {
 			stmt_semestre.executeUpdate();		
 			Aluno aluno = (Aluno) this;
