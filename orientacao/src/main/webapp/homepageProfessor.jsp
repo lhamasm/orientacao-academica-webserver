@@ -57,16 +57,19 @@
 				</div>
 			</div>
 		</nav>
-		<div class = "px-5 container">
-	        <br>
-	        <br>
-	        <h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
-	        <div class="row">
-	        	<div class="col-md-4 col-lg-3">
-	        		<button onclick = "redirect();" type = "button" class = "btn btn-block" id = "botaoGrade"> Veja suas solicitações</button>
-	        	</div>
-	        </div>
-	    </div>
+    <div class = "px-5 container">
+        <br>
+        <br>
+        <div class = "row">
+        	<div class = "mt-5 py-3 col-5">
+	        	<h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
+	        	<button type = "button" onclick = "redirect();" class = "col-6 btn" id = "botaoGrade"> Veja suas solicitações </button>
+        	</div>
+        	<div class = "offset-1 col-6">
+        		<img src = "./imagens/prof.png" alt = "Prof" width = "100%">
+        	</div>
+        </div>
+    </div>
    <form method = "post" action = "sair" id = "formSair">
    		<input type = "hidden" id = "sair" name = "sair">
    </form> 

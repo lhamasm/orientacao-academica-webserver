@@ -50,11 +50,18 @@
             </ul>
         </div>
     </nav>
-    <div class = "px-5 container">
+    <div class = "px-5 mt-4 container">
         <br>
         <br>
-        <h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
-        <button type = "button" onclick = "redirect();" class = "col-3 btn" id = "botaoGrade"> Monte sua Grade </button>
+        <div class = "row">
+        	<div class = "mt-5 col-5">
+	        	<h1 class = "mt-5"> Sistema de <br> Orientação Acadêmica </h1> <br>
+	        	<button type = "button" onclick = "redirect();" class = "col-6 btn" id = "botaoGrade"> Monte sua Grade </button>
+        	</div>
+        	<div class = "offset-1 col-6">
+        		<img src = "./imagens/capelo.png" alt = "Capelo" width = "130%">
+        	</div>
+        </div>
     </div>
    <form method = "post" action = "sair" id = "formSair">
    		<input type = "hidden" id = "sair" name = "sair">
